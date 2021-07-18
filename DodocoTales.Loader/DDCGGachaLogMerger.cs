@@ -35,8 +35,8 @@ namespace DodocoTales.Loader
                 foreach (var banner in DDCL.Banners.beginnerPools)
                 {
                     DDCCBannerLogs beginner = null;
-                    while (bpidx < bps && DateTime.Compare(initialLogs.Beginner[bpidx].time, version.endTime) <0 
-                        && DateTime.Compare(initialLogs.Beginner[bpidx].time, banner.endTime) < 0)
+                    while (bpidx < bps && DDCL.CompareTime(initialLogs.Beginner[bpidx].time, version.endTime) <0 
+                        && DDCL.CompareTime(initialLogs.Beginner[bpidx].time, banner.endTime) < 0)
                     {
                         var item = ConvertToDDCCLogItem(initialLogs.Beginner[bpidx++]);
                         if (beginner == null)
@@ -65,7 +65,7 @@ namespace DodocoTales.Loader
                 // Permanent
                 foreach(var banner in DDCL.Banners.permanentPools)
                 {
-                    if (DateTime.Compare(version.endTime, banner.endTime) < 0) continue;
+                    if (DDCL.CompareTime(version.endTime, banner.endTime) < 0) continue;
                     DDCCBannerLogs permanent = null;
                     var pl = ver.B.FindAll(x => x.id == banner.id);
                     if (pl.Count == 0)
@@ -79,8 +79,8 @@ namespace DodocoTales.Loader
                         ver.B.Add(permanent);
                     }
                     else permanent = pl[0];
-                    while (ppidx < pps && DateTime.Compare(initialLogs.Permanent[ppidx].time, version.endTime) < 0
-                         && DateTime.Compare(initialLogs.Permanent[ppidx].time, banner.endTime) < 0)
+                    while (ppidx < pps && DDCL.CompareTime(initialLogs.Permanent[ppidx].time, version.endTime) < 0
+                         && DDCL.CompareTime(initialLogs.Permanent[ppidx].time, banner.endTime) < 0)
                     {
                         var item = ConvertToDDCCLogItem(initialLogs.Permanent[ppidx++]);
                         permanent.R[permanent.R.Count - 1].L.Add(item);
@@ -111,7 +111,7 @@ namespace DodocoTales.Loader
                     int epidx = (banner.type == DDCCPoolType.EventCharacter) ? ecpidx : ewpidx;
                     int eps = (banner.type == DDCCPoolType.EventCharacter) ? ecps : ewps;
 
-                    while (epidx < eps && DateTime.Compare(initLogEvent[epidx].time, banner.endTime) < 0)
+                    while (epidx < eps && DDCL.CompareTime(initLogEvent[epidx].time, banner.endTime) < 0)
                     {
                         var item = ConvertToDDCCLogItem(initLogEvent[epidx++]);
                         eventpool.R[eventpool.R.Count - 1].L.Add(item);

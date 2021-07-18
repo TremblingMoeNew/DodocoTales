@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\DDCCTimeZone.cs" />
     <Compile Include="Enums\DDCCUnitType.cs" />
     <Compile Include="Enums\DDCCPoolType.cs" />
     <Compile Include="Models\DDCCBannerLogs.cs" />
