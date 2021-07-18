@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DodocoTales.Common.Enums
 {
-    public enum DDCCItemType
+    public enum DDCCUnitType
     {
         Character,
         Weapon,

@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DDCG.cs" />
+    <Compile Include="DDCGGachaLogMerger.cs" />
     <Compile Include="DDCGLocalGachaLogLoader.cs" />
     <Compile Include="DDCGWebGachaLogLoader.cs" />
     <Compile Include="Models\DDCGGachaLogResponseItem.cs" />

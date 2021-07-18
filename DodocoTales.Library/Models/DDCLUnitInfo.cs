@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using DodocoTales.Common.Enums;
 namespace DodocoTales.Library.Models
 {
-    public partial class DDCLItemInfo
+    public partial class DDCLUnitInfo
     {
         public int id { get; set; }
-        public DDCCItemType type { get; set; }
+        public DDCCUnitType type { get; set; }
         public int rank { get; set; }
         public string code { get; set; }
         public string name { get; set; }

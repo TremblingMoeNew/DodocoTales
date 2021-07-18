@@ -46,10 +46,11 @@
   <ItemGroup>
     <Compile Include="DDCL.cs" />
     <Compile Include="DDCLBannerLibrary.cs" />
-    <Compile Include="DDCLItemLibrary.cs" />
+    <Compile Include="DDCLUnitLibrary.cs" />
     <Compile Include="Models\DDCLBannerInfo.cs" />
     <Compile Include="Models\DDCLBannerLibModel.cs" />
-    <Compile Include="Models\DDCLItemInfo.cs" />
+    <Compile Include="Models\DDCLUnitInfo.cs" />
+    <Compile Include="DDCLUserLibrary.cs" />
     <Compile Include="Models\DDCLVersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

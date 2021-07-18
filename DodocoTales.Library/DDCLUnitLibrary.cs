@@ -10,19 +10,19 @@ using Newtonsoft.Json;
 
 namespace DodocoTales.Library
 {
-    public partial class DDCLItemLibrary
+    public partial class DDCLUnitLibrary
     {
-        public List<DDCLItemInfo> library;
-        public Dictionary<int, DDCLItemInfo> idMap;
-        public Dictionary<string, DDCLItemInfo> codeMap;
-        readonly DDCLItemInfo notfound = new DDCLItemInfo { id = 0, code = "Unknown", name = "Unknown", type = DDCCItemType.Unknown };
+        public List<DDCLUnitInfo> L;
+        public Dictionary<int, DDCLUnitInfo> idMap;
+        public Dictionary<string, DDCLUnitInfo> codeMap;
+        readonly DDCLUnitInfo notfound = new DDCLUnitInfo { id = 0, code = "Unknown", name = "Unknown", type = DDCCUnitType.Unknown };
         public readonly string libPath = @"library/ItemLibrary.json";
 
-        public DDCLItemLibrary()
+        public DDCLUnitLibrary()
         {
-            library = new List<DDCLItemInfo>();
-            idMap = new Dictionary<int, DDCLItemInfo>();
-            codeMap = new Dictionary<string, DDCLItemInfo>();
+            L = new List<DDCLUnitInfo>();
+            idMap = new Dictionary<int, DDCLUnitInfo>();
+            codeMap = new Dictionary<string, DDCLUnitInfo>();
         }
 
         
@@ -35,33 +35,33 @@ namespace DodocoTales.Library
                 var stream = File.Open(libPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 StreamReader reader = new StreamReader(stream);
                 var buffer = reader.ReadToEnd();
-                library = JsonConvert.DeserializeObject<List<DDCLItemInfo>>(buffer);
+                L = JsonConvert.DeserializeObject<List<DDCLUnitInfo>>(buffer);
                 createMap();
             }
             catch(Exception)
             {
                 idMap.Clear();
                 codeMap.Clear();
-                library = null;
+                L = null;
                 return false;
             }
             return true;
         }
         void createMap()
         {
-            foreach (var item in library)
+            foreach (var item in L)
             {
                 idMap.Add(item.id, item);
                 codeMap.Add(item.code, item);
             }
         }
-        public DDCLItemInfo getItemById(int id)
+        public DDCLUnitInfo getItemById(int id)
         {
-            if (idMap.TryGetValue(id, out DDCLItemInfo info)) return info; else return notfound;
+            if (idMap.TryGetValue(id, out DDCLUnitInfo info)) return info; else return notfound;
         }
-        public DDCLItemInfo getItemByCode(string code)
+        public DDCLUnitInfo getItemByCode(string code)
         {
-            if (codeMap.TryGetValue(code, out DDCLItemInfo info)) return info; else return notfound;
+            if (codeMap.TryGetValue(code, out DDCLUnitInfo info)) return info; else return notfound;
         }
     }
 }

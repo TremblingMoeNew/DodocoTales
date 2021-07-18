@@ -44,13 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\DDCCItemType.cs" />
+    <Compile Include="Enums\DDCCUnitType.cs" />
     <Compile Include="Enums\DDCCPoolType.cs" />
+    <Compile Include="Models\DDCCBannerLogs.cs" />
+    <Compile Include="Models\DDCCGachaLogItem.cs" />
+    <Compile Include="Models\DDCCUserGachaLogs.cs" />
+    <Compile Include="Models\DDCCRoundLogs.cs" />
+    <Compile Include="Models\DDCCVersionLogs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

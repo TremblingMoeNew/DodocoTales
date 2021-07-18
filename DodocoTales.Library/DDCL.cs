@@ -8,14 +8,8 @@ namespace DodocoTales.Library
 {
     public partial class DDCL
     {
-        public static DDCL L = new DDCL();
-
-        public DDCLBannerLibrary Banners { get; set; }
-        public DDCLItemLibrary Items { get; set; }
-        public DDCL()
-        {
-            Banners = new DDCLBannerLibrary();
-            Items = new DDCLItemLibrary();
-        }
+        public static DDCLBannerLibrary Banners = new DDCLBannerLibrary();
+        public static DDCLUnitLibrary Units = new DDCLUnitLibrary();
+        public static DDCLUserLibrary Users = new DDCLUserLibrary();
     }
 }
