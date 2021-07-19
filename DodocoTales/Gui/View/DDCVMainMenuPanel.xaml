@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="DodocoTales.Gui.View.DDCVMainMenuPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DodocoTales.Gui.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="180">
+    <Grid Style="{StaticResource Style-MainMenu-MainGrid}">
+        <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1">
+                <Separator Margin="5 0" Background="#A0FF8888" Height="2"></Separator>
+                <RadioButton Style="{StaticResource Style-MainMenu-MenuButton-Main}" Tag="Home" Click="RadioButton_Checked" IsChecked="True">首页</RadioButton>
+                <Separator Margin="20 0" Background="#80FF9999" Height="1"></Separator>
+                <RadioButton Style="{StaticResource Style-MainMenu-MenuButton-Main}" IsEnabled="False">统计</RadioButton>
+                <RadioButton Style="{StaticResource Style-MainMenu-MenuButton-Sub}" Tag="Version" Click="RadioButton_Checked">按照版本</RadioButton>
+                <RadioButton Style="{StaticResource Style-MainMenu-MenuButton-Sub}" Tag="Pool" Click="RadioButton_Checked">按照类型</RadioButton>
+                <Separator Margin="20 0" Background="#80FF9999" Height="1"></Separator>
+            </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Bottom">
+            <Button Style="{StaticResource Style-MainMenu-ToolButton-IconText}" Content="{StaticResource String-IconText-Settings}" Margin="10 2 3 2"/>
+            <Button Style="{StaticResource Style-MainMenu-ToolButton-IconText}" Content="{StaticResource String-IconText-Refresh}" Margin="3 2 10 2" Click="Button_Click"/>
+            <Label VerticalContentAlignment="Center" HorizontalAlignment="Center">UID: 17****343</Label>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -11,7 +11,7 @@ namespace DodocoTales.Library
 {
     public partial class DDCLBannerLibrary
     {
-        public readonly string libPath = @"meta/BannerLibrary.json";
+        public readonly string libPath = @"library/BannerLibrary.json";
         DDCLBannerLibModel model;
 
         public List<DDCLBannerInfo> beginnerPools { get { return model?.beginnerPools; } }

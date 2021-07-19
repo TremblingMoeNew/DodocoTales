@@ -11,7 +11,7 @@ namespace DodocoTales.Loader
 {
     public partial class DDCGGachaLogMerger
     {
-        public void mergeGachaLogsAsync(DDCGGachaInitialLogs initialLogs)
+        public void mergeGachaLogs(DDCGGachaInitialLogs initialLogs)
         {
             var curlog = DDCL.Users.getCurrentUser();
             int bpidx = 0, ppidx = 0, ecpidx = 0, ewpidx = 0;
@@ -152,7 +152,7 @@ namespace DodocoTales.Loader
             for (int i=curlog.V.Count-1;i>=0;i--)
             {
                 var banners = curlog.V[i].B.FindAll(x => x.poolType == type);
-                for(int j=banners.Count-1;j>=0;j--)
+                for (int j = banners.Count - 1; j >= 0; j--)
                 {
                     if (banners[j].R[banners[j].R.Count - 1].L.Count > 0)
                     {

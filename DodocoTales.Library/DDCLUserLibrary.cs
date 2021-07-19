@@ -15,6 +15,11 @@ namespace DodocoTales.Library
         public long CurrentUserUID { get; set; }
         public Dictionary<long, DDCCUserGachaLogs> U { get; set; }
 
+        public DDCLUserLibrary()
+        {
+            U = new Dictionary<long, DDCCUserGachaLogs>();
+        }
+
         public DDCCUserGachaLogs createEmptyLocalGachaLog(long uid)
         {
             return new DDCCUserGachaLogs { uid = uid, V = new List<DDCCVersionLogs>() };
@@ -38,7 +43,7 @@ namespace DodocoTales.Library
         public async Task loadLocalGachaLogs()
         {
             DirectoryInfo dir = new DirectoryInfo("userdata");
-            var files = dir.GetFiles("");
+            var files = dir.GetFiles("userlog_*.json");
             string pattern = @"userlog_(\d+)\.json";
             List<Task> taskQuery = new List<Task>();
             foreach (var f in files)
@@ -47,10 +52,11 @@ namespace DodocoTales.Library
                 long uid=0;
                 try
                 {
-                    uid = Convert.ToInt64(result.Groups[1]);
+                    uid = Convert.ToInt64(result.Groups[1].Value);
                 }
-                catch(Exception)
+                catch(Exception e)
                 {
+                    Console.WriteLine(e.StackTrace);
                     /// TODO: 处理与报告载入错误
                 }
                 taskQuery.Add(loadLocalGachaLogByUidAsync(uid));
@@ -68,10 +74,12 @@ namespace DodocoTales.Library
             /// TODO：更新库版本
             try
             {
-                var stream = File.Open(logfile, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+                var stream = File.Open(logfile, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite);
                 StreamWriter writer = new StreamWriter(stream);
                 var serialized = JsonConvert.SerializeObject(curuser, Formatting.Indented);
-                await writer.WriteLineAsync(serialized);
+                await writer.WriteAsync(serialized);
+                await writer.FlushAsync();
+                stream.Close();
             }
             catch (Exception)
             {
@@ -87,9 +95,10 @@ namespace DodocoTales.Library
         {
             await saveCurrentUser();
             CurrentUserUID = uid;
-            if (!U.ContainsKey(CurrentUserUID))
+            if (!U.ContainsKey(uid))
             {
-                createEmptyLocalGachaLog(CurrentUserUID);
+                var log=createEmptyLocalGachaLog(CurrentUserUID);
+                U.Add(CurrentUserUID, log);
             }
         }
 

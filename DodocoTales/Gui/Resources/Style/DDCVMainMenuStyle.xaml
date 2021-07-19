@@ -1,0 +1,143 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DodocoTales.Gui.Style">
+
+    <SolidColorBrush x:Key="Brush-MainMenu-Main-Background" Color="#FFAAAA"/>
+
+    <LinearGradientBrush  x:Key="Brush-MainMenu-MenuButton-Main-Hover" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,0" >
+        <GradientStop Color="#30FFFFFF" Offset="0"/>
+        <GradientStop Color="#7FFFFFFF" Offset="0.3"/>
+        <GradientStop Color="#19FFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush  x:Key="Brush-MainMenu-MenuButton-Main-Selected" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,0" >
+        <GradientStop Color="#7FFFFFFF" Offset="0"/>
+        <GradientStop Color="#19FFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush  x:Key="Brush-MainMenu-MenuButton-Sub-Hover" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,0" >
+        <GradientStop Color="#09FFFFFF" Offset="0"/>
+        <GradientStop Color="#30FFFFFF" Offset="0.1"/>
+        <GradientStop Color="#7FFFFFFF" Offset="0.3"/>
+        <GradientStop Color="#19FFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush  x:Key="Brush-MainMenu-MenuButton-Sub-Selected" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,0" >
+        <GradientStop Color="#09FFFFFF" Offset="0"/>
+        <GradientStop Color="#7FFFFFFF" Offset="0.1"/>
+        <GradientStop Color="#19FFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+    <RadialGradientBrush x:Key="Brush-MainMenu-ToolButton-IconText-MouseHover" MappingMode="RelativeToBoundingBox" >
+        <GradientStop Color="#FFFFFFFF" Offset="0.3"/>
+        <GradientStop Color="#80FFFFFF" Offset="0.7"/>
+        <GradientStop Color="#00FFFFFF" Offset="1"/>
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="Brush-MainMenu-ToolButton-IconText-MouseDown" MappingMode="RelativeToBoundingBox" >
+        <GradientStop Color="#FFFFFFFF" Offset="0.3"/>
+        <GradientStop Color="#A0FFFFFF" Offset="0.7"/>
+        <GradientStop Color="#80FFFFFF" Offset="0.8"/>
+        <GradientStop Color="#80888888" Offset="0.95"/>
+        <GradientStop Color="#80FFFFFF" Offset="0.96"/>
+        <GradientStop Color="#00FFFFFF" Offset="0.96"/>
+    </RadialGradientBrush>
+
+    <Style x:Key="Style-MainMenu-MainGrid" TargetType="Grid">
+        <Setter Property="Background" Value="{StaticResource Brush-MainMenu-Main-Background}"/>
+    </Style>
+
+    <Style x:Key="Style-MainMenu-MenuButton-Main" TargetType="RadioButton">
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border x:Name="Main" Background="#00FFFFFF">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0" Fill="#00FF0000" Margin="5 10 20 10" x:Name="Indicator"/>
+                            <ContentPresenter Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                RecognizesAccessKey="True" />
+                        </Grid>
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Main" Property="Background" Value="{StaticResource Brush-MainMenu-MenuButton-Main-Hover}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter TargetName="Main" Property="Background" Value="{StaticResource Brush-MainMenu-MenuButton-Main-Selected}"/>
+                            <Setter TargetName="Indicator" Property="Fill" Value="#80FF0000"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Style-MainMenu-MenuButton-Sub" TargetType="RadioButton">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border x:Name="Main" Background="#00FFFFFF" Padding="20 0 0 0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0" Fill="#00FF0000" Margin="5 5 10 5" x:Name="Indicator"/>
+                            <ContentPresenter Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                RecognizesAccessKey="True" />
+                        </Grid>
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Main" Property="Background" Value="{StaticResource Brush-MainMenu-MenuButton-Sub-Hover}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter TargetName="Main" Property="Background" Value="{StaticResource Brush-MainMenu-MenuButton-Sub-Selected}"/>
+                            <Setter TargetName="Indicator" Property="Fill" Value="#80FF0000"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Style-MainMenu-ToolButton-IconText" TargetType="Button">
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="MainBorder" Background="#00FFFFFF" CornerRadius="1" Padding="4">
+                        <ContentPresenter 
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                RecognizesAccessKey="True" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="{StaticResource Brush-MainMenu-ToolButton-IconText-MouseHover}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="{StaticResource Brush-MainMenu-ToolButton-IconText-MouseDown}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
