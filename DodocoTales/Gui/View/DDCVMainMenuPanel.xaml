@@ -8,11 +8,11 @@
              d:DesignHeight="600" d:DesignWidth="180">
     <Grid Style="{StaticResource Style-MainMenu-MainGrid}">
         <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition/>
-                <RowDefinition Height="60"/>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1">
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1">
                 <Separator Margin="5 0" Background="#A0FF8888" Height="2"></Separator>
                 <RadioButton Style="{StaticResource Style-MainMenu-MenuButton-Main}" Tag="Home" Click="RadioButton_Checked" IsChecked="True">首页</RadioButton>
                 <Separator Margin="20 0" Background="#80FF9999" Height="1"></Separator>

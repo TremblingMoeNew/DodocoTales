@@ -13,22 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DodocoTales
+namespace DodocoTales.Gui.View
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// DDCVMainSwapperPanel.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DDCVMainSwapperPanel : UserControl
     {
-        public MainWindow()
+        public DDCVMainSwapperPanel()
         {
             InitializeComponent();
-            Caption.MainWindow = this;
-        }
-
-        private void WindowMain_StateChanged(object sender, EventArgs e)
-        {
-            Caption.State = WindowState;
         }
     }
 }

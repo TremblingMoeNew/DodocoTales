@@ -8,6 +8,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Gui/Resources/String/DDCVIconTextStrings.xaml"/>
                 <ResourceDictionary Source="Gui/Resources/Style/DDCVMainMenuStyle.xaml"/>
+                <ResourceDictionary Source="Gui/Resources/Style/DDCVMainSwapperStyle.xaml"/>
+                <ResourceDictionary Source="Gui/Resources/Style/DDCVMainTitleBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

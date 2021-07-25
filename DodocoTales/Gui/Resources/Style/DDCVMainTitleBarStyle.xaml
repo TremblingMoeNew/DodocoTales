@@ -1,0 +1,64 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DodocoTales.Gui.Resources.Style">
+
+
+
+    <Style x:Key="Style-MainTitleBar-Button-Base" TargetType="Button">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Style-MainTitleBar-Button-Return" TargetType="Button" BasedOn="{StaticResource Style-MainTitleBar-Button-Base}">
+        <Setter Property="Content" Value="{StaticResource String-IconText-Back}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background"  Value="#80AAAAAA"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="Style-MainTitleBar-Button-Minimize" TargetType="Button" BasedOn="{StaticResource Style-MainTitleBar-Button-Base}">
+        <Setter Property="Content" Value="{StaticResource String-IconText-Minimize}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background"  Value="#80AAAAAA"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Style-MainTitleBar-Button-Maximize" TargetType="Button" BasedOn="{StaticResource Style-MainTitleBar-Button-Base}">
+        <Setter Property="Content" Value="{StaticResource String-IconText-Maximize}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background"  Value="#80AAAAAA"/>
+            </Trigger>
+            <DataTrigger Binding="{Binding State,ElementName=Caption}" Value="Maximized">
+                <Setter Property="Content" Value="{StaticResource String-IconText-Restore}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Style-MainTitleBar-Button-Close" TargetType="Button" BasedOn="{StaticResource Style-MainTitleBar-Button-Base}">
+        <Setter Property="Content" Value="{StaticResource String-IconText-Close}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#FFFFFFFF"/>
+                <Setter Property="Background"  Value="#C0FF2222"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

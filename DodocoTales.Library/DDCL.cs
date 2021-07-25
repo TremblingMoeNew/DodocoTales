@@ -11,11 +11,25 @@ namespace DodocoTales.Library
         public static DDCLBannerLibrary Banners = new DDCLBannerLibrary();
         public static DDCLUnitLibrary Units = new DDCLUnitLibrary();
         public static DDCLUserLibrary Users = new DDCLUserLibrary();
+
+        public static int CompareLibTimeWithNow(DateTime LibraryTime)
+        {
+            var now = GetNowDateTimeOffset();
+            var libraryTimeOffset = GetTimeOffset(LibraryTime, DDCCTimeZone.DefaultUTCP8);
+            return DateTimeOffset.Compare(now, LibraryTime);
+        }
+
         public static int CompareTime(DateTime CustomTime,DateTime LibraryTime)
         {
             var customTimeOffset = GetTimeOffset(CustomTime, Users.getCurrentUser().zone);
             var libraryTimeOffset = GetTimeOffset(LibraryTime, DDCCTimeZone.DefaultUTCP8);
             return DateTimeOffset.Compare(CustomTime, LibraryTime);
+        }
+        public static int CompareLibTime(DateTime Lib1,DateTime Lib2)
+        {
+            var library1Offset = GetTimeOffset(Lib1, DDCCTimeZone.DefaultUTCP8);
+            var library2Offset = GetTimeOffset(Lib2, DDCCTimeZone.DefaultUTCP8);
+            return DateTimeOffset.Compare(library1Offset, library2Offset);
         }
         public static int CompareTime(DateTime CustomTime,DDCCTimeZone zone,DateTime LibraryTime)
         {

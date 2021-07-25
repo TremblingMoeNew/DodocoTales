@@ -11,6 +11,7 @@ namespace DodocoTales.Common.Models
     {
         public long uid { get; set; }
         public List<DDCCVersionLogs> V { get; set; }
+        public DDCCUncategorizedLogs Uncategorized { get; set; }
         public long lastUpdateBannerLibraryVersion { get; set; }
         public long lastUpdateUnitLibraryVersion { get; set; }
         public DDCCTimeZone zone { get; set; }

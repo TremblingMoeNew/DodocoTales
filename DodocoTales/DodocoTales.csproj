@@ -63,7 +63,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Resources\Style\DDCVMainSwapperStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Resources\Style\DDCVMainTitleBarStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\View\DDCVMainMenuPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\View\DDCVMainSwapperPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\View\DDCVMainTitleBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,6 +97,12 @@
     </Compile>
     <Compile Include="Gui\View\DDCVMainMenuPanel.xaml.cs">
       <DependentUpon>DDCVMainMenuPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\DDCVMainSwapperPanel.xaml.cs">
+      <DependentUpon>DDCVMainSwapperPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\DDCVMainTitleBar.xaml.cs">
+      <DependentUpon>DDCVMainTitleBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\Dialog\DDCVWebGachaLogLoadIndicatorDialog.xaml.cs">
       <DependentUpon>DDCVWebGachaLogLoadIndicatorDialog.xaml</DependentUpon>
@@ -131,7 +153,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Gui\Screen\" />
+    <Folder Include="Gui\View\Screen\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

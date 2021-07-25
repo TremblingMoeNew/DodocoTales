@@ -49,6 +49,7 @@
     <Compile Include="Enums\DDCCPoolType.cs" />
     <Compile Include="Models\DDCCBannerLogs.cs" />
     <Compile Include="Models\DDCCGachaLogItem.cs" />
+    <Compile Include="Models\DDCCUncategorizedLogs.cs" />
     <Compile Include="Models\DDCCUserGachaLogs.cs" />
     <Compile Include="Models\DDCCRoundLogs.cs" />
     <Compile Include="Models\DDCCVersionLogs.cs" />

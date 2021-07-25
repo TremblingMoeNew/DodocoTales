@@ -4,4 +4,9 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="String-IconText-Settings">&#xE713;</sys:String>
     <sys:String x:Key="String-IconText-Refresh">&#xE72C;</sys:String>
+    <sys:String x:Key="String-IconText-Back">&#xE72B;</sys:String>
+    <sys:String x:Key="String-IconText-Minimize">&#xE921;</sys:String>
+    <sys:String x:Key="String-IconText-Maximize">&#xE922;</sys:String>
+    <sys:String x:Key="String-IconText-Restore">&#xE923;</sys:String>
+    <sys:String x:Key="String-IconText-Close">&#xE8BB;</sys:String>
 </ResourceDictionary>

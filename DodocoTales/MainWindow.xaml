@@ -6,8 +6,35 @@
         xmlns:local="clr-namespace:DodocoTales"
         xmlns:view="clr-namespace:DodocoTales.Gui.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Name="WindowMain"
+        StateChanged="WindowMain_StateChanged"
+        >
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="30" GlassFrameThickness="1" UseAeroCaptionButtons="False" NonClientFrameEdges="None"/>
+    </WindowChrome.WindowChrome>
     <Grid>
-        <view:DDCVMainMenuPanel Width="180"></view:DDCVMainMenuPanel>
+        <Grid.Resources>
+            <Style TargetType="Grid">
+                <Setter Property="Margin" Value="1"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=WindowMain,Path=WindowState}" Value="Maximized">
+                        <Setter Property="Margin" Value="8"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <view:DDCVMainTitleBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Caption" State="{Binding WindowMain.WindowState}">
+        </view:DDCVMainTitleBar>
+        <view:DDCVMainMenuPanel Grid.Row="1"></view:DDCVMainMenuPanel>
+        <view:DDCVMainSwapperPanel Grid.Column="1" Grid.Row="1"></view:DDCVMainSwapperPanel>
     </Grid>
 </Window>

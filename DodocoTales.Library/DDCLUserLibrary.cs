@@ -33,6 +33,7 @@ namespace DodocoTales.Library
                 StreamReader reader = new StreamReader(stream);
                 var response = JsonConvert.DeserializeObject<DDCCUserGachaLogs>(await reader.ReadToEndAsync());
                 /// TODO: 检查版本
+
                 U.Add(response.uid, response);
             }
             catch (Exception)

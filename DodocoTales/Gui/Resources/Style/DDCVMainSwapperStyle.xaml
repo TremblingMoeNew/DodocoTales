@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DodocoTales.Gui.Resources.Style">
+
+    <SolidColorBrush x:Key="Brush-MainSwapper-Main-Background" Color="#FFDDDD"/>
+
+    <Style x:Key="Style-MainSwapper-MainGrid" TargetType="Grid">
+        <Setter Property="Background" Value="{StaticResource Brush-MainSwapper-Main-Background}"/>
+    </Style>
+
+    <Style x:Key="Style-MainSwapper-Title" TargetType="Label">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="10 0"/>
+    </Style>
+</ResourceDictionary>
