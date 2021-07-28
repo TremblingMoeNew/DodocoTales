@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DodocoTales.Gui.View.Card"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="Root">
     <Grid>
         <Border Style="{StaticResource Style-Card-Border-Base}">
             <StackPanel>
@@ -30,21 +31,21 @@
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Column="0" Grid.Row="0">累计抽数:</Label>
-                            <Label Grid.Column="1" Grid.Row="0" Name="sum"></Label>
+                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding ElementName=Root,Path=Summary.TotalCnt}"/>
                             <Label Grid.Column="0" Grid.Row="1">五星平均抽数:</Label>
-                            <Label Grid.Column="1" Grid.Row="1" Name="R5avg"></Label>
+                            <Label Grid.Column="1" Grid.Row="1" Content="{Binding ElementName=Root,Path=Summary.R5Avg}"/>
                             <Label Grid.Row="0" Grid.Column="2">五星:</Label>
-                            <Label Grid.Row="0" Grid.Column="3" Name="R5cnt"></Label>
-                            <Label Grid.Row="0" Grid.Column="4" Name="R5P"></Label>
+                            <Label Grid.Row="0" Grid.Column="3" Content="{Binding ElementName=Root,Path=Summary.R5Cnt}"/>
+                            <Label Grid.Row="0" Grid.Column="4" Content="{Binding ElementName=Root,Path=Summary.R5PS}"/>
                             <Label Grid.Row="1" Grid.Column="2">四星:</Label>
-                            <Label Grid.Row="1" Grid.Column="3" Name="R4cnt"></Label>
-                            <Label Grid.Row="1" Grid.Column="4" Name="R4P"></Label>
+                            <Label Grid.Row="1" Grid.Column="3" Content="{Binding ElementName=Root,Path=Summary.R4Cnt}"/>
+                            <Label Grid.Row="1" Grid.Column="4" Content="{Binding ElementName=Root,Path=Summary.R4PS}"/>
                             <Label Grid.Row="0" Grid.Column="5">UP命中:</Label>
-                            <Label Grid.Row="0" Grid.Column="6" Name="R5Up"></Label>
+                            <Label Grid.Row="0" Grid.Column="6" Content="{Binding ElementName=Root,Path=Summary.R5Up}"/>
                             <Label Grid.Row="1" Grid.Column="5">UP命中:</Label>
-                            <Label Grid.Row="1" Grid.Column="6" Name="R4Up"></Label>
+                            <Label Grid.Row="1" Grid.Column="6"  Content="{Binding ElementName=Root,Path=Summary.R4Up}"/>
                             <Separator Grid.Row="0" Grid.RowSpan="3" Grid.Column="7" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                            <WrapPanel Grid.Row="0" Grid.Column="8" Grid.RowSpan="3">
+                            <WrapPanel Grid.Row="0" Grid.Column="8" Grid.RowSpan="3" Name="IndicatorContainer">
                                 <WrapPanel.Resources>
                                     <Style BasedOn="{StaticResource Style-Card-TextBlock-UnitTextIndicator}" TargetType="TextBlock"/>
                                 </WrapPanel.Resources>

@@ -92,9 +92,9 @@ namespace DodocoTales.Gui.View.Card
                 TotalCnt = cnt.ToString(),
                 R5Cnt = (r5charcnt + r5weapcnt).ToString(),
                 R4Cnt = (r4charcnt + r4weapcnt).ToString(),
-                R5Avg = string.Format("{0:F1}", (cnt - curr5cnt) * 1.0 / (r5charcnt + r5weapcnt)),
-                R5PS = string.Format("[{0:P1}]", (r5charcnt + r5weapcnt) * 1.0 / cnt),
-                R4PS = string.Format("[{0:P1}]", (r4charcnt + r4weapcnt) * 1.0 / cnt),
+                R5Avg = (r5charcnt + r5weapcnt) > 0 ? string.Format("{0:F1}", (cnt - curr5cnt) * 1.0 / (r5charcnt + r5weapcnt)) : "——",
+                R5PS = cnt > 0 ? string.Format("[{0:P1}]", (r5charcnt + r5weapcnt) * 1.0 / cnt) : "[—%]",
+                R4PS = cnt > 0 ? string.Format("[{0:P1}]", (r4charcnt + r4weapcnt) * 1.0 / cnt) : "[—%]",
                 R5CWR = string.Format("{0}:{1}", r5charcnt, r5weapcnt),
                 R4CWR = string.Format("{0}:{1}", r4charcnt, r4weapcnt),
                 IndicatorInfo = info
