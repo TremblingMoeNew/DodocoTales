@@ -113,7 +113,9 @@
     </Compile>
     <Compile Include="Gui\Converter\DDCVVisibleByExistenceConverter.cs" />
     <Compile Include="Gui\DDCV.cs" />
+    <Compile Include="Gui\Model\DDCVHomeScnECLogCurrentBanner.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnECLogSummary.cs" />
+    <Compile Include="Gui\Model\DDCVHomeScnNextBannerInfo.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnPerLogCurrentBanner.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnPerLogSummary.cs" />
     <Compile Include="Gui\Model\DDCVModel.cs" />
