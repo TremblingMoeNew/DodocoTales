@@ -31,14 +31,18 @@ namespace DodocoTales.Gui.View
         }
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            var btn = sender as RadioButton;
+            DDCV.SwapMainScreen(btn.Tag as string);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new DDCVWebGachaLogLoadIndicatorDialog
             {
-                WindowStartupLocation = WindowStartupLocation.CenterOwner
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                Owner = DDCV.MainWindow
             }.ShowDialog();
+           
         }
     }
 }

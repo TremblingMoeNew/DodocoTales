@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DodocoTales.Gui;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace DodocoTales
         public MainWindow()
         {
             InitializeComponent();
-            Caption.MainWindow = this;
+            DDCV.MainWindow = this;
         }
 
         private void WindowMain_StateChanged(object sender, EventArgs e)

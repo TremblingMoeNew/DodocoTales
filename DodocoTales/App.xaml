@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Gui/Resources/Style/DDCVMainMenuStyle.xaml"/>
                 <ResourceDictionary Source="Gui/Resources/Style/DDCVMainSwapperStyle.xaml"/>
                 <ResourceDictionary Source="Gui/Resources/Style/DDCVMainTitleBarStyle.xaml"/>
+                <ResourceDictionary Source="Gui/Resources/Style/DDCVCardStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -20,7 +20,6 @@ namespace DodocoTales.Gui.View
     /// </summary>
     public partial class DDCVMainTitleBar : UserControl
     {
-        public MainWindow MainWindow;
         public static readonly DependencyProperty StateProperty = DependencyProperty.Register("State", typeof(WindowState), typeof(DDCVMainTitleBar));
         public WindowState State
         {
@@ -34,13 +33,13 @@ namespace DodocoTales.Gui.View
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.WindowState = WindowState.Minimized;
+            DDCV.MainWindow.WindowState = WindowState.Minimized;
         }
 
         private void Maximize_Click(object sender, RoutedEventArgs e)
         {
-            if (MainWindow.WindowState == WindowState.Normal) MainWindow.WindowState = WindowState.Maximized;
-            else MainWindow.WindowState = WindowState.Normal;
+            if (DDCV.MainWindow.WindowState == WindowState.Normal) DDCV.MainWindow.WindowState = WindowState.Maximized;
+            else DDCV.MainWindow.WindowState = WindowState.Normal;
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)

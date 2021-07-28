@@ -13,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DodocoTales.Gui.View
+namespace DodocoTales.Gui.View.Card
 {
     /// <summary>
-    /// DDCVMainSwapperPanel.xaml 的交互逻辑
+    /// DDCVHomeScreenEventCharLogCard.xaml 的交互逻辑
     /// </summary>
-    public partial class DDCVMainSwapperPanel : UserControl
+    public partial class DDCVHomeScreenEventCharLogCard : UserControl
     {
-        public DDCVMainSwapperPanel()
+        public DDCVHomeScreenEventCharLogCard()
         {
             InitializeComponent();
-            DDCV.MainNavigater = Navigater;
-            DDCV.MainTitle = Title;
-            // TODO: Breadcrumb
-
-            DDCV.RegisterMainScreens();
         }
-
-
     }
 }

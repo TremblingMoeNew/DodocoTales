@@ -1,4 +1,5 @@
-﻿using DodocoTales.Common.Enums;
+﻿using DodocoTales.Common;
+using DodocoTales.Common.Enums;
 using DodocoTales.Library;
 using DodocoTales.Loader;
 using System;
@@ -54,6 +55,12 @@ namespace DodocoTales.Gui.View.Dialog
             // Temp
             await DDCL.Users.swapUser(uid);
 
+            if (DDCS.UidReloadCompleted != null)
+                foreach (DDCSCommonDelegate method in DDCS.UidReloadCompleted.GetInvocationList())
+                {
+                    method.BeginInvoke(null, null);
+                }
+
             var usr=DDCL.Users.getCurrentUser();
 
             //Temp
@@ -66,6 +73,12 @@ namespace DodocoTales.Gui.View.Dialog
             DDCG.LogMerger.mergeGachaLogs(initlogs);
 
             await DDCL.Users.saveCurrentUser();
+
+            if (DDCS.LogReloadCompleted != null)
+                foreach (DDCSCommonDelegate method in DDCS.LogReloadCompleted.GetInvocationList())
+                {
+                    method.BeginInvoke(null, null);
+                }
             this.Close();
         }
     }

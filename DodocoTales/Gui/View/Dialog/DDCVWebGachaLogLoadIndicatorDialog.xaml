@@ -5,12 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DodocoTales.Gui.View.Dialog"
         mc:Ignorable="d"
-        Title="更新中" Height="200" Width="600"
-        WindowStyle="ToolWindow"
+        Title="更新中" Height="120" Width="600"
+        WindowStyle="None"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        BorderThickness="1"
+        BorderBrush="Silver">
     <Grid>
-            
+        <Grid>
+            <Label HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="16" >正在加载祈愿记录……</Label>
+        </Grid>
+        <Grid Margin="10" Name="TimezoneSelector" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center">请选择您的游戏服务器及其对应时区</Label>
+            <Button Grid.Row="1">默认 (UTC+8)</Button>
+            <Button Grid.Row="2">欧服 (UTC+1)</Button>
+            <Button Grid.Row="3">美服 (UTC-5)</Button>
+        </Grid>
     </Grid>
 </Window>

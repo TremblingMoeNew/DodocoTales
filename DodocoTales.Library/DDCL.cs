@@ -37,9 +37,14 @@ namespace DodocoTales.Library
             var libraryTimeOffset = GetTimeOffset(LibraryTime, DDCCTimeZone.DefaultUTCP8);
             return DateTimeOffset.Compare(CustomTime, LibraryTime);
         }
+
         public static DateTimeOffset GetTimeOffset(DateTime time,DDCCTimeZone zone)
         {
             return new DateTimeOffset(time, GetZoneOffsetTimeSpan(zone));
+        }
+        public static DateTimeOffset GetLibraryTimeOffset(DateTime time)
+        {
+            return new DateTimeOffset(time, GetZoneOffsetTimeSpan(DDCCTimeZone.DefaultUTCP8));
         }
         public static TimeSpan GetZoneOffsetTimeSpan(DDCCTimeZone zone)
         {

@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DodocoTales.Gui.Resources.Style">
+
+    <SolidColorBrush x:Key="Brush-Card-Border-Base-Backgrond" Color="#80FFFFFF"/>
+    <Style x:Key="Style-Card-Border-Base" TargetType="Border">
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Background" Value="{StaticResource Brush-Card-Border-Base-Backgrond}"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="10 5"/>
+    </Style>
+    <Style x:Key="Style-Card-Title-H1" TargetType="Label">
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <Style x:Key="Style-Card-Title-H2" TargetType="Label">
+        <Setter Property="FontSize" Value="15"/>
+    </Style>
+    <Style x:Key="Style-Card-TextBlock-UnitTextIndicator" TargetType="TextBlock">
+        <Setter Property="Margin" Value="2 0"/>
+        <Setter Property="FontSize" Value="10"/>
+    </Style>
+</ResourceDictionary>

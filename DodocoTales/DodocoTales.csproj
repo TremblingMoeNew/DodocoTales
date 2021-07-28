@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Resources\Style\DDCVCardStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Resources\Style\DDCVMainMenuStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -68,6 +72,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Gui\Resources\Style\DDCVMainTitleBarStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\View\Card\DDCVHomeScreenEventCharLogCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\View\Card\DDCVHomeScreenPermanentLogCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -87,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\View\Screen\DDCVHomeScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,6 +110,19 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Gui\Converter\DDCVVisibleByExistenceConverter.cs" />
+    <Compile Include="Gui\DDCV.cs" />
+    <Compile Include="Gui\Model\DDCVHomeScnECLogSummary.cs" />
+    <Compile Include="Gui\Model\DDCVHomeScnPerLogCurrentBanner.cs" />
+    <Compile Include="Gui\Model\DDCVHomeScnPerLogSummary.cs" />
+    <Compile Include="Gui\Model\DDCVModel.cs" />
+    <Compile Include="Gui\Model\DDCVUnitTextIndicatorInfo.cs" />
+    <Compile Include="Gui\View\Card\DDCVHomeScreenEventCharLogCard.xaml.cs">
+      <DependentUpon>DDCVHomeScreenEventCharLogCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Card\DDCVHomeScreenPermanentLogCard.xaml.cs">
+      <DependentUpon>DDCVHomeScreenPermanentLogCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\DDCVMainMenuPanel.xaml.cs">
       <DependentUpon>DDCVMainMenuPanel.xaml</DependentUpon>
@@ -106,6 +135,10 @@
     </Compile>
     <Compile Include="Gui\View\Dialog\DDCVWebGachaLogLoadIndicatorDialog.xaml.cs">
       <DependentUpon>DDCVWebGachaLogLoadIndicatorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Model\DDCVScreenPtr.cs" />
+    <Compile Include="Gui\View\Screen\DDCVHomeScreen.xaml.cs">
+      <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -152,8 +185,6 @@
       <Name>DodocoTales.Loader</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Gui\View\Screen\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
