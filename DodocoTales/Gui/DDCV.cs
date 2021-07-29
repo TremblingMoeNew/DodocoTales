@@ -22,6 +22,7 @@ namespace DodocoTales.Gui
         public static void RegisterMainScreens()
         {
             RegisterMainScreen("Home", "", new DDCVHomeScreen());
+            RegisterMainScreen("Version", "", new DDCVVersionViewScreen());
         }
 
 

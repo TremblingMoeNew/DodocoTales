@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="DodocoTales.Gui.View.Card.DDCVVersionViewScreenVersionLogCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DodocoTales.Gui.View.Card"
+             mc:Ignorable="d" 
+             d:DesignWidth="800"
+             Name="Root"
+             MinWidth="750">
+    <Grid>
+        <Border Style="{StaticResource Style-Card-Border-Base}">
+            <StackPanel>
+                <StackPanel Name="Base">
+                    <Label Style="{StaticResource Style-Card-Title-H1}" Content="{Binding ElementName=Root,Path=Summary.Title}"/>
+                    <TextBlock Margin="20 0" Text="{Binding ElementName=Root,Path=Summary.VersionTime}"/>
+                    <Border Margin="10 5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="1.5*" MinWidth="50"/>
+                                <ColumnDefinition Width="85"/>
+                                <ColumnDefinition Width="1.5*" MinWidth="50"/>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="1.5*" MinWidth="50"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="15*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" MaxHeight="25"/>
+                                <RowDefinition Height="25" MaxHeight="25"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0">卡池数量:</Label>
+                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding ElementName=Root,Path=Summary.BannerCnt}"/>
+                            <Label Grid.Column="0" Grid.Row="1">常驻抽数:</Label>
+                            <Label Grid.Column="1" Grid.Row="1" Content="{Binding ElementName=Root,Path=Summary.PermanentCnt}"/>
+                            <Label Grid.Row="0" Grid.Column="2">角色活动抽数:</Label>
+                            <Label Grid.Row="0" Grid.Column="3" Content="{Binding ElementName=Root,Path=Summary.EventCharCnt}"/>
+                            <Label Grid.Row="1" Grid.Column="2">武器活动抽数:</Label>
+                            <Label Grid.Row="1" Grid.Column="3" Content="{Binding ElementName=Root,Path=Summary.EventWeapCnt}"/>
+                            <Label Grid.Row="0" Grid.Column="4">五星数量:</Label>
+                            <Label Grid.Row="0" Grid.Column="5"  Content="{Binding ElementName=Root,Path=Summary.R5Cnt}"/>
+                            <Label Grid.Row="1" Grid.Column="4">四星数量:</Label>
+                            <Label Grid.Row="1" Grid.Column="5"  Content="{Binding ElementName=Root,Path=Summary.R4Cnt}"/>
+                            <Separator Grid.Row="0" Grid.RowSpan="3" Grid.Column="6" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                            <WrapPanel Grid.Row="0" Grid.Column="7" Grid.RowSpan="3" Name="IndicatorContainer">
+                                <WrapPanel.Resources>
+                                    <Style BasedOn="{StaticResource Style-Card-TextBlock-UnitTextIndicator}" TargetType="TextBlock"/>
+                                </WrapPanel.Resources>
+                            </WrapPanel>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

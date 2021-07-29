@@ -83,6 +83,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\View\Card\DDCVVersionViewScreenVersionLogCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\View\DDCVMainMenuPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +107,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\View\Screen\DDCVVersionViewScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,13 +126,20 @@
     <Compile Include="Gui\Model\DDCVHomeScnNextBannerInfo.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnPerLogCurrentBanner.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnPerLogSummary.cs" />
+    <Compile Include="Gui\Model\DDCVInheritedRound.cs" />
+    <Compile Include="Gui\Model\DDCVInheritedRounds.cs" />
     <Compile Include="Gui\Model\DDCVModel.cs" />
     <Compile Include="Gui\Model\DDCVUnitTextIndicatorInfo.cs" />
+    <Compile Include="Gui\Model\DDCVVerScnVerLogSummary.cs" />
+    <Compile Include="Gui\Model\DDCVVersionInfo.cs" />
     <Compile Include="Gui\View\Card\DDCVHomeScreenEventCharLogCard.xaml.cs">
       <DependentUpon>DDCVHomeScreenEventCharLogCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\Card\DDCVHomeScreenPermanentLogCard.xaml.cs">
       <DependentUpon>DDCVHomeScreenPermanentLogCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Card\DDCVVersionViewScreenVersionLogCard.xaml.cs">
+      <DependentUpon>DDCVVersionViewScreenVersionLogCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\DDCVMainMenuPanel.xaml.cs">
       <DependentUpon>DDCVMainMenuPanel.xaml</DependentUpon>
@@ -141,6 +156,9 @@
     <Compile Include="Gui\View\Model\DDCVScreenPtr.cs" />
     <Compile Include="Gui\View\Screen\DDCVHomeScreen.xaml.cs">
       <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Screen\DDCVVersionViewScreen.xaml.cs">
+      <DependentUpon>DDCVVersionViewScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
