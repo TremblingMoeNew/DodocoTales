@@ -63,6 +63,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Resources\Style\DDCVClickableSubCardButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Resources\Style\DDCVMainMenuStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +88,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Gui\View\Card\DDCVVersionViewScreenVersionLogCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\View\Card\DDCVVerViewScnVerLogEventBanInfoSubCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\View\Card\DDCVVerViewScnVerLogPerBanInfoSubCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,6 +133,7 @@
     </Compile>
     <Compile Include="Gui\Converter\DDCVVisibleByExistenceConverter.cs" />
     <Compile Include="Gui\DDCV.cs" />
+    <Compile Include="Gui\Model\DDCVBannerInfo.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnECLogCurrentBanner.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnECLogSummary.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnNextBannerInfo.cs" />
@@ -130,6 +143,7 @@
     <Compile Include="Gui\Model\DDCVInheritedRounds.cs" />
     <Compile Include="Gui\Model\DDCVModel.cs" />
     <Compile Include="Gui\Model\DDCVUnitTextIndicatorInfo.cs" />
+    <Compile Include="Gui\Model\DDCVVerScnVerLogBanSubSummary.cs" />
     <Compile Include="Gui\Model\DDCVVerScnVerLogSummary.cs" />
     <Compile Include="Gui\Model\DDCVVersionInfo.cs" />
     <Compile Include="Gui\View\Card\DDCVHomeScreenEventCharLogCard.xaml.cs">
@@ -140,6 +154,12 @@
     </Compile>
     <Compile Include="Gui\View\Card\DDCVVersionViewScreenVersionLogCard.xaml.cs">
       <DependentUpon>DDCVVersionViewScreenVersionLogCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Card\DDCVVerViewScnVerLogEventBanInfoSubCard.xaml.cs">
+      <DependentUpon>DDCVVerViewScnVerLogEventBanInfoSubCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Card\DDCVVerViewScnVerLogPerBanInfoSubCard.xaml.cs">
+      <DependentUpon>DDCVVerViewScnVerLogPerBanInfoSubCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\DDCVMainMenuPanel.xaml.cs">
       <DependentUpon>DDCVMainMenuPanel.xaml</DependentUpon>

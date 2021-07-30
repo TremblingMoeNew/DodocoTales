@@ -52,6 +52,9 @@
                         </Grid>
                     </Border>
                 </StackPanel>
+                <StackPanel Name="Banners">
+                    
+                </StackPanel>
             </StackPanel>
         </Border>
     </Grid>

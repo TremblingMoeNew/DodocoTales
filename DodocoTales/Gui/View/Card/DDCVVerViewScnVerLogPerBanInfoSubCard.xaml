@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="DodocoTales.Gui.View.Card.DDCVVerViewScnVerLogPerBanInfoSubCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DodocoTales.Gui.View.Card"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="Root">
+    <Grid>
+        <StackPanel>
+            <Separator Background="Silver" Margin="10 3"/>
+            <Button Style="{StaticResource Style-Button-ClickableSubcard}" Click="Button_Click">
+
+                <StackPanel>
+                    <Grid Margin="10 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.RowSpan="2"  Style="{StaticResource Style-Card-Title-H2}" Content="{Binding ElementName=Root,Path=Summary.Title}"/>
+                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0" Text="{Binding ElementName=Root,Path=Summary.Subtitle}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Text="{Binding ElementName=Root,Path=Summary.BannerTime}"/>
+                    </Grid>
+
+                    <Grid Margin="40 5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="65" />
+                            <ColumnDefinition Width="1.5*" MinWidth="40"/>
+                            <ColumnDefinition Width="65" />
+                            <ColumnDefinition Width="1.5*" MinWidth="40"/>
+                            <ColumnDefinition Width="38" MinWidth="38"/>
+                            <ColumnDefinition Width="1.5*" MinWidth="40"/>
+                            <ColumnDefinition Width="2*" MinWidth="54"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="2.5*" MinWidth="70"/>
+
+
+                            <ColumnDefinition Width="20*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0">轮次数:</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding ElementName=Root,Path=Summary.RoundCnt}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1">抽数:</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ElementName=Root,Path=Summary.Cnt}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="0">继承抽数:</TextBlock>
+                        <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding ElementName=Root,Path=Summary.InheritedCnt}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="1">总计抽数:</TextBlock>
+                        <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding ElementName=Root,Path=Summary.TotalCnt}"/>
+
+                        <TextBlock Grid.Row="0" Grid.Column="4">五星:</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding ElementName=Root,Path=Summary.R5Cnt}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="6" Text="{Binding ElementName=Root,Path=Summary.R5PS}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="4">四星:</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding ElementName=Root,Path=Summary.R4Cnt}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="6" Text="{Binding ElementName=Root,Path=Summary.R4PS}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="7">角色/武器比:</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="8" Text="{Binding ElementName=Root,Path=Summary.R5CWR}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="7">角色/武器比:</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="8" Text="{Binding ElementName=Root,Path=Summary.R4CWR}"/>
+
+                    </Grid>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

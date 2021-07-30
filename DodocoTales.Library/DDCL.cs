@@ -63,5 +63,22 @@ namespace DodocoTales.Library
         {
             return new DateTimeOffset(DateTime.Now);
         }
+
+        public static string ConvertPoolTypeToName(DDCCPoolType type)
+        {
+            switch(type)
+            {
+                case DDCCPoolType.Beginner:
+                    return "新手祈愿";
+                case DDCCPoolType.Permanent:
+                    return "常驻祈愿";
+                case DDCCPoolType.EventCharacter:
+                    return "角色活动祈愿";
+                case DDCCPoolType.EventWeapon:
+                    return "武器活动祈愿";
+                default:
+                    return "未知祈愿";
+            }
+        }
     }
 }
