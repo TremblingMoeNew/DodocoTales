@@ -146,7 +146,7 @@ namespace DodocoTales.Gui.View.Screen
                         var r = banner.R[i];
                         if (r.L.Count == 0) continue;
                         firstfound = true;
-                        if (r.L[r.L.Count - 1].rank == 5)
+                        if (r.L[r.L.Count - 1].rank == 5 && baninfo.rank5Up.FindAll(x => x == r.L[r.L.Count - 1].unitclass).Count > 0)
                         {
                             inherit.EventCharacter = new List<DDCVInheritedRound>();
                         }
@@ -177,7 +177,7 @@ namespace DodocoTales.Gui.View.Screen
                         var r = banner.R[i];
                         if (r.L.Count == 0) continue;
                         firstfound = true;
-                        if (r.L[r.L.Count - 1].rank == 5)
+                        if (r.L[r.L.Count - 1].rank == 5 && baninfo.rank5Up.FindAll(x => x == r.L[r.L.Count - 1].unitclass).Count > 0)
                         {
                             inherit.EventWeapon = new List<DDCVInheritedRound>();
                         }

@@ -197,6 +197,8 @@ namespace DodocoTales.Gui.View.Card
                             foreach (var inr in inherit.EventCharacter)
                             {
                                 curr5cnt += inr.Logs.L.Count;
+                                if (inr.Logs.L.Count == 0) continue;
+                                if (inr.Logs.L[inr.Logs.L.Count - 1].rank == 5) curr5cnt = 0;
                             }
                             curr5cnt += r.L.Count;
                             indicatorinfo.Add(new DDCVUnitTextIndicatorInfo
@@ -211,7 +213,18 @@ namespace DodocoTales.Gui.View.Card
                             });
 
                             r5cnt++;
-                            inherit.EventCharacter = new List<DDCVInheritedRound>();
+                            if (baninfo.rank5Up.FindAll(x => x == unit.unitclass).Count > 0) 
+                                inherit.EventCharacter = new List<DDCVInheritedRound>();
+                            else
+                            {
+                                inherit.EventCharacter.Add(new DDCVInheritedRound
+                                {
+                                    version = versionInfo.Info,
+                                    banner = baninfo,
+                                    RoundIndex = i + 1,
+                                    Logs = r
+                                });
+                            }
                         }
                         else
                         {
@@ -254,6 +267,8 @@ namespace DodocoTales.Gui.View.Card
                             foreach (var inr in inherit.EventWeapon)
                             {
                                 curr5cnt += inr.Logs.L.Count;
+                                if (inr.Logs.L.Count == 0) continue;
+                                if (inr.Logs.L[inr.Logs.L.Count - 1].rank == 5) curr5cnt = 0;
                             }
                             curr5cnt += r.L.Count;
                             indicatorinfo.Add(new DDCVUnitTextIndicatorInfo
@@ -268,7 +283,18 @@ namespace DodocoTales.Gui.View.Card
                             });
 
                             r5cnt++;
-                            inherit.EventWeapon = new List<DDCVInheritedRound>();
+                            if (baninfo.rank5Up.FindAll(x => x == unit.unitclass).Count > 0)
+                                inherit.EventWeapon = new List<DDCVInheritedRound>();
+                            else
+                            {
+                                inherit.EventCharacter.Add(new DDCVInheritedRound
+                                {
+                                    version = versionInfo.Info,
+                                    banner = baninfo,
+                                    RoundIndex = i + 1,
+                                    Logs = r
+                                });
+                            }
                         }
                         else
                         {
