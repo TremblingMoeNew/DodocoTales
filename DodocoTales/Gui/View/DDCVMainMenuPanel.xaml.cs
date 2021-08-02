@@ -1,4 +1,5 @@
-﻿using DodocoTales.Gui.View.Dialog;
+﻿using DodocoTales.Common;
+using DodocoTales.Gui.View.Dialog;
 using DodocoTales.Library;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,23 @@ namespace DodocoTales.Gui.View
     /// </summary>
     public partial class DDCVMainMenuPanel : UserControl
     {
+
+        public static readonly DependencyProperty UidProperty = DependencyProperty.Register("Uid", typeof(string), typeof(DDCVMainMenuPanel));
+        public string Uid
+        {
+            set { SetValue(UidProperty, value); }
+            get { return (string)GetValue(UidProperty); }
+        }
+
         public DDCVMainMenuPanel()
         {
             InitializeComponent();
+            Uid = "-----未登录-----";
+            DDCS.UidReloadCompleted += new DDCSCommonDelegate(OnUidSwapped);
             DDCL.Banners.loadLibrary();
             DDCL.Units.loadLibrary();
             DDCL.Users.loadLocalGachaLogs();
+            
         }
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -43,6 +55,20 @@ namespace DodocoTales.Gui.View
                 Owner = DDCV.MainWindow
             }.ShowDialog();
            
+        }
+        private void OnUidSwapped()
+        {
+            if (DDCL.Users.CurrentUserUID == 0)
+            {
+                Action act = () => { Uid = "-----未登录-----"; };
+                Dispatcher.BeginInvoke(act);
+            }
+            else
+            {
+                // Temp
+                Action act = () => { Uid = String.Format("UID:{0}****{1}", DDCL.Users.CurrentUserUID / 10000000, DDCL.Users.CurrentUserUID % 1000); };
+                Dispatcher.BeginInvoke(act);
+            }
         }
     }
 }
