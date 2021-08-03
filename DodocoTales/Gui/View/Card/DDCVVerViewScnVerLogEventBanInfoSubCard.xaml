@@ -38,7 +38,7 @@
                             <ColumnDefinition Width="65" />
                             <ColumnDefinition Width="1.5*" MinWidth="40"/>
                             <ColumnDefinition Width="38" MinWidth="38"/>
-                            <ColumnDefinition Width="1.5*" MinWidth="40"/>
+                            <ColumnDefinition Width="2.5*" MinWidth="70"/>
                             <ColumnDefinition Width="2*" MinWidth="54"/>
                             <ColumnDefinition Width="54"/>
                             <ColumnDefinition Width="2.2*" MinWidth="60"/>

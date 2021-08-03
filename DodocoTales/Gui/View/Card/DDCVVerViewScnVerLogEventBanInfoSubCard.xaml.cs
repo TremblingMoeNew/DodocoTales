@@ -41,14 +41,25 @@ namespace DodocoTales.Gui.View.Card
         public void LoadBanner(DDCVBannerInfo info)
         {
             int cnt = 0, inheritcnt = 0, roundcnt = 1;
-            int r5cnt = 0, r4cnt = 0, r5upcnt = 0, r4upcnt = 0;
+            int r5cnt = 0, r4cnt = 0, r5inhcnt = 0, r4inhcnt = 0, r5upcnt = 0, r4upcnt = 0;
             bool epconformed = false;
             int epcnt = 0;
 
 
             foreach(var inr in info.Inherited)
             {
-                inheritcnt += inr.Logs.L.Count;
+                var logs = inr.Logs.L;
+                if (logs.Count == 0) continue;
+                inheritcnt += logs.Count;
+
+                var unit = logs.Last();
+                if (unit.rank == 5) 
+                {
+                    r5inhcnt++;
+                }
+
+                r4inhcnt += logs.FindAll(x => x.rank == 4).Count;
+
             }
             foreach(var rnd in info.Logs.R)
             {
@@ -74,8 +85,8 @@ namespace DodocoTales.Gui.View.Card
                         }
                         roundcnt++;
                     }
-                    r4cnt = rnd.L.FindAll(x => x.rank == 4).Count;
-                    r4upcnt = rnd.L.FindAll(x => info.Info.rank4Up.Contains(x.unitclass)).Count;
+                    r4cnt += rnd.L.FindAll(x => x.rank == 4).Count;
+                    r4upcnt += rnd.L.FindAll(x => info.Info.rank4Up.Contains(x.unitclass)).Count;
                 }
             }
             string upunit = "";
@@ -99,8 +110,10 @@ namespace DodocoTales.Gui.View.Card
                 Cnt = cnt.ToString(),
                 RoundCnt = roundcnt.ToString(),
                 TotalCnt = (inheritcnt + cnt).ToString(),
-                R5Cnt = r5cnt.ToString(),
-                R4Cnt = r4cnt.ToString(),
+                R5Cnt = String.Format("{0}/{1}", r5cnt, r5cnt + r5inhcnt),
+                R4Cnt = String.Format("{0}/{1}", r4cnt, r4cnt + r4inhcnt),
+                R5PS = (inheritcnt + cnt) == 0 ? "[—%]" : String.Format("[{0:P1}]", (r5cnt + r5inhcnt) * 1.0 / (inheritcnt + cnt)),
+                R4PS = (inheritcnt + cnt) == 0 ? "[—%]" : String.Format("[{0:P1}]", (r4cnt + r4inhcnt) * 1.0 / (inheritcnt + cnt)),
                 R5Up = r5upcnt.ToString(),
                 R4Up = r4upcnt.ToString()
             };
