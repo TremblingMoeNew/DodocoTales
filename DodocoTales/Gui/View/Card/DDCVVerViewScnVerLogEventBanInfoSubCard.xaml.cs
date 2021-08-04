@@ -1,4 +1,5 @@
 ﻿using DodocoTales.Gui.Model;
+using DodocoTales.Gui.View.Screen;
 using DodocoTales.Library;
 using System;
 using System.Collections.Generic;
@@ -125,7 +126,10 @@ namespace DodocoTales.Gui.View.Card
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            DDCVBannerDetailsScreen newscn = new DDCVBannerDetailsScreen();
+            Action act = () => { newscn.LoadBanner(Banner); };
+            act.BeginInvoke(null, null);
+            DDCV.PushScreen("", newscn);
         }
     }
 }

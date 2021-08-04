@@ -115,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\View\Screen\DDCVBannerDetailsScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\View\Screen\DDCVHomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +178,9 @@
       <DependentUpon>DDCVWebGachaLogLoadIndicatorDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\Model\DDCVScreenPtr.cs" />
+    <Compile Include="Gui\View\Screen\DDCVBannerDetailsScreen.xaml.cs">
+      <DependentUpon>DDCVBannerDetailsScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\View\Screen\DDCVHomeScreen.xaml.cs">
       <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
     </Compile>

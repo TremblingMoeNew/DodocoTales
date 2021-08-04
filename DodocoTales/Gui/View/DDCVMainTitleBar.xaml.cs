@@ -46,5 +46,10 @@ namespace DodocoTales.Gui.View
         {
             Application.Current.Shutdown();
         }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            DDCV.PopScreen();
+        }
     }
 }

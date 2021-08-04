@@ -11,14 +11,14 @@
             <Grid VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
-                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="5"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 
                 <!--Placeholder Breadcrumb Start-->
                 <TextBlock Grid.Row="0" FontSize="10" Margin="5 0" VerticalAlignment="Center" Name="Breadcrumb" Visibility="Hidden">标题 >> 标题 >> 标题</TextBlock>
                 <!--Placeholder Breadcrumb End-->
-                <Label Style="{StaticResource Style-MainSwapper-Title}" Grid.Row="1" Name="Title">标题</Label>
+                <Label Style="{StaticResource Style-MainSwapper-Title}" Grid.Row="1" Name="Title" Visibility="Collapsed">标题</Label>
                 <Grid Name="Navigater" Grid.Row="3">
 
                 </Grid>
