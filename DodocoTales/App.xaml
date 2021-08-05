@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Gui/Resources/Style/DDCVMainTitleBarStyle.xaml"/>
                 <ResourceDictionary Source="Gui/Resources/Style/DDCVCardStyle.xaml"/>
                 <ResourceDictionary Source="Gui/Resources/Style/DDCVClickableSubCardButtonStyle.xaml"/>
+                <ResourceDictionary Source="Gui/Resources/Style/DDCVIndicatorStyle.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

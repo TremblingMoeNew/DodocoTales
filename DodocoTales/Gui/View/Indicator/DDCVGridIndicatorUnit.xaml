@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="DodocoTales.Gui.View.Indicator.DDCVGridIndicatorUnit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DodocoTales.Gui.View.Indicator"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="Root">
+    <Grid>
+        <Button Name="Indicator" Style="{StaticResource Style-GridIndicator-Unit}" MouseEnter="Indicator_MouseEnter" MouseLeave="Indicator_MouseLeave"/>
+        <Popup x:Name="Pop" PopupAnimation="Slide" PlacementTarget="{Binding ElementName=Indicator}" Placement="MousePoint" AllowsTransparency="True" StaysOpen="False">
+            <Grid>
+                <Border Padding="0"  CornerRadius="2"  BorderBrush="Silver" Background="White" BorderThickness="1" >
+                    <StackPanel Margin="5">
+                        <Label FontSize="14" Content="{Binding ElementName=Root,Path=Id}"></Label>
+                        <Label FontSize="12" Content="{Binding ElementName=Root,Path=Hint}"></Label>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Popup>
+    </Grid>
+</UserControl>

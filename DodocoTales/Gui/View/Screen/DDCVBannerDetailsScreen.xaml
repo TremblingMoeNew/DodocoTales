@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DodocoTales.Gui.View.Screen"
+             xmlns:card="clr-namespace:DodocoTales.Gui.View.Card"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="760"
              MinWidth="760">
@@ -33,14 +34,14 @@
                             <ColumnDefinition Width="65" />
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="10"/>
-                            
+
                             <ColumnDefinition Width="15" />
                             <ColumnDefinition Width="20" />
                             <ColumnDefinition Width="70" />
                             <ColumnDefinition Width="70"/>
-                            
+
                             <ColumnDefinition Width="10"/>
-                            
+
                             <ColumnDefinition Width="15" />
                             <ColumnDefinition Width="20" />
                             <ColumnDefinition Width="70" />
@@ -51,7 +52,7 @@
                             <ColumnDefinition Width="20" />
                             <ColumnDefinition Width="70" />
                             <ColumnDefinition Width="90"/>
-                            
+
                             <ColumnDefinition Width="20*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -69,7 +70,7 @@
                         <TextBlock Grid.Column="0" Grid.Row="3">总计抽数:</TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding ElementName=Root,Path=Summary.TotalCnt}"/>
                         <Separator Grid.Row="0" Grid.RowSpan="4" Margin="3 2 6 2" Grid.Column="2" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                        
+
                         <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2">五星:</TextBlock>
                         <TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2">45 [X.XX%]</TextBlock>
                         <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2">苍古自由之之誓</TextBlock>
@@ -91,6 +92,9 @@
                     </Grid>
                 </StackPanel>
             </Border>
+            <StackPanel Name="Rounds" Margin="10 0">
+                <card:DDCVBanScnRoundViewCard/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
