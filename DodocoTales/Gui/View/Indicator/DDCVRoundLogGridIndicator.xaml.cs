@@ -28,13 +28,14 @@ namespace DodocoTales.Gui.View.Indicator
             InitializeComponent();
             Indicators = new List<DDCVGridIndicatorUnit>();
 
-            InitializeIndicators(DDCVGridIndicatorVolume.Permanent);
+            //InitializeIndicators(DDCVGridIndicatorVolume.EventCharacterNormal);
         }
 
         public void InitializeIndicators(DDCVGridIndicatorVolume volume)
         {
             Main.Children.Clear();
             Indicators.Clear();
+            
             int totalcnt = 0, colvolume = 0;
             switch (volume)
             {
@@ -59,6 +60,12 @@ namespace DodocoTales.Gui.View.Indicator
                     colvolume = 7;
                     break;
             }
+            StackPanel hPanel = new StackPanel
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Orientation = Orientation.Horizontal
+            };
             StackPanel vpanel = null;
             for (int i = 0; i < totalcnt; i++) 
             {
@@ -68,7 +75,7 @@ namespace DodocoTales.Gui.View.Indicator
                     {
                         Orientation = Orientation.Vertical
                     };
-                    Main.Children.Add(vpanel);
+                    hPanel.Children.Add(vpanel);
                 }
                 var indicator = new DDCVGridIndicatorUnit
                 {
@@ -77,6 +84,7 @@ namespace DodocoTales.Gui.View.Indicator
                 Indicators.Add(indicator);
                 vpanel.Children.Add(indicator);
             }
+            Main.Children.Add(hPanel);
         }
     }
 }

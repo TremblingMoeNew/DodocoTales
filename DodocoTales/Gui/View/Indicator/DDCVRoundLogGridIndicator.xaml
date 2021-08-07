@@ -6,9 +6,7 @@
              xmlns:local="clr-namespace:DodocoTales.Gui.View.Indicator"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Name="Main">
+    <Grid Name="Main">
 
-        </StackPanel>
     </Grid>
 </UserControl>

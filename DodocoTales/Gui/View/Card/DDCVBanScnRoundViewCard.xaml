@@ -6,11 +6,12 @@
              xmlns:local="clr-namespace:DodocoTales.Gui.View.Card"
              xmlns:indicator="clr-namespace:DodocoTales.Gui.View.Indicator"
              mc:Ignorable="d" 
-             d:DesignWidth="750">
-    <Grid>
+             d:DesignWidth="750"
+             Name="Root">
+    <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
         <Border Style="{StaticResource Style-Card-Border-Base }">
             <StackPanel>
-                <Label Grid.RowSpan="2"  Style="{StaticResource Style-Card-Title-H2}" Content="轮次 1"/>
+                <Label Grid.RowSpan="2"  Style="{StaticResource Style-Card-Title-H2}"  Content="{Binding ElementName=Root,Path=Summary.Title}"/>
                 <Grid Margin="30 5 10 5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="65" />
@@ -27,7 +28,7 @@
                         <ColumnDefinition Width="20" />
                         <ColumnDefinition Width="300" />
 
-                        <ColumnDefinition Width="20*"/> 
+                        <ColumnDefinition Width="20*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="16" MaxHeight="16"/>
@@ -36,8 +37,11 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0">继承抽数:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ElementName=Root,Path=Summary.InheritedCnt}"/>
                     <TextBlock Grid.Row="1" Grid.Column="0">本轮抽数:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ElementName=Root,Path=Summary.Cnt}"/>
                     <TextBlock Grid.Row="2" Grid.Column="0">总计抽数:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ElementName=Root,Path=Summary.TotalCnt}"/>
 
                     <Separator Grid.Row="0" Grid.RowSpan="4" Margin="3 2 6 2" Grid.Column="2" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
 
@@ -52,7 +56,7 @@
                         <TextBlock>松籁响起之之时[80]</TextBlock>
                         <TextBlock>松籁响起之之时[80]</TextBlock>
                     </WrapPanel>
-                    
+
                     <Separator Grid.Row="0" Grid.RowSpan="4" Margin="3 2 6 2" Grid.Column="6" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
 
                     <TextBlock Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="2">四星:</TextBlock>
@@ -61,29 +65,32 @@
                         <WrapPanel.Resources>
                             <Style BasedOn="{StaticResource Style-Card-TextBlock-UnitTextIndicator}" TargetType="TextBlock"/>
                         </WrapPanel.Resources>
-                        <TextBlock>暗巷的酒与与诗[10]</TextBlock>
-                        <TextBlock>暗巷的酒与与诗[10]</TextBlock>
-                        <TextBlock>暗巷的酒与与诗[10]</TextBlock>
-                        <TextBlock>暗巷的酒与与诗[10]</TextBlock>
-                        <TextBlock>暗巷的酒[10]</TextBlock>
-                        <TextBlock>暗巷的酒[10]</TextBlock>
-                        <TextBlock>暗巷的酒[10]</TextBlock>
-                        <TextBlock>暗巷的酒[10]</TextBlock>
-                        <TextBlock>暗巷的酒[10]</TextBlock>
-                        <TextBlock>暗巷的酒[10]</TextBlock>
-                        <TextBlock>暗巷[10]</TextBlock>
-                        <TextBlock>暗巷[10]</TextBlock>
-                        <TextBlock>暗巷[10]</TextBlock>
-                        <TextBlock>暗巷[10]</TextBlock>
-                        <TextBlock>暗巷[10]</TextBlock>
-                        <TextBlock>暗巷[10]</TextBlock>
-                        <TextBlock>暗巷[10]</TextBlock>
-                        <TextBlock>暗巷[10]</TextBlock>
-                        <TextBlock>暗巷[10]</TextBlock>
+                        <TextBlock>暗巷的酒与与诗 /</TextBlock>
+                        <TextBlock>暗巷的酒与与诗 /</TextBlock>
+                        <TextBlock>暗巷的酒与与诗 /</TextBlock>
+                        <TextBlock>暗巷的酒与与诗 /</TextBlock>
+                        <TextBlock>暗巷的酒 /</TextBlock>
+                        <TextBlock>暗巷的酒 /</TextBlock>
+                        <TextBlock>暗巷的酒 /</TextBlock>
+                        <TextBlock>暗巷的酒 /</TextBlock>
+                        <TextBlock>暗巷的酒 /</TextBlock>
+                        <TextBlock>暗巷的酒 /</TextBlock>
+                        <TextBlock>暗巷 /</TextBlock>
+                        <TextBlock>暗巷 /</TextBlock>
+                        <TextBlock>暗巷 /</TextBlock>
+                        <TextBlock>暗巷 /</TextBlock>
+                        <TextBlock>暗巷 /</TextBlock>
+                        <TextBlock>暗巷 /</TextBlock>
+                        <TextBlock>暗巷 /</TextBlock>
+                        <TextBlock>暗巷 /</TextBlock>
+                        <TextBlock>暗巷 /</TextBlock>
                     </WrapPanel>
                 </Grid>
                 <Separator Margin="20 2" Height="2"/>
-                <indicator:DDCVRoundLogGridIndicator/>
+                <Grid Name="GridIndicatorContainer" Visibility="Collapsed">
+                    <Label HorizontalAlignment="Center" Name="GILoadingHint">载入中……</Label>
+                </Grid>
+                
             </StackPanel>
         </Border>
     </Grid>

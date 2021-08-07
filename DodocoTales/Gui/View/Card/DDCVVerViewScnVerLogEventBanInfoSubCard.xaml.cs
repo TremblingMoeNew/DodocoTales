@@ -41,6 +41,7 @@ namespace DodocoTales.Gui.View.Card
 
         public void LoadBanner(DDCVBannerInfo info)
         {
+            Banner = info;
             int cnt = 0, inheritcnt = 0, roundcnt = 1;
             int r5cnt = 0, r4cnt = 0, r5inhcnt = 0, r4inhcnt = 0, r5upcnt = 0, r4upcnt = 0;
             bool epconformed = false;

@@ -156,6 +156,8 @@
     <Compile Include="Gui\Enums\DDCVGridIndicatorVolume.cs" />
     <Compile Include="Gui\Enums\DDCVIndicatorUnitType.cs" />
     <Compile Include="Gui\Model\DDCVBannerInfo.cs" />
+    <Compile Include="Gui\Model\DDCVBanScnBanSummary.cs" />
+    <Compile Include="Gui\Model\DDCVBanScnRoundCardSummary.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnECLogCurrentBanner.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnECLogSummary.cs" />
     <Compile Include="Gui\Model\DDCVHomeScnNextBannerInfo.cs" />
@@ -164,7 +166,9 @@
     <Compile Include="Gui\Model\DDCVInheritedRound.cs" />
     <Compile Include="Gui\Model\DDCVInheritedRounds.cs" />
     <Compile Include="Gui\Model\DDCVModel.cs" />
+    <Compile Include="Gui\Model\DDCVRoundInfo.cs" />
     <Compile Include="Gui\Model\DDCVUnitTextIndicatorInfo.cs" />
+    <Compile Include="Gui\Model\DDCVUpItemCntInfo.cs" />
     <Compile Include="Gui\Model\DDCVVerScnVerLogBanSubSummary.cs" />
     <Compile Include="Gui\Model\DDCVVerScnVerLogSummary.cs" />
     <Compile Include="Gui\Model\DDCVVersionInfo.cs" />

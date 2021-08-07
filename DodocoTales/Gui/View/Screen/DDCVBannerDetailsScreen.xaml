@@ -7,7 +7,8 @@
              xmlns:card="clr-namespace:DodocoTales.Gui.View.Card"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="760"
-             MinWidth="760">
+             MinWidth="760"
+             Name="Root">
     <Grid>
         <StackPanel>
             <Border Style="{StaticResource Style-Card-Border-Base}">
@@ -24,10 +25,9 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.RowSpan="2"  Style="{StaticResource Style-Card-Title-H1}" Content="测试卡池"/>
-                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0" Text="2.0.0 - 角色活动祈愿 - 测试卡池 "/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="单位"/>
-                        <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Text="2021/08/01 10:00:00 - 2021/09/01 20:00:00"/>
+                        <Label Grid.RowSpan="2"  Style="{StaticResource Style-Card-Title-H1}" Content="{Binding ElementName=Root,Path=Summary.Title}"/>
+                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0"  Text="{Binding ElementName=Root,Path=Summary.Subtitle}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"  Text="{Binding ElementName=Root,Path=Summary.BannerTime}"/>
                     </Grid>
                     <Grid Margin="30 5 10 5">
                         <Grid.ColumnDefinitions>
@@ -72,28 +72,36 @@
                         <Separator Grid.Row="0" Grid.RowSpan="4" Margin="3 2 6 2" Grid.Column="2" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
 
                         <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2">五星:</TextBlock>
-                        <TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2">45 [X.XX%]</TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2">苍古自由之之誓</TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="6">5 [X.XX%]</TextBlock>
-                        <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2">天空之卷</TextBlock>
-                        <TextBlock Grid.Row="2" Grid.Column="6">30 [X.XX%]</TextBlock>
-                        <TextBlock Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2">常驻五星</TextBlock>
-                        <TextBlock Grid.Row="3" Grid.Column="6">10 [X.XX%]</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R5Cnt}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R5Items[0].Name}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="6" Text="{Binding ElementName=Root,Path=Summary.R5Items[0].Cnt}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R5Items[1].Name}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="6" Text="{Binding ElementName=Root,Path=Summary.R5Items[1].Cnt}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R5Items[2].Name}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="6" Text="{Binding ElementName=Root,Path=Summary.R5Items[2].Cnt}"/>
 
                         <Separator Grid.Row="0" Grid.RowSpan="4" Margin="3 2 6 2" Grid.Column="7" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
 
                         <TextBlock Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2">四星:</TextBlock>
-                        <TextBlock Grid.Row="0" Grid.Column="10" Grid.ColumnSpan="2">1000 [XX.XX%]</TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="9" Grid.ColumnSpan="2">暗巷的酒与与诗</TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="11">5000 [XX.XX%]</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="10" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R4Cnt}"/>
+                        
+                        <TextBlock Grid.Row="1" Grid.Column="9" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R4Items[0].Name}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="11" Text="{Binding ElementName=Root,Path=Summary.R4Items[0].Cnt}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="9" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R4Items[2].Name}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="11" Text="{Binding ElementName=Root,Path=Summary.R4Items[2].Cnt}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R4Items[4].Name}"/>
+                        <TextBlock Grid.Row="4" Grid.Column="11" Text="{Binding ElementName=Root,Path=Summary.R4Items[4].Cnt}"/>
                         <Separator Grid.Row="1" Grid.RowSpan="3" Margin="3 2 6 2" Grid.Column="12" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                        <TextBlock Grid.Row="1" Grid.Column="13" Grid.ColumnSpan="2">暗巷的酒与与诗</TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="15">5000 [XX.XX%]</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="13" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R4Items[1].Name}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="15" Text="{Binding ElementName=Root,Path=Summary.R4Items[1].Cnt}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="13" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R4Items[3].Name}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="15" Text="{Binding ElementName=Root,Path=Summary.R4Items[3].Cnt}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="13" Grid.ColumnSpan="2" Text="{Binding ElementName=Root,Path=Summary.R4Items[5].Name}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="15" Text="{Binding ElementName=Root,Path=Summary.R4Items[5].Cnt}"/>
                     </Grid>
                 </StackPanel>
             </Border>
             <StackPanel Name="Rounds" Margin="10 0">
-                <card:DDCVBanScnRoundViewCard/>
             </StackPanel>
         </StackPanel>
     </Grid>
