@@ -67,6 +67,7 @@ namespace DodocoTales.Gui.View.Indicator
             InitializeComponent();
             //Inherited = true;
             UnitType = DDCVIndicatorUnitType.Default;
+            Hint = "无记录";
         }
 
     }

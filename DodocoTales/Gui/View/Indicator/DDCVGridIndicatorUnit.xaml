@@ -11,10 +11,10 @@
         <Button Name="Indicator" Style="{StaticResource Style-GridIndicator-Unit}" MouseEnter="Indicator_MouseEnter" MouseLeave="Indicator_MouseLeave"/>
         <Popup x:Name="Pop" PopupAnimation="Slide" PlacementTarget="{Binding ElementName=Indicator}" Placement="MousePoint" AllowsTransparency="True" StaysOpen="False">
             <Grid>
-                <Border Padding="0"  CornerRadius="2"  BorderBrush="Silver" Background="White" BorderThickness="1" >
-                    <StackPanel Margin="5">
-                        <Label FontSize="14" Content="{Binding ElementName=Root,Path=Id}"></Label>
-                        <Label FontSize="12" Content="{Binding ElementName=Root,Path=Hint}"></Label>
+                <Border Padding="0"  CornerRadius="2"  BorderBrush="Silver" Background="White" BorderThickness="1" Margin="5">
+                    <StackPanel Margin="5 0">
+                        <TextBlock FontSize="13" Text="{Binding ElementName=Root,Path=Id}"/>
+                        <TextBlock FontSize="11" Margin="12 0 0 0" Text="{Binding ElementName=Root,Path=Hint}"/>
                     </StackPanel>
                 </Border>
             </Grid>

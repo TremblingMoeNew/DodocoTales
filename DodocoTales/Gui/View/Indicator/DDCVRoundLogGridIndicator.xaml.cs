@@ -1,4 +1,7 @@
-﻿using DodocoTales.Gui.Enums;
+﻿using DodocoTales.Common.Enums;
+using DodocoTales.Gui.Enums;
+using DodocoTales.Gui.Model;
+using DodocoTales.Library;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +88,131 @@ namespace DodocoTales.Gui.View.Indicator
                 vpanel.Children.Add(indicator);
             }
             Main.Children.Add(hPanel);
+        }
+
+        public void LoadRoundInfo(DDCVRoundInfo Info)
+        {
+            int idx = 0;
+            var timezone = DDCL.Users.getCurrentUser().zone;
+            if (Info.Inherited != null) 
+            {
+                foreach (var inh in Info.Inherited)
+                {
+                    foreach (var unit in inh.Logs.L)
+                    {
+                        Indicators[idx].Inherited = true;
+                        string hint = "";
+                        if (unit.rank == 3)
+                        {
+                            Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank3;
+                            hint = "往期单位/三星";
+
+                        }
+                        else if (unit.rank == 4)
+                        {
+                            if (inh.banner.rank4Up.Contains(unit.unitclass))
+                            {
+                                Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank4Up;
+                                hint = "往期单位/当期四星";
+                            }
+                            else if (unit.unittype == DDCCUnitType.Character) 
+                            {
+                                Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank4PerChar;
+                                hint = "往期单位/常驻四星角色";
+                            }
+                            else if (unit.unittype == DDCCUnitType.Weapon)
+                            {
+                                Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank4PerWep;
+                                hint = "往期单位/常驻四星武器";
+                            }
+                        }
+                        else if (unit.rank == 5)
+                        {
+                            if (inh.banner.rank5Up.Contains(unit.unitclass))
+                            {
+                                Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank5Up;
+                                hint = "往期单位/当期五星";
+                            }
+                            else if (unit.unittype == DDCCUnitType.Character)
+                            {
+                                Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank5PerChar;
+                                hint = "往期单位/常驻五星角色";
+                            }
+                            else if (unit.unittype == DDCCUnitType.Weapon)
+                            {
+                                Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank5PerWep;
+                                hint = "往期单位/常驻五星武器";
+                            }
+                        }
+                        Indicators[idx].Hint = String.Format(
+                            "{0}\n{1}\n时间: {2:G}\n {3} - {4}",
+                            unit.name,
+                            hint,
+                            DDCL.GetTimeOffset(unit.time, timezone).ToLocalTime(),
+                            inh.version.version,
+                            inh.banner.name
+                        );
+                        idx++;
+                    }
+                }
+            }
+            foreach (var rnd in Info.Logs)
+            {
+                foreach (var unit in rnd.L)
+                {
+                    Indicators[idx].Inherited = false;
+                    string hint = "";
+                    if (unit.rank == 3)
+                    {
+                        Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank3;
+                        hint = "三星单位";
+
+                    }
+                    else if (unit.rank == 4)
+                    {
+                        if (Info.BannerInfo.rank4Up.Contains(unit.unitclass))
+                        {
+                            Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank4Up;
+                            hint = "当期四星";
+                        }
+                        else if (unit.unittype == DDCCUnitType.Character)
+                        {
+                            Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank4PerChar;
+                            hint = "常驻四星角色";
+                        }
+                        else if (unit.unittype == DDCCUnitType.Weapon)
+                        {
+                            Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank4PerWep;
+                            hint = "常驻四星武器";
+                        }
+                    }
+                    else if (unit.rank == 5)
+                    {
+                        if (Info.BannerInfo.rank5Up.Contains(unit.unitclass))
+                        {
+                            Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank5Up;
+                            hint = "当期五星";
+                        }
+                        else if (unit.unittype == DDCCUnitType.Character)
+                        {
+                            Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank5PerChar;
+                            hint = "常驻五星角色";
+                        }
+                        else if (unit.unittype == DDCCUnitType.Weapon)
+                        {
+                            Indicators[idx].UnitType = DDCVIndicatorUnitType.Rank5PerWep;
+                            hint = "常驻五星武器";
+                        }
+                    }
+                    Indicators[idx].Hint = String.Format(
+                        "{0}\n{1}\n时间: {2:G}",
+                        unit.name,
+                        hint,
+                        DDCL.GetTimeOffset(unit.time, timezone).ToLocalTime()
+                    );
+                    idx++;
+                }
+            }
         }
     }
 }

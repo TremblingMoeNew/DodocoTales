@@ -33,6 +33,7 @@ namespace DodocoTales.Gui.View.Card
             get { return (DDCVBanScnRoundCardSummary)GetValue(SummaryProperty); }
         }
 
+
         DDCVRoundLogGridIndicator GridIndicator;
         bool GridIndicatorLoaded = false;
 
@@ -69,18 +70,33 @@ namespace DodocoTales.Gui.View.Card
         public async void LoadSummary(DDCVRoundInfo round)
         {
             int inheritcnt = 0, cnt = 0, totalcnt = 0;
+            List<DDCVUnitTextIndicatorInfo> R5Info = new List<DDCVUnitTextIndicatorInfo>();
+            List<DDCVUnitTextIndicatorInfo> R4Info = new List<DDCVUnitTextIndicatorInfo>();
+            int curr5cnt = 0;
             if (round.Inherited != null)
             {
                 foreach (var inh in round.Inherited)
                 {
                     var logs = inh.Logs.L;
                     inheritcnt += logs.Count;
+                    curr5cnt += logs.Count;
+                    if (logs.Count > 0 && logs.Last().rank == 5) curr5cnt = 0;
                 }
             }
             foreach (var rnd in round.Logs)
             {
                 var logs = rnd.L;
                 cnt += logs.Count;
+                curr5cnt += logs.Count;
+                if (logs.Count > 0 && logs.Last().rank == 5)
+                {
+                    R5Info.Add(new DDCVUnitTextIndicatorInfo { name = logs.Last().name, time = logs.Last().time, cnt = curr5cnt });
+                    curr5cnt = 0;
+                }
+                foreach (var r4 in logs.FindAll(x => x.rank == 4)) 
+                {
+                    R4Info.Add(new DDCVUnitTextIndicatorInfo { name = r4.name, time = r4.time });
+                }
             }
             totalcnt = cnt + inheritcnt;
             var summary = new DDCVBanScnRoundCardSummary
@@ -93,18 +109,37 @@ namespace DodocoTales.Gui.View.Card
 
             Action act = () => { Summary = summary; };
             await Dispatcher.BeginInvoke(act);
+            Action act2 = () => { ApplyR5Indicators(R5Info); ApplyR4Indicators(R4Info); };
+            await Dispatcher.BeginInvoke(act2, DispatcherPriority.ApplicationIdle);
         }
-        public void ApplyR5Indicators()
+        public void ApplyR5Indicators(List<DDCVUnitTextIndicatorInfo> R5Info)
         {
-
+            R5Info.Reverse();
+            R5IndicatorContainer.Children.Clear();
+            foreach (var info in R5Info)
+            {
+                R5IndicatorContainer.Children.Add(new TextBlock
+                {
+                    Text = String.Format("{0}[{1}]", info.name, info.cnt)
+                });
+            }
         }
-        public void ApplyR4Indicators()
+        public void ApplyR4Indicators(List<DDCVUnitTextIndicatorInfo> R4Info)
         {
-
+            R4Info.Reverse();
+            R4IndicatorContainer.Children.Clear();
+            foreach (var info in R4Info)
+            {
+                R4IndicatorContainer.Children.Add(new TextBlock
+                {
+                    Text = String.Format("{0} /", info.name)
+                });
+            }
         }
         public async void ApplyGridIndicators(DDCVRoundInfo round)
         {
-
+            Action act = () => { GridIndicator.LoadRoundInfo(round); };
+            await Dispatcher.BeginInvoke(act, DispatcherPriority.ApplicationIdle);
         }
 
         private void Grid_MouseEnter(object sender, MouseEventArgs e)

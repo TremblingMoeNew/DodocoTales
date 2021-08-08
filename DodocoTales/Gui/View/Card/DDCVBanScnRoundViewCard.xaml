@@ -51,10 +51,6 @@
                         <WrapPanel.Resources>
                             <Style BasedOn="{StaticResource Style-Card-TextBlock-UnitTextIndicator}" TargetType="TextBlock"/>
                         </WrapPanel.Resources>
-                        <TextBlock>松籁响起之之时[80]</TextBlock>
-                        <TextBlock>松籁响起之之时[80]</TextBlock>
-                        <TextBlock>松籁响起之之时[80]</TextBlock>
-                        <TextBlock>松籁响起之之时[80]</TextBlock>
                     </WrapPanel>
 
                     <Separator Grid.Row="0" Grid.RowSpan="4" Margin="3 2 6 2" Grid.Column="6" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
@@ -65,25 +61,6 @@
                         <WrapPanel.Resources>
                             <Style BasedOn="{StaticResource Style-Card-TextBlock-UnitTextIndicator}" TargetType="TextBlock"/>
                         </WrapPanel.Resources>
-                        <TextBlock>暗巷的酒与与诗 /</TextBlock>
-                        <TextBlock>暗巷的酒与与诗 /</TextBlock>
-                        <TextBlock>暗巷的酒与与诗 /</TextBlock>
-                        <TextBlock>暗巷的酒与与诗 /</TextBlock>
-                        <TextBlock>暗巷的酒 /</TextBlock>
-                        <TextBlock>暗巷的酒 /</TextBlock>
-                        <TextBlock>暗巷的酒 /</TextBlock>
-                        <TextBlock>暗巷的酒 /</TextBlock>
-                        <TextBlock>暗巷的酒 /</TextBlock>
-                        <TextBlock>暗巷的酒 /</TextBlock>
-                        <TextBlock>暗巷 /</TextBlock>
-                        <TextBlock>暗巷 /</TextBlock>
-                        <TextBlock>暗巷 /</TextBlock>
-                        <TextBlock>暗巷 /</TextBlock>
-                        <TextBlock>暗巷 /</TextBlock>
-                        <TextBlock>暗巷 /</TextBlock>
-                        <TextBlock>暗巷 /</TextBlock>
-                        <TextBlock>暗巷 /</TextBlock>
-                        <TextBlock>暗巷 /</TextBlock>
                     </WrapPanel>
                 </Grid>
                 <Separator Margin="20 2" Height="2"/>

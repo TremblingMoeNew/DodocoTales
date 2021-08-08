@@ -6,7 +6,32 @@
              xmlns:local="clr-namespace:DodocoTales.Gui.View.Indicator"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Name="Main">
+    <StackPanel>
+        <Grid Name="Main">
 
-    </Grid>
+        </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Border Background="{StaticResource Brush-GridIndicator-Unit-Default}" Width="12" Height="12" Margin="1" CornerRadius="1" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 3 10 3">无记录</TextBlock>
+            <Border Background="{StaticResource Brush-GridIndicator-Unit-Rank3}" Width="12" Height="12" Margin="1" CornerRadius="1" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 3 10 3">三星</TextBlock>
+            <Border Background="{StaticResource Brush-GridIndicator-Unit-Rank4-Up}" Width="12" Height="12" Margin="1" CornerRadius="1" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 3 10 3">当期四星</TextBlock>
+            <Border Background="{StaticResource Brush-GridIndicator-Unit-Rank4-Permanent-Char}" Width="12" Height="12" Margin="1" CornerRadius="1" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 3 10 3">常驻四星角色</TextBlock>
+            <Border Background="{StaticResource Brush-GridIndicator-Unit-Rank4-Permanent-Wep}" Width="12" Height="12" Margin="1" CornerRadius="1" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 3 10 3">常驻四星武器</TextBlock>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Border Background="{StaticResource Brush-GridIndicator-Unit-InheritShader}" Width="12" Height="12" Margin="1" CornerRadius="1" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 3 10 3">往期单位</TextBlock>
+            <Border Background="{StaticResource Brush-GridIndicator-Unit-Rank5-Up}" Width="12" Height="12" Margin="1" CornerRadius="1" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 3 10 3">当期五星</TextBlock>
+            <Border Background="{StaticResource Brush-GridIndicator-Unit-Rank5-Permanent-Char}" Width="12" Height="12" Margin="1" CornerRadius="1" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 3 10 3">常驻五星角色</TextBlock>
+            <Border Background="{StaticResource Brush-GridIndicator-Unit-Rank5-Permanent-Wep}" Width="12" Height="12" Margin="1" CornerRadius="1" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 3 10 3">常驻五星武器</TextBlock>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
