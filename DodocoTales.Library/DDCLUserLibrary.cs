@@ -14,10 +14,12 @@ namespace DodocoTales.Library
     {
         public long CurrentUserUID { get; set; }
         public Dictionary<long, DDCCUserGachaLogs> U { get; set; }
+        public bool Loaded;
 
         public DDCLUserLibrary()
         {
             U = new Dictionary<long, DDCCUserGachaLogs>();
+            Loaded = false;
         }
 
         public DDCCUserGachaLogs createEmptyLocalGachaLog(long uid)
@@ -63,7 +65,7 @@ namespace DodocoTales.Library
                 taskQuery.Add(loadLocalGachaLogByUidAsync(uid));
             }
             await Task.WhenAll(taskQuery);
-            
+            Loaded = true;
             /// TODO: 返回载入结果？
         }
 
@@ -98,11 +100,25 @@ namespace DodocoTales.Library
             CurrentUserUID = uid;
             if (!U.ContainsKey(uid))
             {
-                var log=createEmptyLocalGachaLog(CurrentUserUID);
+                var log = createEmptyLocalGachaLog(CurrentUserUID);
                 U.Add(CurrentUserUID, log);
             }
         }
-
-
+        public bool userExists(long uid)
+        {
+            return U.ContainsKey(uid);
+        }
+        public bool userExists(string uid)
+        {
+            try
+            {
+                var uid_int = Convert.ToInt64(uid);
+                return userExists(uid_int);
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+        }
     }
 }

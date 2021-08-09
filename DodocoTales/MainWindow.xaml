@@ -11,6 +11,8 @@
         Name="WindowMain"
         StateChanged="WindowMain_StateChanged"
         WindowStartupLocation="CenterScreen"
+        Loaded="WindowMain_Loaded"
+        
         >
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="30" GlassFrameThickness="1" UseAeroCaptionButtons="False" NonClientFrameEdges="None"/>

@@ -16,7 +16,7 @@ namespace DodocoTales.Library
         public Dictionary<int, DDCLUnitInfo> idMap;
         public Dictionary<string, DDCLUnitInfo> codeMap;
         readonly DDCLUnitInfo notfound = new DDCLUnitInfo { id = 0, code = "Unknown", name = "Unknown", type = DDCCUnitType.Unknown };
-        public readonly string libPath = @"library/ItemLibrary.json";
+        public readonly string libPath = @"library/UnitLibrary.json";
 
         public DDCLUnitLibrary()
         {

@@ -47,9 +47,13 @@
   <ItemGroup>
     <Compile Include="DDCL.cs" />
     <Compile Include="DDCLBannerLibrary.cs" />
+    <Compile Include="DDCLMetaVersionLibrary.cs" />
+    <Compile Include="DDCLSettingsLibrary.cs" />
     <Compile Include="DDCLUnitLibrary.cs" />
     <Compile Include="Models\DDCLBannerInfo.cs" />
     <Compile Include="Models\DDCLBannerLibModel.cs" />
+    <Compile Include="Models\DDCLMetaVersion.cs" />
+    <Compile Include="Models\DDCLSettingsInfo.cs" />
     <Compile Include="Models\DDCLUnitInfo.cs" />
     <Compile Include="DDCLUserLibrary.cs" />
     <Compile Include="Models\DDCLVersionInfo.cs" />

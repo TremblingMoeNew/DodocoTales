@@ -11,7 +11,8 @@ namespace DodocoTales.Library
         public static DDCLBannerLibrary Banners = new DDCLBannerLibrary();
         public static DDCLUnitLibrary Units = new DDCLUnitLibrary();
         public static DDCLUserLibrary Users = new DDCLUserLibrary();
-
+        public static DDCLMetaVersionLibrary MetaVersion = new DDCLMetaVersionLibrary();
+        public static DDCLSettingsLibrary Settings = new DDCLSettingsLibrary();
         public static int CompareLibTimeWithNow(DateTime LibraryTime)
         {
             var now = GetNowDateTimeOffset();

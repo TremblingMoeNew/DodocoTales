@@ -36,9 +36,6 @@ namespace DodocoTales.Gui.View
             InitializeComponent();
             Uid = "-----未登录-----";
             DDCS.UidReloadCompleted += new DDCSCommonDelegate(OnUidSwapped);
-            DDCL.Banners.loadLibrary();
-            DDCL.Units.loadLibrary();
-            DDCL.Users.loadLocalGachaLogs();
             
         }
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -69,6 +66,7 @@ namespace DodocoTales.Gui.View
                 Action act = () => { Uid = String.Format("UID:{0}****{1}", DDCL.Users.CurrentUserUID / 10000000, DDCL.Users.CurrentUserUID % 1000); };
                 Dispatcher.BeginInvoke(act);
             }
+            DDCL.Settings.RefreshLastUid();
         }
     }
 }

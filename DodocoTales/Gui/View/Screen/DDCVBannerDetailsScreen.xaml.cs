@@ -225,26 +225,26 @@ namespace DodocoTales.Gui.View.Screen
             }
 
 
-
+            int totalcnt = cnt + inheritcnt;
 
             for (int i = 0; i < 3; i++)
             {
                 if (R5Info[i] != null)
                 {
-                    R5Info[i].Cnt = r5cnt == 0 ? "0 [—%]" : String.Format("{0} [{1:P2}]", R5InfoCnt[i], R5InfoCnt[i] * 1.0 / r5cnt);
+                    R5Info[i].Cnt = totalcnt == 0 ? "0 [—%]" : String.Format("{0} [{1:P2}]", R5InfoCnt[i], R5InfoCnt[i] * 1.0 / totalcnt);
                 }
             }
             for (int i = 0; i < 6; i++)
             {
                 if (R4Info[i] != null)
                 {
-                    R4Info[i].Cnt = r4cnt == 0 ? "0 [—%]" : String.Format("{0} [{1:P1}]", R4InfoCnt[i], R4InfoCnt[i] * 1.0 / r4cnt);
+                    R4Info[i].Cnt = totalcnt == 0 ? "0 [—%]" : String.Format("{0} [{1:P1}]", R4InfoCnt[i], R4InfoCnt[i] * 1.0 / totalcnt);
                 }
 
             }
 
 
-            int totalcnt = cnt + inheritcnt;
+            
             summary.InheritedCnt = inheritcnt.ToString();
             summary.RoundCnt = roundcnt.ToString();
             summary.Cnt = cnt.ToString();

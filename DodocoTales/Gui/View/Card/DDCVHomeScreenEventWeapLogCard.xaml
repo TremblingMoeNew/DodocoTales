@@ -21,14 +21,15 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="86" />
-                                <ColumnDefinition Width="2.5*" MinWidth="70"/>
-                                <ColumnDefinition Width="38" MinWidth="38"/>
-                                <ColumnDefinition Width="1.5*" MinWidth="42"/>
-                                <ColumnDefinition Width="2*" MinWidth="54"/>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="38"/>
+                                <ColumnDefinition Width="42"/>
                                 <ColumnDefinition Width="54"/>
-                                <ColumnDefinition Width="2.2*" MinWidth="60"/>
+                                <ColumnDefinition Width="54"/>
+                                <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="5"/>
                                 <ColumnDefinition Width="14*"/>
+                                <ColumnDefinition Width="5"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="25" MaxHeight="25"/>

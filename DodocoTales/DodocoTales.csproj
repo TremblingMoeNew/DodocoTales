@@ -151,6 +151,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\View\Dialog\DDCVMetaUpdateIndicatorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\View\Dialog\DDCVWebGachaLogLoadIndicatorDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Gui\View\Screen\DDCVHomeScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\View\Screen\DDCVPoolTypeViewScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,6 +242,9 @@
     <Compile Include="Gui\View\DDCVMainTitleBar.xaml.cs">
       <DependentUpon>DDCVMainTitleBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gui\View\Dialog\DDCVMetaUpdateIndicatorDialog.xaml.cs">
+      <DependentUpon>DDCVMetaUpdateIndicatorDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\View\Dialog\DDCVWebGachaLogLoadIndicatorDialog.xaml.cs">
       <DependentUpon>DDCVWebGachaLogLoadIndicatorDialog.xaml</DependentUpon>
     </Compile>
@@ -249,6 +260,9 @@
     </Compile>
     <Compile Include="Gui\View\Screen\DDCVHomeScreen.xaml.cs">
       <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Screen\DDCVPoolTypeViewScreen.xaml.cs">
+      <DependentUpon>DDCVPoolTypeViewScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\Screen\DDCVVersionViewScreen.xaml.cs">
       <DependentUpon>DDCVVersionViewScreen.xaml</DependentUpon>

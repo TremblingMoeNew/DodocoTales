@@ -1,4 +1,5 @@
 ﻿using DodocoTales.Gui;
+using DodocoTales.Gui.View.Dialog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,21 @@ namespace DodocoTales
         public MainWindow()
         {
             InitializeComponent();
-            DDCV.MainWindow = this;
         }
 
         private void WindowMain_StateChanged(object sender, EventArgs e)
         {
             Caption.State = WindowState;
+        }
+
+        private void WindowMain_Loaded(object sender, RoutedEventArgs e)
+        {
+            DDCV.MainWindow = this;
+            new DDCVMetaUpdateIndicatorDialog
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                Owner = DDCV.MainWindow
+            }.ShowDialog();
         }
     }
 }
