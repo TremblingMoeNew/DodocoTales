@@ -1,0 +1,142 @@
+﻿<UserControl x:Class="DodocoTales.Gui.View.Card.DDCVHomeScreenEventWeapLogCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DodocoTales.Gui.View.Card"
+             xmlns:converter="clr-namespace:DodocoTales.Gui.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             MinWidth="750"
+             Name="Root">
+    <UserControl.Resources>
+        <converter:DDCVVisibleByExistenceConverter x:Key="VisCon"/>
+    </UserControl.Resources>
+    <Grid>
+        <Border Style="{StaticResource Style-Card-Border-Base}">
+            <StackPanel>
+                <StackPanel Name="Base">
+                    <Label Style="{StaticResource Style-Card-Title-H1}">武器活动祈愿</Label>
+                    <Border Margin="10 5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="86" />
+                                <ColumnDefinition Width="2.5*" MinWidth="70"/>
+                                <ColumnDefinition Width="38" MinWidth="38"/>
+                                <ColumnDefinition Width="1.5*" MinWidth="42"/>
+                                <ColumnDefinition Width="2*" MinWidth="54"/>
+                                <ColumnDefinition Width="54"/>
+                                <ColumnDefinition Width="2.2*" MinWidth="60"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="14*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" MaxHeight="25"/>
+                                <RowDefinition Height="25" MaxHeight="25"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0">累计抽数:</Label>
+                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding ElementName=Root,Path=Summary.TotalCnt}"/>
+                            <Label Grid.Column="0" Grid.Row="1">五星平均抽数:</Label>
+                            <Label Grid.Column="1" Grid.Row="1" Content="{Binding ElementName=Root,Path=Summary.R5Avg}"/>
+                            <Label Grid.Row="0" Grid.Column="2">五星:</Label>
+                            <Label Grid.Row="0" Grid.Column="3" Content="{Binding ElementName=Root,Path=Summary.R5Cnt}"/>
+                            <Label Grid.Row="0" Grid.Column="4" Content="{Binding ElementName=Root,Path=Summary.R5PS}"/>
+                            <Label Grid.Row="1" Grid.Column="2">四星:</Label>
+                            <Label Grid.Row="1" Grid.Column="3" Content="{Binding ElementName=Root,Path=Summary.R4Cnt}"/>
+                            <Label Grid.Row="1" Grid.Column="4" Content="{Binding ElementName=Root,Path=Summary.R4PS}"/>
+                            <Label Grid.Row="0" Grid.Column="5">UP命中:</Label>
+                            <Label Grid.Row="0" Grid.Column="6" Content="{Binding ElementName=Root,Path=Summary.R5Up}"/>
+                            <Label Grid.Row="1" Grid.Column="5">UP命中:</Label>
+                            <Label Grid.Row="1" Grid.Column="6"  Content="{Binding ElementName=Root,Path=Summary.R4Up}"/>
+                            <Separator Grid.Row="0" Grid.RowSpan="3" Grid.Column="7" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                            <WrapPanel Grid.Row="0" Grid.Column="8" Grid.RowSpan="3" Name="IndicatorContainer">
+                                <WrapPanel.Resources>
+                                    <Style BasedOn="{StaticResource Style-Card-TextBlock-UnitTextIndicator}" TargetType="TextBlock"/>
+                                </WrapPanel.Resources>
+                            </WrapPanel>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <StackPanel Name="CurrentBanner" Visibility="{Binding ElementName=Root,Path=Current,Converter={StaticResource VisCon}}">
+                    <Separator Background="Silver" Margin="10 0"/>
+                    <Grid Margin="10 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.RowSpan="2" Style="{StaticResource Style-Card-Title-H2}" Content="{Binding ElementName=Root,Path=Current.Title}"/>
+                        <TextBlock Grid.Row="2" Margin="20 0" Text="{Binding ElementName=Root,Path=Current.Subtitle}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="{Binding ElementName=Root,Path=Current.BannerUpUnits}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Text="{Binding ElementName=Root,Path=Current.BannerTime}"/>
+                    </Grid>
+
+                    <Grid Margin="40 5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="65" />
+                            <ColumnDefinition Width="1.5*" MinWidth="40"/>
+                            <ColumnDefinition Width="38" MinWidth="38"/>
+                            <ColumnDefinition Width="1.5*" MinWidth="40"/>
+                            <ColumnDefinition Width="2*" MinWidth="54"/>
+                            <ColumnDefinition Width="54"/>
+                            <ColumnDefinition Width="2.2*" MinWidth="60"/>
+                            <ColumnDefinition Width="54"/>
+                            <ColumnDefinition Width="6*" MinWidth="120"/>
+
+                            <ColumnDefinition Width="20*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0">继承抽数:</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding ElementName=Root,Path=Current.InheritedCnt}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1">总计抽数:</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ElementName=Root,Path=Current.TotalCnt}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2">五星:</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding ElementName=Root,Path=Current.R5Cnt}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="4" Text="{Binding ElementName=Root,Path=Current.R5PS}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2">四星:</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding ElementName=Root,Path=Current.R4Cnt}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="4" Text="{Binding ElementName=Root,Path=Current.R4PS}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="5">UP命中:</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="6" Text="{Binding ElementName=Root,Path=Current.R5Up}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="5">UP命中:</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="6" Text="{Binding ElementName=Root,Path=Current.R4Up}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="7">下抽概率</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="8" Text="{Binding ElementName=Root,Path=Current.R5NextPS}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="7">下抽概率</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="8" Text="{Binding ElementName=Root,Path=Current.R4NextPS}"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Name="NextBanner" Visibility="{Binding ElementName=Root,Path=Next,Converter={StaticResource VisCon}}">
+                    <Separator Background="Silver" Margin="10 10 10 0"/>
+                    <Grid Margin="10 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.RowSpan="2" FontSize="15" Content="{Binding ElementName=Root,Path=Next.Title}"/>
+                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0 0 0" Text="{Binding ElementName=Root,Path=Next.Subtitle}"/>
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="{Binding ElementName=Root,Path=Next.BannerUpUnits}"/>
+                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Right" Text="{Binding ElementName=Root,Path=Next.BannerTime}"/>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>
+
