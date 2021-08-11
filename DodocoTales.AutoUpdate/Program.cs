@@ -37,6 +37,17 @@ namespace DodocoTales.AutoUpdate
             }
             
             MoveFromDirectory(dir, new DirectoryInfo(Directory.GetCurrentDirectory()));
+
+            try
+            {
+                if (File.Exists("update/DodocoTales.zip"))
+                    File.Delete("update/DodocoTales.zip");
+                Directory.Delete("update");
+            }
+            catch (Exception)
+            {
+
+            }
             Process.Start("DodocoTales.exe");
         }
 
