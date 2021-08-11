@@ -16,7 +16,7 @@ namespace DodocoTales.Loader
     {
         readonly string locallow = Environment.GetEnvironmentVariable("USERPROFILE") + @"/AppData/LocalLow/miHoYo";
 
-        bool isCnApi = true;
+        public bool isCnApi = true;
         string apipattern { get { if (isCnApi) return apipattern_cn; else return apipattern_os; } }
         readonly string apipattern_cn = @"https://hk4e-api.mihoyo.com/event/gacha_info/api/getGachaLog?{0}&gacha_type={1}&page={2}&size={4}&end_id={3}";
         readonly string apipattern_os = @"https://hk4e-api-os.mihoyo.com/event/gacha_info/api/getGachaLog?{0}&gacha_type={1}&page={2}&size={4}&end_id={3}";
@@ -61,9 +61,13 @@ namespace DodocoTales.Loader
 
         public async Task<long>tryConnectAndGetUid(string authkey)
         {
-            isCnApi = false;
+            isCnApi = true;
             var uid = await getUidFromWeb(authkey);
-            if (uid < 0) await getUidFromWeb(authkey);
+            if (uid < 0)
+            {
+                isCnApi = false;
+                uid = await getUidFromWeb(authkey);
+            }
             if (uid == -1) uid = getUidFromLocal();
             return uid;
         }
