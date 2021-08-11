@@ -3,6 +3,7 @@ using DodocoTales.Library;
 using DodocoTales.Loader;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -56,9 +57,10 @@ namespace DodocoTales.Gui.View.Dialog
             var libexists = await DDCL.MetaVersion.LoadLibraryAsync();
             if(!libexists || string.Compare(DDCL.MetaVersion.ClientVersion, newestver.ClientVersion, true) < 0)
             {
-                Action newclientver = () => { Hint = String.Format("检测到新版本:{0}，正在获取更新……",newestver.ClientVersion); };
+                Action newclientver = () => { Hint = String.Format("检测到新版本:{0}，请下载并更新。",newestver.ClientVersion); };
                 await Dispatcher.BeginInvoke(newclientver);
-
+                Action delayquitprogramact = () => { delayedQuitProgram(); };
+                delayquitprogramact.BeginInvoke(null, null);
                 // TODO
                 return;
             }
@@ -148,5 +150,11 @@ namespace DodocoTales.Gui.View.Dialog
             Dispatcher.BeginInvoke(act);
         }
 
+        private void delayedQuitProgram()
+        {
+            Thread.Sleep(5000);
+            Action act = () => { Application.Current.Shutdown(); };
+            Dispatcher.BeginInvoke(act);
+        }
     }
 }

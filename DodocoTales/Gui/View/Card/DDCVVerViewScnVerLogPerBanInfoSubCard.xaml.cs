@@ -92,8 +92,8 @@ namespace DodocoTales.Gui.View.Card
                 TotalCnt = String.Format("{0}", inheritcnt + cnt),
                 R5Cnt = String.Format("{0}", r5cnt),
                 R4Cnt = String.Format("{0}/{1}", r4cnt, r4cnt + r4inhcnt),
-                R5PS = (inheritcnt + cnt) == 0 ? "[—%]" : String.Format("[{0:P1}]", (r5cnt + r5inhcnt) * 1.0 / (inheritcnt + cnt)),
-                R4PS = (inheritcnt + cnt) == 0 ? "[—%]" : String.Format("[{0:P1}]", (r4cnt + r4inhcnt) * 1.0 / (inheritcnt + cnt)),
+                R5PS = (inheritcnt + cnt) == 0 ? " [—%]" : String.Format(" [{0:P1}]", (r5cnt + r5inhcnt) * 1.0 / (inheritcnt + cnt)),
+                R4PS = (inheritcnt + cnt) == 0 ? " [—%]" : String.Format(" [{0:P1}]", (r4cnt + r4inhcnt) * 1.0 / (inheritcnt + cnt)),
                 R5CWR = String.Format("{0}/{1}", r5chrcnt, r5wepcnt),
                 R4CWR = String.Format("{0}/{1}", r4chrcnt, r4wepcnt)
             };

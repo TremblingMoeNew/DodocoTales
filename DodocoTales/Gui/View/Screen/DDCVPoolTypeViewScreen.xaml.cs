@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DodocoTales.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,10 @@ namespace DodocoTales.Gui.View.Screen
         public DDCVPoolTypeViewScreen()
         {
             InitializeComponent();
+            EventCharacter.InitializeCard(DDCCPoolType.EventCharacter);
+            EventWeapon.InitializeCard(DDCCPoolType.EventWeapon);
+            Permanent.InitializeCard(DDCCPoolType.Permanent);
+            Beginner.InitializeCard(DDCCPoolType.Beginner);
         }
     }
 }

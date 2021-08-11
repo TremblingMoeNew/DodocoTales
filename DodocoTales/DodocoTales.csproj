@@ -131,6 +131,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\View\Card\DDCVPTScnPerLogCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\View\Card\DDCVVersionViewScreenVersionLogCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +214,7 @@
     <Compile Include="Gui\Model\DDCVInheritedRound.cs" />
     <Compile Include="Gui\Model\DDCVInheritedRounds.cs" />
     <Compile Include="Gui\Model\DDCVModel.cs" />
+    <Compile Include="Gui\Model\DDCVPTScnPoolLogSummary.cs" />
     <Compile Include="Gui\Model\DDCVRoundInfo.cs" />
     <Compile Include="Gui\Model\DDCVUnitTextIndicatorInfo.cs" />
     <Compile Include="Gui\Model\DDCVUpItemCntInfo.cs" />
@@ -230,6 +235,9 @@
     </Compile>
     <Compile Include="Gui\View\Card\DDCVPTScnEventLogCard.xaml.cs">
       <DependentUpon>DDCVPTScnEventLogCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Card\DDCVPTScnPerLogCard.xaml.cs">
+      <DependentUpon>DDCVPTScnPerLogCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\Card\DDCVVersionViewScreenVersionLogCard.xaml.cs">
       <DependentUpon>DDCVVersionViewScreenVersionLogCard.xaml</DependentUpon>

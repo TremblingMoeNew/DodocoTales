@@ -32,15 +32,15 @@
 
                     <Grid Margin="40 5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="65" />
-                            <ColumnDefinition Width="1.5*" MinWidth="40"/>
-                            <ColumnDefinition Width="65" />
-                            <ColumnDefinition Width="1.5*" MinWidth="40"/>
-                            <ColumnDefinition Width="38" MinWidth="38"/>
-                            <ColumnDefinition Width="2.5*" MinWidth="70"/>
-                            <ColumnDefinition Width="2*" MinWidth="54"/>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="2.5*" MinWidth="70"/>
+                            <ColumnDefinition Width="45" />
+                            <ColumnDefinition Width="45"/>
+                            <ColumnDefinition Width="55" />
+                            <ColumnDefinition Width="45"/>
+                            <ColumnDefinition Width="35"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="72"/>
+                            <ColumnDefinition Width="120"/>
 
 
                             <ColumnDefinition Width="20*"/>

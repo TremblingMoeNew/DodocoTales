@@ -9,7 +9,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel Name="ListView">
-            <card:DDCVPTScnEventLogCard/>
+            <card:DDCVPTScnEventLogCard x:Name="EventCharacter"/>
+            <card:DDCVPTScnEventLogCard x:Name="EventWeapon"/>
+            <card:DDCVPTScnPerLogCard x:Name="Permanent"/>
+            <card:DDCVPTScnPerLogCard x:Name="Beginner"/>
         </StackPanel>
     </Grid>
 </UserControl>

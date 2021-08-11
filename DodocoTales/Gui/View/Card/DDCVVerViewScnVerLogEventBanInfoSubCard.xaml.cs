@@ -106,7 +106,7 @@ namespace DodocoTales.Gui.View.Card
             {
                 Title = String.Format("{0}", info.Info.name),
                 Subtitle = String.Format("{0} - {1} - {2} - {3}", info.VersionInfo.version, DDCL.ConvertPoolTypeToName(info.Info.type), info.Info.name, info.Info.hint),
-                BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(info.Info.beginTime,info.Info.beginTimeSync).ToLocalTime(), DDCL.GetLibraryTimeOffset(info.Info.endTime,info.Info.endTimeSync).ToLocalTime()),
+                BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(info.Info.beginTime, info.Info.beginTimeSync).ToLocalTime(), DDCL.GetLibraryTimeOffset(info.Info.endTime, info.Info.endTimeSync).ToLocalTime()),
                 BannerUpUnits = upunit,
                 InheritedCnt = inheritcnt.ToString(),
                 Cnt = cnt.ToString(),
@@ -114,10 +114,10 @@ namespace DodocoTales.Gui.View.Card
                 TotalCnt = (inheritcnt + cnt).ToString(),
                 R5Cnt = String.Format("{0}/{1}", r5cnt, r5cnt + r5inhcnt),
                 R4Cnt = String.Format("{0}/{1}", r4cnt, r4cnt + r4inhcnt),
-                R5PS = (inheritcnt + cnt) == 0 ? "[—%]" : String.Format("[{0:P1}]", (r5cnt + r5inhcnt) * 1.0 / (inheritcnt + cnt)),
-                R4PS = (inheritcnt + cnt) == 0 ? "[—%]" : String.Format("[{0:P1}]", (r4cnt + r4inhcnt) * 1.0 / (inheritcnt + cnt)),
-                R5Up = r5upcnt.ToString(),
-                R4Up = r4upcnt.ToString()
+                R5PS = (inheritcnt + cnt) == 0 ? " [—%]" : String.Format(" [{0:P2}]", (r5cnt + r5inhcnt) * 1.0 / (inheritcnt + cnt)),
+                R4PS = (inheritcnt + cnt) == 0 ? " [—%]" : String.Format(" [{0:P1}]", (r4cnt + r4inhcnt) * 1.0 / (inheritcnt + cnt)),
+                R5Up = (inheritcnt + cnt) == 0 ? "0 [—%]" : String.Format("{0} [{1:P2}]", r5upcnt, r5upcnt * 1.0 / (inheritcnt + cnt)),
+                R4Up = (inheritcnt + cnt) == 0 ? "0 [—%]" : String.Format("{0} [{1:P1}]", r4upcnt, r4upcnt * 1.0 / (inheritcnt + cnt))
             };
             Action act = () => { Summary = summary; };
             Dispatcher.BeginInvoke(act);
