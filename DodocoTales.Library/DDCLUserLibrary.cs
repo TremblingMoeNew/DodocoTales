@@ -46,6 +46,7 @@ namespace DodocoTales.Library
         public async Task loadLocalGachaLogs()
         {
             DirectoryInfo dir = new DirectoryInfo("userdata");
+            if (!dir.Exists) dir.Create();
             var files = dir.GetFiles("userlog_*.json");
             string pattern = @"userlog_(\d+)\.json";
             List<Task> taskQuery = new List<Task>();

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DodocoTales.Library
@@ -24,6 +25,7 @@ namespace DodocoTales.Library
                 var stream = File.Open(libPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 StreamReader reader = new StreamReader(stream);
                 var buffer = await reader.ReadToEndAsync();
+                stream.Close();
                 model = JsonConvert.DeserializeObject<DDCLMetaVersion>(buffer);
             }
             catch (Exception)
@@ -51,6 +53,36 @@ namespace DodocoTales.Library
                 return false;
             }
             return true;
+        }
+        public long ConvertClientVerToInt64(string clientver)
+        {
+            if (clientver == null) return 0;
+            var res = Regex.Match(clientver, @"^.*(\d+)\.(\d+)\.(\d+)\.{0,1}(\d*).*");
+            if (res.Groups.Count < 4) return 0;
+            long intver = 0;
+            intver += Convert.ToInt32(res.Groups[1].Value);
+            intver = intver * 100 + Convert.ToInt32(res.Groups[2].Value);
+            intver = intver * 100 + Convert.ToInt32(res.Groups[3].Value);
+            intver *= 1000000;
+            var last = res.Groups[4].Value;
+            if (last != "") 
+            {
+                intver += Convert.ToInt32(last);
+            }
+            return intver;
+        }
+        public long ConvertLibVerToInt64(string libver)
+        {
+            if (libver == null) return 0;
+            var res = Regex.Match(libver, @"^.*(\d+)\.(\d+)\.(\d+)-.*(\d+)\.(\d+)\.(\d+)-(\d+).*");
+            if (res.Groups.Count < 7) return 0;
+            long intver = 0;
+            for (int i = 1; i < 7; i++) 
+            {
+                intver = intver * 100 + Convert.ToInt32(res.Groups[i].Value);
+            }
+            intver = intver * 1000000 + Convert.ToInt32(res.Groups[7].Value);
+            return intver;
         }
     }
 }

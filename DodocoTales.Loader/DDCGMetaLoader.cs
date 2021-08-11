@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +25,12 @@ namespace DodocoTales.Loader
         public DDCGMetaLoader()
         {
             client = new HttpClient();
+            CacheControlHeaderValue cacheControl = new CacheControlHeaderValue
+            {
+                NoCache = true,
+                NoStore = true
+            };
+            client.DefaultRequestHeaders.CacheControl = cacheControl;
             LastUpdateOn = DateTimeOffset.MinValue;
         }
 

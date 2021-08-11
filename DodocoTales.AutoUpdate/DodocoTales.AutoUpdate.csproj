@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5E023ABC-2BB8-4A75-AC63-B05D1961DE5F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DodocoTales.Loader</RootNamespace>
-    <AssemblyName>DodocoTales.Loader</AssemblyName>
+    <ProjectGuid>{A4EE5C33-5A46-4960-9FDA-04A8D418F028}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DodocoTales.AutoUpdate</RootNamespace>
+    <AssemblyName>DodocoTales.AutoUpdate</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,14 +32,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,29 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DDCG.cs" />
-    <Compile Include="DDCGClientUpdateLoader.cs" />
-    <Compile Include="DDCGGachaLogMerger.cs" />
-    <Compile Include="DDCGLocalGachaLogLoader.cs" />
-    <Compile Include="DDCGMetaLoader.cs" />
-    <Compile Include="DDCGWebGachaLogLoader.cs" />
-    <Compile Include="Models\DDCGGachaLogResponseItem.cs" />
-    <Compile Include="Models\DDCGGachaLogResponse.cs" />
-    <Compile Include="Models\DDCGGachaInitialLogs.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DodocoTales.Common\DodocoTales.Common.csproj">
-      <Project>{cd86f9b9-b78d-482e-a3a0-bbf9f92443c0}</Project>
-      <Name>DodocoTales.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DodocoTales.Library\DodocoTales.Library.csproj">
-      <Project>{484d4820-0f3d-4106-b010-153eb9763582}</Project>
-      <Name>DodocoTales.Library</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

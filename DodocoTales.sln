@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio 15
+# Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales.Library", "DodocoTales.Library\DodocoTales.Library.csproj", "{484D4820-0F3D-4106-B010-153EB9763582}"
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales.Loader", "DodocoTales.Loader\DodocoTales.Loader.csproj", "{5E023ABC-2BB8-4A75-AC63-B05D1961DE5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales", "DodocoTales\DodocoTales.csproj", "{5F101AFF-9DF8-4612-B11E-AF780271B35D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales.AutoUpdate", "DodocoTales.AutoUpdate\DodocoTales.AutoUpdate.csproj", "{A4EE5C33-5A46-4960-9FDA-04A8D418F028}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5F101AFF-9DF8-4612-B11E-AF780271B35D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F101AFF-9DF8-4612-B11E-AF780271B35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F101AFF-9DF8-4612-B11E-AF780271B35D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4EE5C33-5A46-4960-9FDA-04A8D418F028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4EE5C33-5A46-4960-9FDA-04A8D418F028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4EE5C33-5A46-4960-9FDA-04A8D418F028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4EE5C33-5A46-4960-9FDA-04A8D418F028}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

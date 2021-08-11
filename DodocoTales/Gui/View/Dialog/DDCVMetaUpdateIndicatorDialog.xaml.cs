@@ -55,16 +55,38 @@ namespace DodocoTales.Gui.View.Dialog
                 return;
             }
             var libexists = await DDCL.MetaVersion.LoadLibraryAsync();
-            if(!libexists || string.Compare(DDCL.MetaVersion.ClientVersion, newestver.ClientVersion, true) < 0)
+            DDCL.MetaVersion.ConvertClientVerToInt64(newestver.ClientVersion);
+            if (!libexists || DDCL.MetaVersion.ConvertClientVerToInt64(DDCL.MetaVersion.ClientVersion) < DDCL.MetaVersion.ConvertClientVerToInt64(newestver.ClientVersion)) 
             {
-                Action newclientver = () => { Hint = String.Format("检测到新版本:{0}，请下载并更新。",newestver.ClientVersion); };
+                Action newclientver = () => { Hint = String.Format("检测到新版本:{0}，正在获取更新……",newestver.ClientVersion); };
                 await Dispatcher.BeginInvoke(newclientver);
-                Action delayquitprogramact = () => { delayedQuitProgram(); };
-                delayquitprogramact.BeginInvoke(null, null);
-                // TODO
+                Action updatefailedact = () => { Hint = "错误: 更新失败"; };
+                Action delayquitact = () => { delayedQuitProgram(); };
+                
+                if (!await DDCG.ClientUpdater.DownloadClient())
+                {
+                    await Dispatcher.BeginInvoke(updatefailedact);
+                    delayquitact.BeginInvoke(null, null);
+                    return;
+                }
+                if (!DDCG.ClientUpdater.ExtractClient())
+                {
+                    await Dispatcher.BeginInvoke(updatefailedact);
+                    delayquitact.BeginInvoke(null, null);
+                    return;
+                }
+                if (!DDCG.ClientUpdater.MoveUpdater())
+                {
+                    await Dispatcher.BeginInvoke(updatefailedact);
+                    delayquitact.BeginInvoke(null, null);
+                    return;
+                }
+                DDCG.ClientUpdater.ExecUpdater();
+                Application.Current.Shutdown();
                 return;
+
             }
-            if (string.Compare(DDCL.MetaVersion.UnitLibraryVersion, newestver.UnitLibraryVersion, true) < 0)
+            if (DDCL.MetaVersion.ConvertLibVerToInt64(DDCL.MetaVersion.UnitLibraryVersion) < DDCL.MetaVersion.ConvertLibVerToInt64(newestver.UnitLibraryVersion)) 
             {
                 if(!await DDCG.MetaLoader.UpdateUnitLib())
                 {
@@ -73,7 +95,7 @@ namespace DodocoTales.Gui.View.Dialog
                     return;
                 }
             }
-            if (string.Compare(DDCL.MetaVersion.BannerLibraryVersion, newestver.BannerLibraryVersion, true) < 0)
+            if (DDCL.MetaVersion.ConvertLibVerToInt64(DDCL.MetaVersion.BannerLibraryVersion) < DDCL.MetaVersion.ConvertLibVerToInt64(newestver.BannerLibraryVersion)) 
             {
                 if (!await DDCG.MetaLoader.UpdateBannerLib())
                 {
@@ -138,7 +160,6 @@ namespace DodocoTales.Gui.View.Dialog
                         }
                 }
             }
-            
 
             this.Close();
         }
