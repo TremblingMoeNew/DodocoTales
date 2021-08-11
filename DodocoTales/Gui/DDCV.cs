@@ -23,6 +23,7 @@ namespace DodocoTales.Gui
         {
             RegisterMainScreen("Home", "", new DDCVHomeScreen());
             RegisterMainScreen("Version", "", new DDCVVersionViewScreen());
+            RegisterMainScreen("Pool", "", new DDCVPoolTypeViewScreen());
         }
 
 

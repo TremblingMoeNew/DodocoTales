@@ -127,6 +127,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\View\Card\DDCVPTScnEventLogCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\View\Card\DDCVVersionViewScreenVersionLogCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -223,6 +227,9 @@
     </Compile>
     <Compile Include="Gui\View\Card\DDCVHomeScreenPermanentLogCard.xaml.cs">
       <DependentUpon>DDCVHomeScreenPermanentLogCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Card\DDCVPTScnEventLogCard.xaml.cs">
+      <DependentUpon>DDCVPTScnEventLogCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\Card\DDCVVersionViewScreenVersionLogCard.xaml.cs">
       <DependentUpon>DDCVVersionViewScreenVersionLogCard.xaml</DependentUpon>

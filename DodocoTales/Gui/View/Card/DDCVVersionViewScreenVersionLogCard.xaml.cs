@@ -317,7 +317,7 @@ namespace DodocoTales.Gui.View.Card
             DDCVVerScnVerLogSummary summary = new DDCVVerScnVerLogSummary
             {
                 Title = String.Format("{0} - {1}", versionInfo.Info.version, versionInfo.Info.name),
-                VersionTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(versionInfo.Info.beginTime).ToLocalTime(), DDCL.GetLibraryTimeOffset(versionInfo.Info.endTime).ToLocalTime()),
+                VersionTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(versionInfo.Info.beginTime, true).ToLocalTime(), DDCL.GetLibraryTimeOffset(versionInfo.Info.endTime,true).ToLocalTime()),
                 BannerCnt = versionInfo.Logs.B.Count.ToString(),
                 PermanentCnt = percnt.ToString(),
                 EventCharCnt = eccnt.ToString(),

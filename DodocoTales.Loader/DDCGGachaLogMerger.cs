@@ -23,7 +23,7 @@ namespace DodocoTales.Loader
             int ecps = initialLogs.EventCharacter.Count, ewps = initialLogs.EventWeapon.Count;
             foreach(var version in DDCL.Banners.eventPools)
             {
-                if (DDCL.CompareLibTimeWithNow(version.beginTime) < 0) break;
+                if (DDCL.CompareLibTimeWithNow(version.beginTime,true) < 0) break;
 
                 DDCCVersionLogs ver;
                 var verl= curlog.V.FindAll(x => x.id == version.id);
@@ -40,12 +40,12 @@ namespace DodocoTales.Loader
                 // Beginner
                 foreach (var banner in DDCL.Banners.beginnerPools)
                 {
-                    if (DDCL.CompareLibTimeWithNow(banner.beginTime) < 0) break;
+                    if (DDCL.CompareLibTimeWithNow(banner.beginTime,banner.beginTimeSync) < 0) break;
                     if (DDCL.CompareLibTime(banner.endTime, version.beginTime) < 0) continue;
                     if (DDCL.CompareLibTime(version.endTime, banner.beginTime) < 0) continue;
                     DDCCBannerLogs beginner = null;
-                    while (bpidx < bps && DDCL.CompareTime(initialLogs.Beginner[bpidx].time, version.endTime) <0 
-                        && DDCL.CompareTime(initialLogs.Beginner[bpidx].time, banner.endTime) < 0)
+                    while (bpidx < bps && DDCL.CompareTime(initialLogs.Beginner[bpidx].time, version.endTime,true) <0 
+                        && DDCL.CompareTime(initialLogs.Beginner[bpidx].time, banner.endTime,banner.endTimeSync) < 0)
                     {
                         var item = ConvertToDDCCLogItem(initialLogs.Beginner[bpidx++]);
                         if (beginner == null)
@@ -74,7 +74,7 @@ namespace DodocoTales.Loader
                 // Permanent
                 foreach(var banner in DDCL.Banners.permanentPools)
                 {
-                    if (DDCL.CompareLibTimeWithNow(banner.beginTime) < 0) break;
+                    if (DDCL.CompareLibTimeWithNow(banner.beginTime,banner.beginTimeSync) < 0) break;
                     if (DDCL.CompareLibTime(banner.endTime, version.beginTime) < 0) continue;
                     if (DDCL.CompareLibTime(version.endTime,banner.beginTime) < 0) continue;
                     DDCCBannerLogs permanent = null;
@@ -90,8 +90,8 @@ namespace DodocoTales.Loader
                         ver.B.Add(permanent);
                     }
                     else permanent = pl[0];
-                    while (ppidx < pps && DDCL.CompareTime(initialLogs.Permanent[ppidx].time, version.endTime) < 0
-                         && DDCL.CompareTime(initialLogs.Permanent[ppidx].time, banner.endTime) < 0)
+                    while (ppidx < pps && DDCL.CompareTime(initialLogs.Permanent[ppidx].time, version.endTime,true) < 0
+                         && DDCL.CompareTime(initialLogs.Permanent[ppidx].time, banner.endTime,banner.endTimeSync) < 0)
                     {
                         var item = ConvertToDDCCLogItem(initialLogs.Permanent[ppidx++]);
                         permanent.R[permanent.R.Count - 1].L.Add(item);
@@ -105,7 +105,7 @@ namespace DodocoTales.Loader
                 // Event (Character/Weapon)
                 foreach (var banner in version.banners)
                 {
-                    if (DDCL.CompareLibTimeWithNow(banner.beginTime) < 0) break;
+                    if (DDCL.CompareLibTimeWithNow(banner.beginTime,banner.beginTimeSync) < 0) break;
                     DDCCBannerLogs eventpool = null;
                     var el = ver.B.FindAll(x => x.id == banner.id);
                     if (el.Count == 0)
@@ -123,7 +123,7 @@ namespace DodocoTales.Loader
                     int epidx = (banner.type == DDCCPoolType.EventCharacter) ? ecpidx : ewpidx;
                     int eps = (banner.type == DDCCPoolType.EventCharacter) ? ecps : ewps;
 
-                    while (epidx < eps && DDCL.CompareTime(initLogEvent[epidx].time, banner.endTime) < 0)
+                    while (epidx < eps && DDCL.CompareTime(initLogEvent[epidx].time, banner.endTime,banner.endTimeSync) < 0)
                     {
                         var item = ConvertToDDCCLogItem(initLogEvent[epidx++]);
                         eventpool.R[eventpool.R.Count - 1].L.Add(item);
@@ -189,7 +189,7 @@ namespace DodocoTales.Loader
 
             foreach (var version in DDCL.Banners.eventPools)
             {
-                if (DDCL.CompareLibTimeWithNow(version.beginTime) < 0) break;
+                if (DDCL.CompareLibTimeWithNow(version.beginTime,true) < 0) break;
 
                 DDCCVersionLogs ver;
                 var verl = curlog.V.FindAll(x => x.id == version.id);
@@ -206,12 +206,12 @@ namespace DodocoTales.Loader
                 // Beginner
                 foreach (var banner in DDCL.Banners.beginnerPools)
                 {
-                    if (DDCL.CompareLibTimeWithNow(banner.beginTime) < 0) break;
+                    if (DDCL.CompareLibTimeWithNow(banner.beginTime,banner.beginTimeSync) < 0) break;
                     if (DDCL.CompareLibTime(banner.endTime, version.beginTime) < 0) continue;
                     if (DDCL.CompareLibTime(version.endTime, banner.beginTime) < 0) continue;
                     DDCCBannerLogs beginner = null;
-                    while (bpidx < bps && DDCL.CompareTime(uncategorizedLogs.Beginner[bpidx].time, version.endTime) < 0
-                        && DDCL.CompareTime(uncategorizedLogs.Beginner[bpidx].time, banner.endTime) < 0)
+                    while (bpidx < bps && DDCL.CompareTime(uncategorizedLogs.Beginner[bpidx].time, version.endTime,true) < 0
+                        && DDCL.CompareTime(uncategorizedLogs.Beginner[bpidx].time, banner.endTime,banner.endTimeSync) < 0)
                     {
                         var item = uncategorizedLogs.Beginner[bpidx++];
                         if (beginner == null)
@@ -240,7 +240,7 @@ namespace DodocoTales.Loader
                 // Permanent
                 foreach (var banner in DDCL.Banners.permanentPools)
                 {
-                    if (DDCL.CompareLibTimeWithNow(banner.beginTime) < 0) break;
+                    if (DDCL.CompareLibTimeWithNow(banner.beginTime,banner.beginTimeSync) < 0) break;
                     if (DDCL.CompareLibTime(banner.endTime, version.beginTime) < 0) continue;
                     if (DDCL.CompareLibTime(version.endTime, banner.beginTime) < 0) continue;
                     DDCCBannerLogs permanent = null;
@@ -256,8 +256,8 @@ namespace DodocoTales.Loader
                         ver.B.Add(permanent);
                     }
                     else permanent = pl[0];
-                    while (ppidx < pps && DDCL.CompareTime(uncategorizedLogs.Permanent[ppidx].time, version.endTime) < 0
-                         && DDCL.CompareTime(uncategorizedLogs.Permanent[ppidx].time, banner.endTime) < 0)
+                    while (ppidx < pps && DDCL.CompareTime(uncategorizedLogs.Permanent[ppidx].time, version.endTime,true) < 0
+                         && DDCL.CompareTime(uncategorizedLogs.Permanent[ppidx].time, banner.endTime,banner.endTimeSync) < 0)
                     {
                         var item = uncategorizedLogs.Permanent[ppidx++];
                         permanent.R[permanent.R.Count - 1].L.Add(item);
@@ -271,7 +271,7 @@ namespace DodocoTales.Loader
                 // Event (Character/Weapon)
                 foreach (var banner in version.banners)
                 {
-                    if (DDCL.CompareLibTimeWithNow(banner.beginTime) < 0) break;
+                    if (DDCL.CompareLibTimeWithNow(banner.beginTime,banner.beginTimeSync) < 0) break;
                     DDCCBannerLogs eventpool = null;
                     var el = ver.B.FindAll(x => x.id == banner.id);
                     if (el.Count == 0)
@@ -289,7 +289,7 @@ namespace DodocoTales.Loader
                     int epidx = (banner.type == DDCCPoolType.EventCharacter) ? ecpidx : ewpidx;
                     int eps = (banner.type == DDCCPoolType.EventCharacter) ? ecps : ewps;
 
-                    while (epidx < eps && DDCL.CompareTime(initLogEvent[epidx].time, banner.endTime) < 0)
+                    while (epidx < eps && DDCL.CompareTime(initLogEvent[epidx].time, banner.endTime,banner.endTimeSync) < 0)
                     {
                         var item = initLogEvent[epidx++];
                         eventpool.R[eventpool.R.Count - 1].L.Add(item);

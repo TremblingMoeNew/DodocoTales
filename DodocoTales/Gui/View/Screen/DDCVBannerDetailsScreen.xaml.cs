@@ -57,7 +57,7 @@ namespace DodocoTales.Gui.View.Screen
             {
                 case DDCCPoolType.Beginner:
                 case DDCCPoolType.Permanent:
-                    bannertime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(info.VersionInfo.beginTime).ToLocalTime(), DDCL.GetLibraryTimeOffset(info.VersionInfo.endTime).ToLocalTime());
+                    bannertime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(info.VersionInfo.beginTime,true).ToLocalTime(), DDCL.GetLibraryTimeOffset(info.VersionInfo.endTime,true).ToLocalTime());
                     R5Info = new List<DDCVUpItemCntInfo> {
                         new DDCVUpItemCntInfo { Name = "常驻角色" },
                         new DDCVUpItemCntInfo { Name = "常驻武器" },
@@ -74,7 +74,7 @@ namespace DodocoTales.Gui.View.Screen
                     break;
                 case DDCCPoolType.EventCharacter:
                 case DDCCPoolType.EventWeapon:
-                    bannertime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(info.Info.beginTime).ToLocalTime(), DDCL.GetLibraryTimeOffset(info.Info.endTime).ToLocalTime());
+                    bannertime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(info.Info.beginTime,info.Info.beginTimeSync).ToLocalTime(), DDCL.GetLibraryTimeOffset(info.Info.endTime,info.Info.endTimeSync).ToLocalTime());
                     R5Info = new List<DDCVUpItemCntInfo>();
                     R4Info = new List<DDCVUpItemCntInfo>();
                     foreach(var unitclass in info.Info.rank5Up)

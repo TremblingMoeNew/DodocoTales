@@ -43,13 +43,14 @@ namespace DodocoTales.Gui.View.Dialog
         {
             Action initact = () => {  Hint = "正在检查更新……"; };
             Action connfailedact = () => { Hint = "更新失败：请检查您的网络连接"; };
+            Action delayclosedialogact = () => { delayedCloseDialog(); };
             await Dispatcher.BeginInvoke(initact);
 
             var newestver = await DDCG.MetaLoader.FetchNewestVersionData();
             if (newestver == null)
             {
                 await Dispatcher.BeginInvoke(connfailedact);
-                delayedCloseDialog();
+                delayclosedialogact.BeginInvoke(null, null);
                 return;
             }
             var libexists = await DDCL.MetaVersion.LoadLibraryAsync();
@@ -66,7 +67,7 @@ namespace DodocoTales.Gui.View.Dialog
                 if(!await DDCG.MetaLoader.UpdateUnitLib())
                 {
                     await Dispatcher.BeginInvoke(connfailedact);
-                    delayedCloseDialog();
+                    delayclosedialogact.BeginInvoke(null, null);
                     return;
                 }
             }
@@ -75,7 +76,7 @@ namespace DodocoTales.Gui.View.Dialog
                 if (!await DDCG.MetaLoader.UpdateBannerLib())
                 {
                     await Dispatcher.BeginInvoke(connfailedact);
-                    delayedCloseDialog();
+                    delayclosedialogact.BeginInvoke(null, null);
                     return;
                 }
             }
@@ -85,14 +86,14 @@ namespace DodocoTales.Gui.View.Dialog
                 if (!await DDCG.MetaLoader.UpdateUnitLib())
                 {
                     await Dispatcher.BeginInvoke(connfailedact);
-                    delayedCloseDialog();
+                    delayclosedialogact.BeginInvoke(null, null);
                     return;
                 }
                 if (!DDCL.Units.loadLibrary())
                 {
                     Action unitlibdamagedact = () => { Hint = "更新失败：单位数据库损坏"; };
                     await Dispatcher.BeginInvoke(unitlibdamagedact);
-                    delayedCloseDialog();
+                    delayclosedialogact.BeginInvoke(null, null);
                     return;
                 }
             }
@@ -101,14 +102,14 @@ namespace DodocoTales.Gui.View.Dialog
                 if (!await DDCG.MetaLoader.UpdateBannerLib())
                 {
                     await Dispatcher.BeginInvoke(connfailedact);
-                    delayedCloseDialog();
+                    delayclosedialogact.BeginInvoke(null, null);
                     return;
                 }
                 if (!DDCL.Banners.loadLibrary())
                 {
                     Action bannerlibdamagedact = () => { Hint = "更新失败：卡池数据库损坏"; };
                     await Dispatcher.BeginInvoke(bannerlibdamagedact);
-                    delayedCloseDialog();
+                    delayclosedialogact.BeginInvoke(null, null);
                     return;
                 }
             }

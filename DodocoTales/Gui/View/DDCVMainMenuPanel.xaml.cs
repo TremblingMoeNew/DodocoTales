@@ -1,6 +1,7 @@
 ﻿using DodocoTales.Common;
 using DodocoTales.Gui.View.Dialog;
 using DodocoTales.Library;
+using DodocoTales.Loader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,15 @@ namespace DodocoTales.Gui.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if(DDCG.MetaLoader.IsUpdateExpired())
+            {
+                new DDCVMetaUpdateIndicatorDialog
+                {
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    Owner = DDCV.MainWindow
+                }.ShowDialog();
+            }
+            while (DDCV.PopScreen()) ;
             new DDCVWebGachaLogLoadIndicatorDialog
             {
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,

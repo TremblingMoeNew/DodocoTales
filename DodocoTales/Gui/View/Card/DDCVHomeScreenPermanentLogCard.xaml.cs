@@ -120,13 +120,13 @@ namespace DodocoTales.Gui.View.Card
             DDCVHomeScnPerLogCurrentBanner current = null;
             foreach(var ver in DDCL.Banners.eventPools)
             {
-                if (DDCL.CompareLibTimeWithNow(ver.endTime) > 0) continue;
-                if (DDCL.CompareLibTimeWithNow(ver.beginTime) < 0) break;
+                if (DDCL.CompareLibTimeWithNow(ver.endTime, true) > 0) continue;
+                if (DDCL.CompareLibTimeWithNow(ver.beginTime, true) < 0) break;
 
                 foreach (var banner in DDCL.Banners.permanentPools)
                 {
-                    if (DDCL.CompareLibTimeWithNow(banner.endTime) > 0) continue;
-                    if (DDCL.CompareLibTimeWithNow(banner.beginTime) < 0) break;
+                    if (DDCL.CompareLibTimeWithNow(banner.endTime, banner.endTimeSync) > 0) continue;
+                    if (DDCL.CompareLibTimeWithNow(banner.beginTime, banner.beginTimeSync) < 0) break;
 
                     bool previousr5found = false;
                     int inherit = 0, cnt = 0, roundcnt = 0;
@@ -221,15 +221,15 @@ namespace DodocoTales.Gui.View.Card
                     {
                         Title = String.Format("当前卡池 - {0}", banner.name),
                         Subtitle = String.Format("{0} - {1} - 轮次 {2}", ver.version, banner.hint, roundcnt),
-                        BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(ver.beginTime).ToLocalTime(), DDCL.GetLibraryTimeOffset(ver.endTime).ToLocalTime()),
+                        BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(ver.beginTime,true).ToLocalTime(), DDCL.GetLibraryTimeOffset(ver.endTime,true).ToLocalTime()),
                         InheritedCnt = inherit.ToString(),
                         TotalCnt = cnt.ToString(),
                         R5Cnt = rank5.ToString(),
                         R4Cnt = rank4.ToString(),
                         R5PS = cnt > 0 ? String.Format("[{0:P1}]", rank5 * 1.0 / cnt) : "[—%]",
                         R4PS = cnt > 0 ? String.Format("[{0:P1}]", rank4 * 1.0 / cnt) : "[—%]",
-                        R5NextType = String.Format("{0} {1}", lastr5chardis, lastr5weapdis),
-                        R4NextType = String.Format("{0} {1}", lastr4chardis, lastr4weapdis)
+                        R5NextType = "——",//String.Format("{0} {1}", lastr5chardis, lastr5weapdis),
+                        R4NextType = "——"//String.Format("{0} {1}", lastr4chardis, lastr4weapdis)
 
                     };
 

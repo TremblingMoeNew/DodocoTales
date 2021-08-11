@@ -85,7 +85,7 @@ namespace DodocoTales.Gui.View.Card
             {
                 Title = String.Format("{0}", info.Info.name),
                 Subtitle = String.Format("{0} - {1} - {2}", info.VersionInfo.version, DDCL.ConvertPoolTypeToName(info.Info.type), info.Info.name),
-                BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(info.VersionInfo.beginTime).ToLocalTime(), DDCL.GetLibraryTimeOffset(info.VersionInfo.endTime).ToLocalTime()),
+                BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(info.VersionInfo.beginTime,true).ToLocalTime(), DDCL.GetLibraryTimeOffset(info.VersionInfo.endTime,true).ToLocalTime()),
                 RoundCnt = String.Format("{0}", roundcnt),
                 InheritedCnt = String.Format("{0}", inheritcnt),
                 Cnt = String.Format("{0}", cnt),

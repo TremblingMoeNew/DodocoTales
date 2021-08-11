@@ -106,7 +106,7 @@ namespace DodocoTales.Gui.View.Card
             {
                 Title = String.Format("{0}", info.Info.name),
                 Subtitle = String.Format("{0} - {1} - {2} - {3}", info.VersionInfo.version, DDCL.ConvertPoolTypeToName(info.Info.type), info.Info.name, info.Info.hint),
-                BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(info.Info.beginTime).ToLocalTime(), DDCL.GetLibraryTimeOffset(info.Info.endTime).ToLocalTime()),
+                BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(info.Info.beginTime,info.Info.beginTimeSync).ToLocalTime(), DDCL.GetLibraryTimeOffset(info.Info.endTime,info.Info.endTimeSync).ToLocalTime()),
                 BannerUpUnits = upunit,
                 InheritedCnt = inheritcnt.ToString(),
                 Cnt = cnt.ToString(),

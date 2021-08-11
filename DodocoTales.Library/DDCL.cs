@@ -13,37 +13,40 @@ namespace DodocoTales.Library
         public static DDCLUserLibrary Users = new DDCLUserLibrary();
         public static DDCLMetaVersionLibrary MetaVersion = new DDCLMetaVersionLibrary();
         public static DDCLSettingsLibrary Settings = new DDCLSettingsLibrary();
-        public static int CompareLibTimeWithNow(DateTime LibraryTime)
+        public static int CompareLibTimeWithNow(DateTime LibraryTime, bool sync = false)
         {
             var now = GetNowDateTimeOffset();
-            var libraryTimeOffset = GetTimeOffset(LibraryTime, DDCCTimeZone.DefaultUTCP8);
+            var libraryTimeOffset = GetLibraryTimeOffset(LibraryTime, sync);
             return DateTimeOffset.Compare(now, LibraryTime);
         }
 
-        public static int CompareTime(DateTime CustomTime,DateTime LibraryTime)
+        public static int CompareTime(DateTime CustomTime,DateTime LibraryTime, bool sync = false)
         {
-            var customTimeOffset = GetTimeOffset(CustomTime, Users.getCurrentUser().zone);
-            var libraryTimeOffset = GetTimeOffset(LibraryTime, DDCCTimeZone.DefaultUTCP8);
+            var customTimeOffset = GetUserTimezoneTimeOffset(CustomTime);
+            var libraryTimeOffset = GetLibraryTimeOffset(LibraryTime, sync);
             return DateTimeOffset.Compare(CustomTime, LibraryTime);
         }
+
         public static int CompareLibTime(DateTime Lib1,DateTime Lib2)
         {
             var library1Offset = GetTimeOffset(Lib1, DDCCTimeZone.DefaultUTCP8);
             var library2Offset = GetTimeOffset(Lib2, DDCCTimeZone.DefaultUTCP8);
             return DateTimeOffset.Compare(library1Offset, library2Offset);
         }
-        public static int CompareTime(DateTime CustomTime,DDCCTimeZone zone,DateTime LibraryTime)
-        {
-            var customTimeOffset = GetTimeOffset(CustomTime, zone);
-            var libraryTimeOffset = GetTimeOffset(LibraryTime, DDCCTimeZone.DefaultUTCP8);
-            return DateTimeOffset.Compare(CustomTime, LibraryTime);
-        }
 
         public static DateTimeOffset GetTimeOffset(DateTime time,DDCCTimeZone zone)
         {
             return new DateTimeOffset(time, GetZoneOffsetTimeSpan(zone));
         }
-        public static DateTimeOffset GetLibraryTimeOffset(DateTime time)
+        public static DateTimeOffset GetUserTimezoneTimeOffset(DateTime time)
+        {
+            return GetTimeOffset(time, Users.getCurrentUser().zone);
+        }
+        public static DateTimeOffset GetLibraryTimeOffset(DateTime time, bool sync = false)
+        {
+            if (sync) return GetSyncTimeOffset(time); else return GetUserTimezoneTimeOffset(time);
+        }
+        public static DateTimeOffset GetSyncTimeOffset(DateTime time)
         {
             return new DateTimeOffset(time, GetZoneOffsetTimeSpan(DDCCTimeZone.DefaultUTCP8));
         }

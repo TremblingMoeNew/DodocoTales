@@ -148,7 +148,7 @@ namespace DodocoTales.Gui.View.Indicator
                             "{0}\n{1}\n时间: {2:G}\n {3} - {4}",
                             unit.name,
                             hint,
-                            DDCL.GetTimeOffset(unit.time, timezone).ToLocalTime(),
+                            DDCL.GetUserTimezoneTimeOffset(unit.time).ToLocalTime(),
                             inh.version.version,
                             inh.banner.name
                         );
@@ -208,7 +208,7 @@ namespace DodocoTales.Gui.View.Indicator
                         "{0}\n{1}\n时间: {2:G}",
                         unit.name,
                         hint,
-                        DDCL.GetTimeOffset(unit.time, timezone).ToLocalTime()
+                        DDCL.GetUserTimezoneTimeOffset(unit.time).ToLocalTime()
                     );
                     idx++;
                 }

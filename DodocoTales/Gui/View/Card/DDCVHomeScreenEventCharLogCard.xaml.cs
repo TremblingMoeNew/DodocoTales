@@ -153,12 +153,12 @@ namespace DodocoTales.Gui.View.Card
 
             foreach (var ver in DDCL.Banners.eventPools)
             {
-                if (DDCL.CompareLibTimeWithNow(ver.endTime) > 0) continue;
+                if (DDCL.CompareLibTimeWithNow(ver.endTime, true) > 0) continue;
                 
                 foreach(var banner in ver.banners.FindAll(x=>x.type==DDCCPoolType.EventCharacter))
                 {
-                    if (DDCL.CompareLibTimeWithNow(banner.endTime) > 0) continue;
-                    if (DDCL.CompareLibTimeWithNow(banner.beginTime) < 0)
+                    if (DDCL.CompareLibTimeWithNow(banner.endTime, banner.endTimeSync) > 0) continue;
+                    if (DDCL.CompareLibTimeWithNow(banner.beginTime, banner.beginTimeSync) < 0) 
                     {
                         next = banner;
                         nextatver = ver;
@@ -308,7 +308,7 @@ namespace DodocoTales.Gui.View.Card
                     {
                         Title = String.Format("当前卡池 - {0}", banner.name),
                         Subtitle = String.Format("{0} - {1} - 轮次 {2}", ver.version, banner.hint, roundcnt),
-                        BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(banner.beginTime).ToLocalTime(), DDCL.GetLibraryTimeOffset(banner.endTime).ToLocalTime()),
+                        BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(banner.beginTime,banner.beginTimeSync).ToLocalTime(), DDCL.GetLibraryTimeOffset(banner.endTime,banner.endTimeSync).ToLocalTime()),
                         BannerUpUnits = upunit,
                         InheritedCnt = inherit.ToString(),
                         TotalCnt = cnt.ToString(),
@@ -316,13 +316,13 @@ namespace DodocoTales.Gui.View.Card
                         R4Cnt = rank4.ToString(),
                         R5PS = cnt > 0 ? String.Format("[{0:P1}]", rank5 * 1.0 / cnt) : "[—%]",
                         R4PS = cnt > 0 ? String.Format("[{0:P1}]", rank4 * 1.0 / cnt) : "[—%]",
-                        R5NextPS = string.Format("{0} {1}", lastr5updis, lastr5perdis),
-                        R4NextPS = string.Format("{0} {1}", lastr4updis, lastr4perdis),
+                        R5NextPS = "——/——/——",//string.Format("{0} {1}", lastr5updis, lastr5perdis),
+                        R4NextPS = "——/——/——",//string.Format("{ 0} {1}", lastr4updis, lastr4perdis),
                         R5Up = rank5up.ToString(),
                         R4Up = rank4up.ToString()
                     };
                 }
-                if (DDCL.CompareLibTimeWithNow(ver.beginTime) < 0) break;
+                if (DDCL.CompareLibTimeWithNow(ver.beginTime, true) < 0) break;
             }
             LoadNextData(nextatver, next);
             Action act = () => { Current = current; };
@@ -347,7 +347,7 @@ namespace DodocoTales.Gui.View.Card
                 {
                     Title = String.Format("下期卡池 - {0}", banner.name),
                     Subtitle = String.Format("{0} - {1}", version.version, banner.hint),
-                    BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(banner.beginTime).ToLocalTime(), DDCL.GetLibraryTimeOffset(banner.endTime).ToLocalTime()),
+                    BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(banner.beginTime,banner.beginTimeSync).ToLocalTime(), DDCL.GetLibraryTimeOffset(banner.endTime,banner.endTimeSync).ToLocalTime()),
                     BannerUpUnits = upunit
                 };
             }

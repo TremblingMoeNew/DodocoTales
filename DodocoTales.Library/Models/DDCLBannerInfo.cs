@@ -1,6 +1,8 @@
 ﻿using DodocoTales.Common.Enums;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,5 +20,13 @@ namespace DodocoTales.Library.Models
         public List<int> rank4Up { get; set; }
         public DateTime beginTime { get; set; }
         public DateTime endTime { get; set; }
+
+        [DefaultValue(false)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        public bool beginTimeSync { get; set; }
+
+        [DefaultValue(false)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        public bool endTimeSync { get; set; }
     }
 }
