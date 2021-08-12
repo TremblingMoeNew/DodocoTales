@@ -94,6 +94,7 @@ namespace DodocoTales.Gui.View.Dialog
                     delayclosedialogact.BeginInvoke(null, null);
                     return;
                 }
+                DDCL.MetaVersion.UnitLibraryVersion = newestver.UnitLibraryVersion;
             }
             if (DDCL.MetaVersion.ConvertLibVerToInt64(DDCL.MetaVersion.BannerLibraryVersion) < DDCL.MetaVersion.ConvertLibVerToInt64(newestver.BannerLibraryVersion)) 
             {
@@ -103,6 +104,7 @@ namespace DodocoTales.Gui.View.Dialog
                     delayclosedialogact.BeginInvoke(null, null);
                     return;
                 }
+                DDCL.MetaVersion.BannerLibraryVersion = newestver.BannerLibraryVersion;
             }
 
             if (!DDCL.Units.loadLibrary())
