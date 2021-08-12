@@ -16,7 +16,7 @@
             <ColumnDefinition Width="45"/>
         </Grid.ColumnDefinitions>
         <Button Style="{StaticResource Style-MainTitleBar-Button-Return}" Name="Return" Click="Return_Click"/>
-        <Label Grid.Column="1" VerticalAlignment="Center" Margin="10 0">嘟嘟可故事集 0.0.3 / 开发</Label>
+        <Label Grid.Column="1" VerticalAlignment="Center" Margin="10 0">嘟嘟可故事集 0.0.3</Label>
         <Button Grid.Column="2" Style="{StaticResource Style-MainTitleBar-Button-Minimize}" Name="Minimize" Click="Minimize_Click"/>
         <Button Grid.Column="3" Style="{StaticResource Style-MainTitleBar-Button-Maximize}"  Name="Maximize" Click="Maximize_Click"/>
         <Button Grid.Column="4" Style="{StaticResource Style-MainTitleBar-Button-Close}" Name="Close" Click="Close_Click"/>
