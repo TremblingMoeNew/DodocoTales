@@ -6,12 +6,14 @@
              xmlns:local="clr-namespace:DodocoTales.Gui.View.Card"
              xmlns:model="clr-namespace:DodocoTales.Gui.Model"
              xmlns:converter="clr-namespace:DodocoTales.Gui.Converter"
+             xmlns:indicator="clr-namespace:DodocoTales.Gui.View.Indicator"
              mc:Ignorable="d" 
              MinWidth="750"
              Name="Root"
              >
     <UserControl.Resources>
         <converter:DDCVVisibleByExistenceConverter x:Key="VisCon"/>
+        
     </UserControl.Resources>
     <Grid>
         <Border Style="{StaticResource Style-Card-Border-Base}">
@@ -114,6 +116,7 @@
                         <TextBlock Grid.Row="1" Grid.Column="8" Text="{Binding ElementName=Root,Path=Current.R4NextType}"/>
 
                     </Grid>
+                    <indicator:DDCVRoundLogProgressIndicator x:Name="ProgressIndicator" Margin="60 5"/>
                 </StackPanel>
             </StackPanel>
         </Border>  

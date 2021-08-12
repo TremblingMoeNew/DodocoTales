@@ -175,6 +175,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\View\Indicator\DDCVRoundLogProgressIndicator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\View\Screen\DDCVBannerDetailsScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,9 +203,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Gui\Converter\DDCVPercentageConverter.cs" />
     <Compile Include="Gui\Converter\DDCVVisibleByExistenceConverter.cs" />
     <Compile Include="Gui\DDCV.cs" />
-    <Compile Include="Gui\Enums\DDCVGridIndicatorVolume.cs" />
+    <Compile Include="Gui\Enums\DDCVIndicatorVolume.cs" />
     <Compile Include="Gui\Enums\DDCVIndicatorUnitType.cs" />
     <Compile Include="Gui\Model\DDCVBannerInfo.cs" />
     <Compile Include="Gui\Model\DDCVBanScnBanSummary.cs" />
@@ -268,6 +273,9 @@
     </Compile>
     <Compile Include="Gui\View\Indicator\DDCVRoundLogGridIndicator.xaml.cs">
       <DependentUpon>DDCVRoundLogGridIndicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Indicator\DDCVRoundLogProgressIndicator.xaml.cs">
+      <DependentUpon>DDCVRoundLogProgressIndicator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\Model\DDCVScreenPtr.cs" />
     <Compile Include="Gui\View\Screen\DDCVBannerDetailsScreen.xaml.cs">

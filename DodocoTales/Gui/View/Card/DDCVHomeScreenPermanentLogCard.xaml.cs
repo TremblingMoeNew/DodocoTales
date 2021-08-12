@@ -1,5 +1,6 @@
 ﻿using DodocoTales.Common;
 using DodocoTales.Common.Enums;
+using DodocoTales.Gui.Enums;
 using DodocoTales.Gui.Model;
 using DodocoTales.Library;
 using System;
@@ -99,7 +100,7 @@ namespace DodocoTales.Gui.View.Card
                 R4CWR = string.Format("{0}:{1}", r4charcnt, r4weapcnt),
                 IndicatorInfo = info
             };
-            Action act = () => { Summary = summary; RebuildIndicator(); };
+            Action act = () => { Summary = summary; RebuildIndicator();};
             Dispatcher.BeginInvoke(act);
         }
         public void RebuildIndicator()
@@ -216,6 +217,8 @@ namespace DodocoTales.Gui.View.Card
                         }
                     }
 
+                    
+
                     cnt += inherit;
                     current = new DDCVHomeScnPerLogCurrentBanner
                     {
@@ -233,6 +236,7 @@ namespace DodocoTales.Gui.View.Card
 
                     };
 
+                    ProgressIndicator.LoadInfo(DDCVIndicatorVolume.Permanent, inherit, 0, cnt);
                 }
 
             }

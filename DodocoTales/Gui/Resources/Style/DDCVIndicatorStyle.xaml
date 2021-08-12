@@ -14,6 +14,14 @@
     <SolidColorBrush x:Key="Brush-GridIndicator-Unit-Rank5-Up" Color="#D0FF4A32"/>
     <SolidColorBrush x:Key="Brush-GridIndicator-Unit-Rank5-Permanent-Char" Color="#D0FF8C40"/>
     <SolidColorBrush x:Key="Brush-GridIndicator-Unit-Rank5-Permanent-Wep" Color="#D0FF1F4E"/>
+
+    <SolidColorBrush x:Key="Brush-ProgressIndicator-Background" Color="#CCCCCCCC"/>
+    <SolidColorBrush x:Key="Brush-ProgressIndicator-InheritedPermanent" Color="#B0AA8BC2"/>
+    <SolidColorBrush x:Key="Brush-ProgressIndicator-Inherited" Color="#B0555555"/>
+    <SolidColorBrush x:Key="Brush-ProgressIndicator-Permanent" Color="#B0D67593"/>
+    <SolidColorBrush x:Key="Brush-ProgressIndicator-Current" Color="#B05E5EC7"/>
+    
+    
     
     <LinearGradientBrush x:Key="Brush-GridIndicator-Unit-InheritShader" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#00FFFFFF" Offset="0"/>
@@ -22,6 +30,7 @@
         <GradientStop Color="#DD888888" Offset="1"/>
     </LinearGradientBrush>
     
+
     <Style TargetType="Button" x:Key="Style-GridIndicator-Unit">
         <Setter Property="Background" Value="{StaticResource Brush-GridIndicator-Unit-Default}"/>
         <Setter Property="Width" Value="12"/>
@@ -68,5 +77,12 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="Border" x:Key="Style-ProgressIndicator">
+        <Setter Property="Background" Value="{StaticResource Brush-ProgressIndicator-Background}"/>
+        <Setter Property="Height" Value="10"/>
+        <Setter Property="CornerRadius" Value="0"/>
+        <Setter Property="Padding" Value="0 0"/>
     </Style>
 </ResourceDictionary>

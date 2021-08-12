@@ -1,5 +1,6 @@
 ﻿using DodocoTales.Common;
 using DodocoTales.Common.Enums;
+using DodocoTales.Gui.Enums;
 using DodocoTales.Gui.Model;
 using DodocoTales.Library;
 using DodocoTales.Library.Models;
@@ -321,6 +322,9 @@ namespace DodocoTales.Gui.View.Card
                         R5Up = rank5up.ToString(),
                         R4Up = rank4up.ToString()
                     };
+                    var per = cnt - lastr5perdis;
+                    if (per < 0) per = 0;
+                    ProgressIndicator.LoadInfo(DDCVIndicatorVolume.EventCharacterNormal, inherit, per, cnt);
                 }
                 if (DDCL.CompareLibTimeWithNow(ver.beginTime, true) < 0) break;
             }

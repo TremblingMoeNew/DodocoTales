@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="DodocoTales.Gui.View.Indicator.DDCVRoundLogProgressIndicator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DodocoTales.Gui.View.Indicator"
+             xmlns:converter="clr-namespace:DodocoTales.Gui.Converter"
+             mc:Ignorable="d" 
+             d:DesignWidth="500"
+             Name="Root">
+    <UserControl.Resources>
+        <converter:DDCVPercentageConverter x:Key="PerCon"/>
+    </UserControl.Resources>
+    <Grid>
+        <Border Margin="0" Style="{StaticResource Style-ProgressIndicator}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+            <StackPanel Orientation="Horizontal" Name="Bar">
+                <Rectangle Fill="{StaticResource Brush-ProgressIndicator-InheritedPermanent}"  VerticalAlignment="Stretch" Margin="0">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PerCon}">
+                            <Binding ElementName="Bar" Path="ActualWidth"/>
+                            <Binding ElementName="Root" Path="InheritedPermanent"/>
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+                <Rectangle Fill="{StaticResource Brush-ProgressIndicator-Inherited}"  VerticalAlignment="Stretch" Margin="0">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PerCon}">
+                            <Binding ElementName="Bar" Path="ActualWidth"/>
+                            <Binding ElementName="Root" Path="Inherited"/>
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+
+                <Rectangle Fill="{StaticResource Brush-ProgressIndicator-Permanent}"  VerticalAlignment="Stretch" Margin="0">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PerCon}">
+                            <Binding ElementName="Bar" Path="ActualWidth"/>
+                            <Binding ElementName="Root" Path="Permanent"/>
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+                <Rectangle Fill="{StaticResource Brush-ProgressIndicator-Current}" VerticalAlignment="Stretch" Margin="0">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PerCon}">
+                            <Binding ElementName="Bar" Path="ActualWidth"/>
+                            <Binding ElementName="Root" Path="Current"/>
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+            </StackPanel>
+        </Border>
+        <Popup x:Name="Pop" PopupAnimation="Slide" PlacementTarget="{Binding ElementName=Bar}" Placement="MousePoint" AllowsTransparency="True" StaysOpen="False">
+            <Border Margin="10 0" Padding="10 5" CornerRadius="2"  BorderBrush="#B0CCBBBB" Background="#B0FFEEEE" BorderThickness="1" >
+                <TextBlock Text="{Binding ElementName=Root,Path=Hint}"/>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

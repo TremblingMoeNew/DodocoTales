@@ -31,10 +31,10 @@ namespace DodocoTales.Gui.View.Indicator
             InitializeComponent();
             Indicators = new List<DDCVGridIndicatorUnit>();
 
-            //InitializeIndicators(DDCVGridIndicatorVolume.EventCharacterNormal);
+            //InitializeIndicators(DDCVIndicatorVolume.EventCharacterNormal);
         }
 
-        public void InitializeIndicators(DDCVGridIndicatorVolume volume)
+        public void InitializeIndicators(DDCVIndicatorVolume volume)
         {
             Main.Children.Clear();
             Indicators.Clear();
@@ -42,23 +42,23 @@ namespace DodocoTales.Gui.View.Indicator
             int totalcnt = 0, colvolume = 0;
             switch (volume)
             {
-                case DDCVGridIndicatorVolume.Permanent:
+                case DDCVIndicatorVolume.Permanent:
                     totalcnt = 90;
                     colvolume = 2;
                     break;
-                case DDCVGridIndicatorVolume.EventCharacterNormal:
+                case DDCVIndicatorVolume.EventCharacterNormal:
                     totalcnt = 180;
                     colvolume = 5;
                     break;
-                case DDCVGridIndicatorVolume.EventWeaponNormal:
+                case DDCVIndicatorVolume.EventWeaponNormal:
                     totalcnt = 160;
                     colvolume = 4;
                     break;
-                case DDCVGridIndicatorVolume.EventWeaponEP:
+                case DDCVIndicatorVolume.EventWeaponEP:
                     totalcnt = 240;
                     colvolume = 5;
                     break;
-                case DDCVGridIndicatorVolume.EventWeaponEPExtended:
+                case DDCVIndicatorVolume.EventWeaponEPExtended:
                     totalcnt = 320;
                     colvolume = 7;
                     break;

@@ -47,18 +47,18 @@ namespace DodocoTales.Gui.View.Card
 
         public async void LoadRound(DDCVRoundInfo round)
         {
-            DDCVGridIndicatorVolume volume = DDCVGridIndicatorVolume.Permanent;
+            DDCVIndicatorVolume volume = DDCVIndicatorVolume.Permanent;
             switch(round.BannerInfo.type)
             {
                 case DDCCPoolType.Beginner:
                 case DDCCPoolType.Permanent:
-                    volume = DDCVGridIndicatorVolume.Permanent;
+                    volume = DDCVIndicatorVolume.Permanent;
                     break;
                 case DDCCPoolType.EventCharacter:
-                    volume = DDCVGridIndicatorVolume.EventCharacterNormal;
+                    volume = DDCVIndicatorVolume.EventCharacterNormal;
                     break;
                 case DDCCPoolType.EventWeapon:
-                    volume = DDCVGridIndicatorVolume.EventWeaponNormal;
+                    volume = DDCVIndicatorVolume.EventWeaponNormal;
                     break;
             }
             LoadSummary(round);
