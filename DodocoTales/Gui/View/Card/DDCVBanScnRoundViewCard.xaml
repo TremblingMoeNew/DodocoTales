@@ -5,10 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DodocoTales.Gui.View.Card"
              xmlns:indicator="clr-namespace:DodocoTales.Gui.View.Indicator"
+             xmlns:converter="clr-namespace:DodocoTales.Gui.Converter"
              mc:Ignorable="d" 
              d:DesignWidth="750"
              Name="Root">
-    <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+    <UserControl.Resources>
+        <converter:DDCVVisibleByBooleanConverter x:Key="VisCon"/>
+    </UserControl.Resources>
+    <Grid  Name="MainGrid" MouseEnter="Grid_MouseEnter">
         <Border Style="{StaticResource Style-Card-Border-Base }">
             <StackPanel>
                 <Label Grid.RowSpan="2"  Style="{StaticResource Style-Card-Title-H2}"  Content="{Binding ElementName=Root,Path=Summary.Title}"/>
@@ -64,7 +68,7 @@
                     </WrapPanel>
                 </Grid>
                 <Separator Margin="20 2" Height="2"/>
-                <Grid Name="GridIndicatorContainer" Visibility="Collapsed">
+                <Grid Name="GridIndicatorContainer" Visibility="{Binding ElementName=MainGrid,Path=IsMouseOver,Converter={StaticResource VisCon}}">
                     <Label HorizontalAlignment="Center" Name="GILoadingHint">载入中……</Label>
                 </Grid>
                 

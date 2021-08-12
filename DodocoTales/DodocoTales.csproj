@@ -204,6 +204,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Gui\Converter\DDCVPercentageConverter.cs" />
+    <Compile Include="Gui\Converter\DDCVVisibleByBooleanConverter.cs" />
     <Compile Include="Gui\Converter\DDCVVisibleByExistenceConverter.cs" />
     <Compile Include="Gui\DDCV.cs" />
     <Compile Include="Gui\Enums\DDCVIndicatorVolume.cs" />

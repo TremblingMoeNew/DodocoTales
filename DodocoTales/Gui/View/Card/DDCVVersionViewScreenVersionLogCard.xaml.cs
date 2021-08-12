@@ -287,7 +287,7 @@ namespace DodocoTales.Gui.View.Card
                                 inherit.EventWeapon = new List<DDCVInheritedRound>();
                             else
                             {
-                                inherit.EventCharacter.Add(new DDCVInheritedRound
+                                inherit.EventWeapon.Add(new DDCVInheritedRound
                                 {
                                     version = versionInfo.Info,
                                     banner = baninfo,

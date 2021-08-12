@@ -144,7 +144,6 @@ namespace DodocoTales.Gui.View.Card
 
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
         {
-            GridIndicatorContainer.Visibility = Visibility.Visible;
             if(!GridIndicatorLoaded)
             {
                 LoadGridIndicatorToUI();
