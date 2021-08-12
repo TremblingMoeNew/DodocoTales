@@ -63,7 +63,7 @@ namespace DodocoTales.Gui.View.Dialog
                 Action updatefailedact = () => { Hint = "错误: 更新失败"; };
                 Action delayquitact = () => { delayedQuitProgram(); };
                 
-                if (!await DDCG.ClientUpdater.DownloadClient())
+                if (!await DDCG.ClientUpdater.DownloadClient(newestver.ClientVersion))
                 {
                     await Dispatcher.BeginInvoke(updatefailedact);
                     delayquitact.BeginInvoke(null, null);

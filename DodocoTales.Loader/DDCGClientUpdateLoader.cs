@@ -14,7 +14,7 @@ namespace DodocoTales.Loader
     public class DDCGClientUpdateLoader
     {
         public static readonly string CDN = "https://cdn.jsdelivr.net/gh/TremblingMoeNew/DodocoTales-meta@main/";
-        public static readonly string UpdateFileWebPath = "Bin/DodocoTales.zip";
+        public static readonly string UpdateFileWebPath = "Bin/DodocoTales-v{0}.zip";
         public static readonly string UpdateStoragePath = "update/";
         public static readonly string UpdateFilePath = "update/DodocoTales.zip";
         public static readonly string UpdateExtract = "update/DodocoTales/";
@@ -35,9 +35,9 @@ namespace DodocoTales.Loader
             return true;
         }
 
-        public async Task<bool> DownloadClient()
+        public async Task<bool> DownloadClient(string version)
         {
-            var url = CDN + UpdateFileWebPath;
+            var url = CDN + String.Format(UpdateFileWebPath,version);
             var client = new HttpClient();
             CacheControlHeaderValue cacheControl = new CacheControlHeaderValue
             {

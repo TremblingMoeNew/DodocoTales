@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -24,7 +25,11 @@ namespace DodocoTales.Loader
         
         public DDCGMetaLoader()
         {
-            client = new HttpClient();
+            var handler = new HttpClientHandler()
+            {
+                AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+            };
+            client = new HttpClient(handler);
             CacheControlHeaderValue cacheControl = new CacheControlHeaderValue
             {
                 NoCache = true,
@@ -32,6 +37,8 @@ namespace DodocoTales.Loader
             };
             client.DefaultRequestHeaders.CacheControl = cacheControl;
             LastUpdateOn = DateTimeOffset.MinValue;
+            //client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
+            
         }
 
         public bool IsUpdateExpired()
@@ -50,6 +57,7 @@ namespace DodocoTales.Loader
             string url = CDN + filename;
             try
             {
+                
                 return await client.GetStringAsync(url);
             }
             catch (Exception)
