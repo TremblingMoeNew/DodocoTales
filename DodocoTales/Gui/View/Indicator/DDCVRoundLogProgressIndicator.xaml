@@ -49,8 +49,8 @@
                 </Rectangle>
             </StackPanel>
         </Border>
-        <Popup x:Name="Pop" PopupAnimation="Slide" PlacementTarget="{Binding ElementName=Bar}" Placement="MousePoint" AllowsTransparency="True" StaysOpen="False"
-               IsOpen="{Binding ElementName=Indicator,Path=IsMouseOver,Mode=OneWay}">
+        <Popup x:Name="Pop" PopupAnimation="Slide" PlacementTarget="{Binding ElementName=Bar}" Placement="MousePoint"  AllowsTransparency="True" StaysOpen="False"
+               IsOpen="{Binding ElementName=Indicator,Path=IsMouseOver,Mode=OneWay}" IsHitTestVisible="False">
             <Border Margin="10 0" Padding="10 5" CornerRadius="2"  BorderBrush="#B0CCBBBB" Background="#B0FFEEEE" BorderThickness="1" >
                 <TextBlock Text="{Binding ElementName=Root,Path=Hint}"/>
             </Border>

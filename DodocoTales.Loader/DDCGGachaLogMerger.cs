@@ -383,15 +383,15 @@ namespace DodocoTales.Loader
                     return uncategorized[uncategorized.Count - 1].id;
                 }
             }
-            for (int i=curlog.V.Count-1;i>=0;i--)
+            for (int i = curlog.V.Count - 1; i >= 0; i--) 
             {
                 var banners = curlog.V[i].B.FindAll(x => x.poolType == type);
                 for (int j = banners.Count - 1; j >= 0; j--)
                 {
-                    if (banners[j].R[banners[j].R.Count - 1].L.Count > 0)
+                    for (int k = banners[j].R.Count - 1; k >= 0; k--) 
                     {
-                        var l = banners[j].R[banners[j].R.Count - 1].L;
-                        return l[l.Count - 1].id;
+                        var l = banners[j].R[k].L;
+                        if (l.Count > 0) return l.Last().id;
                     }
                 }
             }

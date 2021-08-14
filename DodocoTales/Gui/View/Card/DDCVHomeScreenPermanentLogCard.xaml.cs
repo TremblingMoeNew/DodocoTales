@@ -217,7 +217,8 @@ namespace DodocoTales.Gui.View.Card
                         }
                     }
 
-                    
+                    int r5dis = Math.Min(lastr5chardis, lastr5weapdis);
+                    int r4dis = Math.Min(lastr4chardis, lastr4weapdis);
 
                     cnt += inherit;
                     current = new DDCVHomeScnPerLogCurrentBanner
@@ -229,14 +230,15 @@ namespace DodocoTales.Gui.View.Card
                         TotalCnt = cnt.ToString(),
                         R5Cnt = rank5.ToString(),
                         R4Cnt = rank4.ToString(),
-                        R5PS = cnt > 0 ? String.Format("[{0:P1}]", rank5 * 1.0 / cnt) : "[—%]",
-                        R4PS = cnt > 0 ? String.Format("[{0:P1}]", rank4 * 1.0 / cnt) : "[—%]",
+                        R5PS = (cnt - r5dis) > 0 ? String.Format("[{0:P1}]", rank5 * 1.0 / (cnt - r5dis)) : "[—%]",
+                        R4PS = (cnt - r5dis) > 0 ? String.Format("[{0:P1}]", rank4 * 1.0 / (cnt - r5dis)) : "[—%]",
                         R5NextType = "——",//String.Format("{0} {1}", lastr5chardis, lastr5weapdis),
                         R4NextType = "——"//String.Format("{0} {1}", lastr4chardis, lastr4weapdis)
 
                     };
 
-                    ProgressIndicator.LoadInfo(DDCVIndicatorVolume.Permanent, inherit, 0, cnt);
+                    int lastroundcnt = r5dis;
+                    ProgressIndicator.LoadInfo(DDCVIndicatorVolume.Permanent, inherit, 0, lastroundcnt);
                 }
 
             }

@@ -305,26 +305,29 @@ namespace DodocoTales.Gui.View.Card
                         upunit += string.Format(" {0}", DDCL.Units.getItemById(r4up).name);
                     }
 
+                    int r5dis = Math.Min(lastr5updis, lastr5perdis);
+                    int r4dis = Math.Min(lastr4updis, lastr4perdis);
                     current = new DDCVHomeScnECLogCurrentBanner
                     {
                         Title = String.Format("当前卡池 - {0}", banner.name),
                         Subtitle = String.Format("{0} - {1} - 轮次 {2}", ver.version, banner.hint, roundcnt),
-                        BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(banner.beginTime,banner.beginTimeSync).ToLocalTime(), DDCL.GetLibraryTimeOffset(banner.endTime,banner.endTimeSync).ToLocalTime()),
+                        BannerTime = String.Format("{0:G} - {1:G}", DDCL.GetLibraryTimeOffset(banner.beginTime, banner.beginTimeSync).ToLocalTime(), DDCL.GetLibraryTimeOffset(banner.endTime, banner.endTimeSync).ToLocalTime()),
                         BannerUpUnits = upunit,
                         InheritedCnt = inherit.ToString(),
                         TotalCnt = cnt.ToString(),
                         R5Cnt = rank5.ToString(),
                         R4Cnt = rank4.ToString(),
-                        R5PS = cnt > 0 ? String.Format("[{0:P1}]", rank5 * 1.0 / cnt) : "[—%]",
-                        R4PS = cnt > 0 ? String.Format("[{0:P1}]", rank4 * 1.0 / cnt) : "[—%]",
+                        R5PS = (cnt - r5dis) > 0 ? String.Format("[{0:P1}]", rank5 * 1.0 / (cnt - r5dis)) : "[—%]",
+                        R4PS = (cnt - r4dis) > 0 ? String.Format("[{0:P1}]", rank4 * 1.0 / (cnt - r4dis)) : "[—%]",
                         R5NextPS = "——/——/——",//string.Format("{0} {1}", lastr5updis, lastr5perdis),
                         R4NextPS = "——/——/——",//string.Format("{ 0} {1}", lastr4updis, lastr4perdis),
                         R5Up = rank5up.ToString(),
                         R4Up = rank4up.ToString()
                     };
+                    int lastroundcnt = lastr5updis;
                     var per = cnt - lastr5perdis;
                     if (per < 0) per = 0;
-                    ProgressIndicator.LoadInfo(DDCVIndicatorVolume.EventCharacterNormal, inherit, per, cnt);
+                    ProgressIndicator.LoadInfo(DDCVIndicatorVolume.EventCharacterNormal, inherit, per, lastroundcnt);
                 }
                 if (DDCL.CompareLibTimeWithNow(ver.beginTime, true) < 0) break;
             }

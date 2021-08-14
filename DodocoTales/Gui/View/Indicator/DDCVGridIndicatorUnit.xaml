@@ -9,7 +9,7 @@
              Name="Root">
     <Grid>
         <Button Name="Indicator" Style="{StaticResource Style-GridIndicator-Unit}"/>
-        <Popup x:Name="Pop" PopupAnimation="Slide" PlacementTarget="{Binding ElementName=Indicator}" Placement="MousePoint" AllowsTransparency="True" StaysOpen="False"
+        <Popup x:Name="Pop" PopupAnimation="Slide" PlacementTarget="{Binding ElementName=Indicator}" Placement="MousePoint" AllowsTransparency="True" StaysOpen="False" IsHitTestVisible="False"
                IsOpen="{Binding ElementName=Indicator,Path=IsMouseOver,Mode=OneWay}">
             <Grid>
                 <Border Padding="0"  CornerRadius="2"  BorderBrush="Silver" Background="White" BorderThickness="1" Margin="5">
