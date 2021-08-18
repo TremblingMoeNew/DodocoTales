@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DodocoTales.Gui.Resources.String"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+
+    <sys:String x:Key="String-Hint-SubCard-BanSummary-Round" xml:space="preserve">以五星单位(常驻祈愿)或当期概率提升五星单位(活动祈愿)的获得为标志，将抽取记录切分为轮次&#x0d;&#x0a;可近似理解为一轮"大保底"</sys:String>
+    <sys:String x:Key="String-Hint-SubCard-BanSummary-Cnt">本卡池期间的总抽取次数</sys:String>
+    <sys:String x:Key="String-Hint-SubCard-BanSummary-InheritCnt" xml:space="preserve">从前一卡池所继承到的抽数；每一卡池的末轮将继承至下一版本的首轮&#x0d;&#x0a;可近似理解为“垫池水位”</sys:String>
+    <sys:String x:Key="String-Hint-SubCard-BanSummary-TotalCnt">总计抽数，包含继承抽数与卡池期间抽数</sys:String>
+    <sys:String x:Key="String-Hint-SubCard-BanSummary-Rank5-Event">本卡池期间获得五星/包含继承轮次中的五星</sys:String>
+    <sys:String x:Key="String-Hint-SubCard-BanSummary-Rank5-Permanent">本卡池期间获得五星</sys:String>
+    <sys:String x:Key="String-Hint-SubCard-BanSummary-Rank4">本卡池期间获得四星/包含继承轮次中的四星</sys:String>
+    <sys:String x:Key="String-Hint-SubCard-BanSummary-CWR">本卡池期间获得的对应星级的角色与武器的数量</sys:String>
+</ResourceDictionary>

@@ -73,10 +73,16 @@ namespace DodocoTales.Gui.View
             else
             {
                 // Temp
+                //Action act = () => { Uid = String.Format("UID:{0}", DDCL.Users.CurrentUserUID); };
                 Action act = () => { Uid = String.Format("UID:{0}****{1}", DDCL.Users.CurrentUserUID / 10000000, DDCL.Users.CurrentUserUID % 1000); };
                 Dispatcher.BeginInvoke(act);
             }
             DDCL.Settings.RefreshLastUid();
+        }
+
+        private void UidButton_Click(object sender, RoutedEventArgs e)
+        {
+            UidSwappMenu.IsOpen = true;
         }
     }
 }

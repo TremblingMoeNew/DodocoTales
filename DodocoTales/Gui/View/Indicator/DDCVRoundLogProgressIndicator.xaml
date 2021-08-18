@@ -12,7 +12,7 @@
         <converter:DDCVPercentageConverter x:Key="PerCon"/>
     </UserControl.Resources>
     <Grid>
-        <Border Margin="0" Style="{StaticResource Style-ProgressIndicator}" Name="Indicator">
+        <Border Margin="0" Style="{StaticResource Style-ProgressIndicator}" Name="Indicator" ToolTip="{Binding ElementName=Root,Path=Hint}">
             <StackPanel Orientation="Horizontal" Name="Bar">
                 <Rectangle Fill="{StaticResource Brush-ProgressIndicator-InheritedPermanent}"  VerticalAlignment="Stretch" Margin="0">
                     <Rectangle.Width>
@@ -50,7 +50,7 @@
             </StackPanel>
         </Border>
         <Popup x:Name="Pop" PopupAnimation="Slide" PlacementTarget="{Binding ElementName=Bar}" Placement="MousePoint"  AllowsTransparency="True" StaysOpen="False"
-               IsOpen="{Binding ElementName=Indicator,Path=IsMouseOver,Mode=OneWay}" IsHitTestVisible="False">
+               IsOpen="False" IsHitTestVisible="False">
             <Border Margin="10 0" Padding="10 5" CornerRadius="2"  BorderBrush="#B0CCBBBB" Background="#B0FFEEEE" BorderThickness="1" >
                 <TextBlock Text="{Binding ElementName=Root,Path=Hint}"/>
             </Border>

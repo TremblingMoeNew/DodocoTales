@@ -56,10 +56,10 @@ namespace DodocoTales.Gui.View.Card
                 }
                 var r4chrl = logs.FindAll(x => x.rank == 4 && x.unittype == DDCCUnitType.Character);
                 r4inhcnt += r4chrl.Count;
-                r4chrcnt += r4chrl.Count;
+                //r4chrcnt += r4chrl.Count;
                 var r4wepl = logs.FindAll(x => x.rank == 4 && x.unittype == DDCCUnitType.Weapon);
                 r4inhcnt += r4wepl.Count;
-                r4wepcnt += r4wepl.Count;
+                //r4wepcnt += r4wepl.Count;
                 
             }
 

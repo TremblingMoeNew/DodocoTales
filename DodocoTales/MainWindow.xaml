@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:DodocoTales"
         xmlns:view="clr-namespace:DodocoTales.Gui.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600"  Width="1000" MinWidth="936"
+        Title="嘟嘟可故事集" Height="600"  Width="1000" MinWidth="936" MinHeight="320"
         
         Name="WindowMain"
         StateChanged="WindowMain_StateChanged"
         WindowStartupLocation="CenterScreen"
         Loaded="WindowMain_Loaded"
-        
+        Background="Gray"
         >
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="30" GlassFrameThickness="1" UseAeroCaptionButtons="False" NonClientFrameEdges="None"/>

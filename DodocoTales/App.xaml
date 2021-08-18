@@ -6,7 +6,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!-- Strings -->
                 <ResourceDictionary Source="Gui/Resources/String/DDCVIconTextStrings.xaml"/>
+                <ResourceDictionary Source="Gui/Resources/String/DDCVHintTooltipStrings.xaml"/>
+                
+                <!-- Styles -->
                 <ResourceDictionary Source="Gui/Resources/Style/DDCVMainMenuStyle.xaml"/>
                 <ResourceDictionary Source="Gui/Resources/Style/DDCVMainSwapperStyle.xaml"/>
                 <ResourceDictionary Source="Gui/Resources/Style/DDCVMainTitleBarStyle.xaml"/>

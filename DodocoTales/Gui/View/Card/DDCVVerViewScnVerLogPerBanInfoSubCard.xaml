@@ -49,25 +49,25 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0">轮次数:</TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding ElementName=Root,Path=Summary.RoundCnt}"/>
-                        <TextBlock Grid.Column="0" Grid.Row="1">抽数:</TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ElementName=Root,Path=Summary.Cnt}"/>
-                        <TextBlock Grid.Column="2" Grid.Row="0">继承抽数:</TextBlock>
-                        <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding ElementName=Root,Path=Summary.InheritedCnt}"/>
-                        <TextBlock Grid.Column="2" Grid.Row="1">总计抽数:</TextBlock>
-                        <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding ElementName=Root,Path=Summary.TotalCnt}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="0" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-Round}">轮次数:</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="0" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-Round}" Text="{Binding ElementName=Root,Path=Summary.RoundCnt}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-Cnt}">抽数:</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="1" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-Cnt}" Text="{Binding ElementName=Root,Path=Summary.Cnt}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="0" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-InheritCnt}">继承抽数:</TextBlock>
+                        <TextBlock Grid.Column="3" Grid.Row="0" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-InheritCnt}" Text="{Binding ElementName=Root,Path=Summary.InheritedCnt}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="1" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-TotalCnt}">总计抽数:</TextBlock>
+                        <TextBlock Grid.Column="3" Grid.Row="1" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-TotalCnt}" Text="{Binding ElementName=Root,Path=Summary.TotalCnt}"/>
 
-                        <TextBlock Grid.Row="0" Grid.Column="4">五星:</TextBlock>
-                        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding ElementName=Root,Path=Summary.R5Cnt}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="4" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-Rank5-Permanent}">五星:</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="5" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-Rank5-Permanent}" Text="{Binding ElementName=Root,Path=Summary.R5Cnt}"/>
                         <TextBlock Grid.Row="0" Grid.Column="6" Text="{Binding ElementName=Root,Path=Summary.R5PS}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="4">四星:</TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding ElementName=Root,Path=Summary.R4Cnt}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="4" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-Rank4}">四星:</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="5" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-Rank4}" Text="{Binding ElementName=Root,Path=Summary.R4Cnt}"/>
                         <TextBlock Grid.Row="1" Grid.Column="6" Text="{Binding ElementName=Root,Path=Summary.R4PS}"/>
-                        <TextBlock Grid.Row="0" Grid.Column="7">角色/武器比:</TextBlock>
-                        <TextBlock Grid.Row="0" Grid.Column="8" Text="{Binding ElementName=Root,Path=Summary.R5CWR}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="7">角色/武器比:</TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="8" Text="{Binding ElementName=Root,Path=Summary.R4CWR}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="7" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-CWR}">角色/武器比:</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="8" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-CWR}" Text="{Binding ElementName=Root,Path=Summary.R5CWR}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="7" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-CWR}">角色/武器比:</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="8" ToolTip="{StaticResource String-Hint-SubCard-BanSummary-CWR}" Text="{Binding ElementName=Root,Path=Summary.R4CWR}"/>
 
                     </Grid>
                 </StackPanel>
