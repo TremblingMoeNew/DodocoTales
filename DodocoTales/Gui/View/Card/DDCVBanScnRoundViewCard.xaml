@@ -10,7 +10,7 @@
              d:DesignWidth="750"
              Name="Root">
     <UserControl.Resources>
-        <converter:DDCVVisibleByBooleanConverter x:Key="VisCon"/>
+        
     </UserControl.Resources>
     <Grid  Name="MainGrid" MouseEnter="Grid_MouseEnter">
         <Border Style="{StaticResource Style-Card-Border-Base }">
@@ -68,7 +68,7 @@
                     </WrapPanel>
                 </Grid>
                 <Separator Margin="20 2" Height="2"/>
-                <Grid Name="GridIndicatorContainer" Visibility="{Binding ElementName=MainGrid,Path=IsMouseOver,Converter={StaticResource VisCon}}">
+                <Grid Name="GridIndicatorContainer" Visibility="{Binding ElementName=MainGrid,Path=IsMouseOver,Converter={StaticResource VisByBoolCon}}">
                     <Label HorizontalAlignment="Center" Name="GILoadingHint">载入中……</Label>
                 </Grid>
                 

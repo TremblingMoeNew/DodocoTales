@@ -11,10 +11,6 @@
              MinWidth="750"
              Name="Root"
              >
-    <UserControl.Resources>
-        <converter:DDCVVisibleByExistenceConverter x:Key="VisCon"/>
-        
-    </UserControl.Resources>
     <Grid>
         <Border Style="{StaticResource Style-Card-Border-Base}">
             <StackPanel>
@@ -62,7 +58,7 @@
                         </Grid>
                     </Border>
                 </StackPanel>
-                <StackPanel Name="CurrentBanner" Visibility="{Binding ElementName=Root,Path=Current,Converter={StaticResource VisCon}}">
+                <StackPanel Name="CurrentBanner" Visibility="{Binding ElementName=Root,Path=Current,Converter={StaticResource VisByExistCon}}">
                     <Separator Background="Silver" Margin="10 0"/>
                     <Grid Margin="10 0">
                         <Grid.RowDefinitions>

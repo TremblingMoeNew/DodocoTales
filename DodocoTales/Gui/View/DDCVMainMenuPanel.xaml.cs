@@ -25,19 +25,35 @@ namespace DodocoTales.Gui.View
     public partial class DDCVMainMenuPanel : UserControl
     {
 
-        public static readonly DependencyProperty UidProperty = DependencyProperty.Register("Uid", typeof(string), typeof(DDCVMainMenuPanel));
-        public string Uid
+        public static readonly DependencyProperty UidValProperty = DependencyProperty.Register("UidVal", typeof(long), typeof(DDCVMainMenuPanel));
+        public long UidVal
         {
-            set { SetValue(UidProperty, value); }
-            get { return (string)GetValue(UidProperty); }
+            set { SetValue(UidValProperty, value); }
+            get { return (long)GetValue(UidValProperty); }
+        }
+
+        public static readonly DependencyProperty UserSwappingProperty = DependencyProperty.Register("UserSwapping", typeof(bool), typeof(DDCVMainMenuPanel));
+        public bool UserSwapping
+        {
+            set { SetValue(UserSwappingProperty, value); }
+            get { return (bool)GetValue(UserSwappingProperty); }
+        }
+
+        public static readonly DependencyProperty UsersListProperty = DependencyProperty.Register("UsersList", typeof(List<long>), typeof(DDCVMainMenuPanel));
+        public List<long> UsersList
+        {
+            set { SetValue(UsersListProperty, value); }
+            get { return (List<long>)GetValue(UsersListProperty); }
         }
 
         public DDCVMainMenuPanel()
         {
             InitializeComponent();
-            Uid = "-----未登录-----";
-            DDCS.UidReloadCompleted += new DDCSCommonDelegate(OnUidSwapped);
-            
+            UidVal = 0;
+            DDCS.UidReloadCompleted += new DDCSCommonDelegate(OnUidSwapping);
+            DDCS.LogReloadCompleted += new DDCSCommonDelegate(OnUserSwapCompleted);
+            DDCS.UserLibReloadCompleted += new DDCSCommonDelegate(OnUserLibReloadCompleted);
+            DDCS.UserLibNewUserCreated += new DDCSCommonDelegate(OnUserLibReloadCompleted);
         }
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -63,26 +79,70 @@ namespace DodocoTales.Gui.View
             }.ShowDialog();
            
         }
-        private void OnUidSwapped()
+        private void OnUidSwapping()
         {
-            if (DDCL.Users.CurrentUserUID == 0)
-            {
-                Action act = () => { Uid = "-----未登录-----"; };
-                Dispatcher.BeginInvoke(act);
-            }
-            else
-            {
-                // Temp
-                //Action act = () => { Uid = String.Format("UID:{0}", DDCL.Users.CurrentUserUID); };
-                Action act = () => { Uid = String.Format("UID:{0}****{1}", DDCL.Users.CurrentUserUID / 10000000, DDCL.Users.CurrentUserUID % 1000); };
-                Dispatcher.BeginInvoke(act);
-            }
+            Action act = () => { UidVal = DDCL.Users.CurrentUserUID; UserSwapping = true; };
+            Dispatcher.BeginInvoke(act);
+        }
+
+        private void OnUserSwapCompleted()
+        {
+            Action act = () => { UidVal = DDCL.Users.CurrentUserUID; UserSwapping = false; };
+            Dispatcher.BeginInvoke(act);
             DDCL.Settings.RefreshLastUid();
+        }
+
+        private void OnUserLibReloadCompleted()
+        {
+            Action act = () => { UsersList = DDCL.Users.getUsersList(); if (UsersList.Count == 0) UsersList = null; };
+            Dispatcher.BeginInvoke(act);
         }
 
         private void UidButton_Click(object sender, RoutedEventArgs e)
         {
-            UidSwappMenu.IsOpen = true;
+            UidPanel.IsOpen = true;
+        }
+
+        private void UidSelectorButton_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            try
+            {
+                long uid = Convert.ToInt64(btn.Tag);
+                SwapUserFromUidPanel(uid);
+            }
+            catch(Exception)
+            {
+
+            }
+
+        }
+
+        public async void SwapUserFromUidPanel(long uid)
+        {
+            if (uid == DDCL.Users.CurrentUserUID) return;
+            if(DDCL.Users.userExists(uid))
+            {
+                Action initact = () => { UidVal = uid; UserSwapping = true; while (DDCV.PopScreen()) ; };
+                await Dispatcher.BeginInvoke(initact);
+
+
+                await DDCL.Users.swapUser(uid);
+                if (DDCS.UidReloadCompleted != null)
+                {
+                    foreach (DDCSCommonDelegate method in DDCS.UidReloadCompleted.GetInvocationList())
+                    {
+                        method.BeginInvoke(null, null);
+                    }
+                }
+                if (DDCS.LogReloadCompleted != null)
+                {
+                    foreach (DDCSCommonDelegate method in DDCS.LogReloadCompleted.GetInvocationList())
+                    {
+                        method.BeginInvoke(null, null);
+                    }
+                }
+            }
         }
     }
 }

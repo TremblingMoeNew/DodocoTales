@@ -25,10 +25,29 @@
         <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Bottom">
             <Button Style="{StaticResource Style-MainMenu-ToolButton-IconText}" Content="{StaticResource String-IconText-Settings}" Margin="10 2 3 2"/>
             <Button Style="{StaticResource Style-MainMenu-ToolButton-IconText}" Content="{StaticResource String-IconText-Refresh}" Margin="3 2 10 2" Click="Button_Click"/>
-            <Button Style="{StaticResource Style-MainMenu-ToolButton-Uid}" Content="{Binding ElementName=Root,Path=Uid}" Name="UidButton" Click="UidButton_Click"/>
+            <Button Style="{StaticResource Style-MainMenu-ToolButton-Uid}" Content="{Binding ElementName=Root,Path=UidVal,Converter={StaticResource UidDisplayCon}}" Name="UidButton" Click="UidButton_Click"/>
         </StackPanel>
-        <Popup Name="UidSwappMenu" PlacementTarget="{Binding ElementName=UidButton}" Placement="Top" StaysOpen="False">
-            
+        <Popup Name="UidPanel" PlacementTarget="{Binding ElementName=UidButton}" Placement="Top" StaysOpen="False" AllowsTransparency="True">
+            <Border Style="{StaticResource Style-MainMenu-UidPanel}">
+                <Grid>
+                    <TextBlock TextAlignment="Center" Foreground="Gray" Visibility="{Binding ElementName=Root,Path=UsersList,Converter={StaticResource VisByNullCon}}">
+                         暂无记录
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding ElementName=Root,Path=UsersList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource Style-MainMenu-UidPanel-UidSelectorButton}" Tag="{Binding .}" Click="UidSelectorButton_Click" Content="{Binding .}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Grid>
+
+            </Border>
         </Popup>
     </Grid>
 </UserControl>

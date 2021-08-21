@@ -10,9 +10,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              MinWidth="750"
              Name="Root">
-    <UserControl.Resources>
-        <converter:DDCVVisibleByExistenceConverter x:Key="VisCon"/>
-    </UserControl.Resources>
+
     <Grid>
         <Border Style="{StaticResource Style-Card-Border-Base}">
             <StackPanel>
@@ -61,7 +59,7 @@
                     </Border>
                     
                 </StackPanel>
-                <StackPanel Name="CurrentBanner" Visibility="{Binding ElementName=Root,Path=Current,Converter={StaticResource VisCon}}">
+                <StackPanel Name="CurrentBanner" Visibility="{Binding ElementName=Root,Path=Current,Converter={StaticResource VisByExistCon}}">
                     <Separator Background="Silver" Margin="10 0"/>
                     <Grid Margin="10 0">
                         <Grid.RowDefinitions>
@@ -118,7 +116,7 @@
                     </Grid>
                     <indicator:DDCVRoundLogProgressIndicator x:Name="ProgressIndicator" Margin="60 5"/>
                 </StackPanel>
-                <StackPanel Name="NextBanner" Visibility="{Binding ElementName=Root,Path=Next,Converter={StaticResource VisCon}}">
+                <StackPanel Name="NextBanner" Visibility="{Binding ElementName=Root,Path=Next,Converter={StaticResource VisByExistCon}}">
                     <Separator Background="Silver" Margin="10 10 10 0"/>
                     <Grid Margin="10 0">
                         <Grid.RowDefinitions>

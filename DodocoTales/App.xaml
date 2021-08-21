@@ -6,6 +6,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                
+                <!-- Converters-->
+                <ResourceDictionary Source="Gui/Resources/Converters.xaml"/>
+                
                 <!-- Strings -->
                 <ResourceDictionary Source="Gui/Resources/String/DDCVIconTextStrings.xaml"/>
                 <ResourceDictionary Source="Gui/Resources/String/DDCVHintTooltipStrings.xaml"/>

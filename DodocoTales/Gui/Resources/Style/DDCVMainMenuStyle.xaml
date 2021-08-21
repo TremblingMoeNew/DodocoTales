@@ -47,6 +47,22 @@
         <GradientStop Offset="1" Color="#00FFFFFF"/>
     </LinearGradientBrush>
 
+    <SolidColorBrush x:Key="Brush-MainMenu-UidPanel-Background" Color="#80FFFFFF"/>
+    <LinearGradientBrush x:Key="Brush-MainMenu-UidPanel-UidSelectorButton-Hover" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="#00FFFFFF"/>
+        <GradientStop Offset="0.3" Color="#A0FFFFFF"/>
+        <GradientStop Offset="0.95" Color="#B0FFFFFF"/>
+        <GradientStop Offset="1" Color="#00DDDDDD"/>
+    </LinearGradientBrush>
+    
+    
+    <LinearGradientBrush x:Key="Brush-MainMenu-UidPanel-UidSelectorButton-Selected" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="#00DDDDDD"/>
+        <GradientStop Offset="0.05" Color="#CCFFFFFF"/>
+        <GradientStop Offset="0.95" Color="#AAFFFFFF"/>
+        <GradientStop Offset="1" Color="#00DDDDDD"/>
+    </LinearGradientBrush>
+    
     <Style x:Key="Style-MainMenu-MainGrid" TargetType="Grid">
         <Setter Property="Background" Value="{StaticResource Brush-MainMenu-Main-Background}"/>
     </Style>
@@ -164,12 +180,60 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="{StaticResource Brush-MainMenu-ToolButton-Uid-Hover}"/>
                         </Trigger>
-                        <DataTrigger Binding="{Binding ElementName=UidSwappMenu,Path=IsOpen}" Value="True">
+                        <DataTrigger Binding="{Binding ElementName=UidPanel,Path=IsOpen}" Value="True">
                             <Setter Property="Background" Value="{StaticResource Brush-MainMenu-ToolButton-Uid-MenuOpened}"/>
                         </DataTrigger>
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Style-MainMenu-UidPanel" TargetType="Border">
+        <Setter Property="Width" Value="{Binding ElementName=UidButton,Path=ActualWidth}"/>
+        <Setter Property="CornerRadius" Value="5 5 0 0"/>
+        <Setter Property="Padding" Value="2 5 2 0"/>
+        <Setter Property="Background" Value="{StaticResource Brush-MainMenu-UidPanel-Background}"/>
+    </Style>
+    <Style x:Key="Style-MainMenu-UidPanel-UidSelectorButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" HorizontalAlignment="Stretch" Height="25">
+                        <Border Background="Transparent" Name="Shader" Tag="{TemplateBinding Tag}">
+                            <Grid Margin="8 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border>
+                                    <Rectangle Width="3" Fill="Pink" Margin="0 3" Visibility="Collapsed" Name="Indicator"/>
+                                </Border>
+                                <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" />
+                            </Grid>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="Shader" Value="{StaticResource Brush-MainMenu-UidPanel-UidSelectorButton-Hover}"/>
+                        </Trigger>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource UidCheckCon}">
+                                    <Binding ElementName="Root" Path="UidVal"/>
+                                    <Binding Path="Tag" ElementName="Shader"/>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="Background" TargetName="Shader" Value="{StaticResource Brush-MainMenu-UidPanel-UidSelectorButton-Selected}"/>
+                            <Setter Property="Visibility" TargetName="Indicator" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=Root,Path=UserSwapping}" Value="True">
+                            <Setter Property="Fill" TargetName="Indicator" Value="DarkOrange"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+
             </Setter.Value>
         </Setter>
     </Style>

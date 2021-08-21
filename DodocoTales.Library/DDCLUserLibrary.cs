@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using DodocoTales.Common;
 using DodocoTales.Common.Models;
 using Newtonsoft.Json;
 
@@ -25,6 +26,20 @@ namespace DodocoTales.Library
         public DDCCUserGachaLogs createEmptyLocalGachaLog(long uid)
         {
             return new DDCCUserGachaLogs { uid = uid, V = new List<DDCCVersionLogs>() };
+        }
+        public void addEmptyUser(long uid)
+        {
+            if (U.ContainsKey(uid)) return;
+            var log = createEmptyLocalGachaLog(CurrentUserUID);
+            U.Add(CurrentUserUID, log);
+
+            if (DDCS.UserLibNewUserCreated != null)
+            {
+                foreach (DDCSCommonDelegate method in DDCS.UserLibNewUserCreated.GetInvocationList())
+                {
+                    method.BeginInvoke(null, null);
+                }
+            }
         }
         public async Task loadLocalGachaLogByUidAsync(long uid)
         {
@@ -67,6 +82,13 @@ namespace DodocoTales.Library
             }
             await Task.WhenAll(taskQuery);
             Loaded = true;
+            if (DDCS.UserLibReloadCompleted != null)
+            {
+                foreach (DDCSCommonDelegate method in DDCS.UserLibReloadCompleted.GetInvocationList())
+                {
+                    method.BeginInvoke(null, null);
+                }
+            }
             /// TODO: 返回载入结果？
         }
 
@@ -101,8 +123,7 @@ namespace DodocoTales.Library
             CurrentUserUID = uid;
             if (!U.ContainsKey(uid))
             {
-                var log = createEmptyLocalGachaLog(CurrentUserUID);
-                U.Add(CurrentUserUID, log);
+                addEmptyUser(uid);
             }
         }
         public bool userExists(long uid)
@@ -120,6 +141,10 @@ namespace DodocoTales.Library
             {
                 return false;
             }
+        }
+        public List<long>getUsersList()
+        {
+            return U.Keys.ToList();
         }
     }
 }

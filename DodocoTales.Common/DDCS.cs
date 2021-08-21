@@ -11,5 +11,7 @@ namespace DodocoTales.Common
     {
         public static DDCSCommonDelegate LogReloadCompleted;
         public static DDCSCommonDelegate UidReloadCompleted;
+        public static DDCSCommonDelegate UserLibReloadCompleted;
+        public static DDCSCommonDelegate UserLibNewUserCreated;
     }
 }
