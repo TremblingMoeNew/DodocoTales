@@ -1,6 +1,8 @@
 ﻿using DodocoTales.Common.Enums;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,5 +20,9 @@ namespace DodocoTales.Common.Models
         public string code { get; set; }
         public int rank { get; set; }
         public DDCCUnitType unittype { get; set; }
+
+        [DefaultValue(false)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public bool idLost { get; set; }
     }
 }

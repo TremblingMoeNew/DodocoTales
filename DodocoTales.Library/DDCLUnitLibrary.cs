@@ -15,7 +15,8 @@ namespace DodocoTales.Library
         public List<DDCLUnitInfo> L;
         public Dictionary<int, DDCLUnitInfo> idMap;
         public Dictionary<string, DDCLUnitInfo> codeMap;
-        readonly DDCLUnitInfo notfound = new DDCLUnitInfo { id = 0, code = "Unknown", name = "Unknown", type = DDCCUnitType.Unknown };
+        public Dictionary<string, DDCLUnitInfo> nameMap;
+        public readonly DDCLUnitInfo Unknown = new DDCLUnitInfo { id = 0, code = "Unknown", name = "Unknown", type = DDCCUnitType.Unknown };
         public readonly string libPath = @"library/UnitLibrary.json";
 
         public DDCLUnitLibrary()
@@ -42,6 +43,7 @@ namespace DodocoTales.Library
             {
                 idMap.Clear();
                 codeMap.Clear();
+                nameMap.Clear();
                 L = null;
                 return false;
             }
@@ -54,15 +56,20 @@ namespace DodocoTales.Library
                 idMap.Add(item.id, item);
                 codeMap.Add(item.code, item);
                 if (item.code_alias != null) codeMap.Add(item.code_alias, item);
+                nameMap.Add(item.name, item);
             }
         }
         public DDCLUnitInfo getItemById(int id)
         {
-            if (idMap.TryGetValue(id, out DDCLUnitInfo info)) return info; else return notfound;
+            if (idMap.TryGetValue(id, out DDCLUnitInfo info)) return info; else return Unknown;
         }
         public DDCLUnitInfo getItemByCode(string code)
         {
-            if (codeMap.TryGetValue(code, out DDCLUnitInfo info)) return info; else return notfound;
+            if (codeMap.TryGetValue(code, out DDCLUnitInfo info)) return info; else return Unknown;
+        }
+        public DDCLUnitInfo getItemByName(string name)
+        {
+            if (nameMap.TryGetValue(name, out DDCLUnitInfo info)) return info; else return Unknown;
         }
     }
 }
