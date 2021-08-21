@@ -53,6 +53,7 @@ namespace DodocoTales.Library
             {
                 idMap.Add(item.id, item);
                 codeMap.Add(item.code, item);
+                if (item.code_alias != null) codeMap.Add(item.code_alias, item);
             }
         }
         public DDCLUnitInfo getItemById(int id)
