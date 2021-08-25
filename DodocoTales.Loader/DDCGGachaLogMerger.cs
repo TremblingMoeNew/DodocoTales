@@ -172,6 +172,11 @@ namespace DodocoTales.Loader
             }
         }
 
+        internal object getFirstLog(DDCCPoolType beginner, out object dDCCRoundLog, long uid)
+        {
+            throw new NotImplementedException();
+        }
+
         public void mergeUncategorizedLogs()
         {
             var curlog = DDCL.Users.getCurrentUser();
@@ -403,9 +408,10 @@ namespace DodocoTales.Loader
             return 0;
         }
 
-        public DDCCGachaLogItem getFirstLog(DDCCPoolType type, long uid = -1)
+        public DDCCGachaLogItem getFirstLog(DDCCPoolType type, out DDCCBannerLogs atbanner, long uid = -1)
         {
             DDCCUserGachaLogs curlog;
+            atbanner = null;
             if (uid == -1) curlog = DDCL.Users.getCurrentUser();
             else curlog = DDCL.Users.getUser(uid);
             if (curlog == null) return null;
@@ -416,7 +422,11 @@ namespace DodocoTales.Loader
                 {
                     foreach(var rnd in banner.R)
                     {
-                        if (rnd.L.Any()) return rnd.L.First();
+                        if (rnd.L.Any())
+                        {
+                            atbanner = banner;
+                            return rnd.L.First();
+                        }
                     }
                 }
             }
