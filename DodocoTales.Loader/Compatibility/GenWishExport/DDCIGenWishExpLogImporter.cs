@@ -3,6 +3,7 @@ using DodocoTales.Common.Models;
 using DodocoTales.Library;
 using DodocoTales.Library.Models;
 using DodocoTales.Loader.Compatibility.GenWishExport.Models;
+using DodocoTales.Loader.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -16,8 +17,7 @@ namespace DodocoTales.Loader.Compatibility.GenWishExport
     public class DDCIGenWishExpLogImporter
     {
 
-
-        public DDCIGenWishExpImportResult ConvertGWELogsToDDCLogs(string logs)
+        public DDCGGachaLogImportResult ConvertGWELogsToDDCLogs(string logs)
         {
             try
             {
@@ -36,14 +36,14 @@ namespace DodocoTales.Loader.Compatibility.GenWishExport
 
 
 
-        public DDCIGenWishExpImportResult ConvertResultPropertyToLists(List<JArray> list, bool isSimplifiedChinese)
+        public DDCGGachaLogImportResult ConvertResultPropertyToLists(List<JArray> list, bool isSimplifiedChinese)
         {
-            var result = new DDCIGenWishExpImportResult
+            var result = new DDCGGachaLogImportResult
             {
-                Beginner = new List<DDCCGachaLogItem>(),
-                Permanent = new List<DDCCGachaLogItem>(),
-                EventCharacter = new List<DDCCGachaLogItem>(),
-                EventWeapon = new List<DDCCGachaLogItem>()
+                Beginner = new List<DDCGGachaLogImportedItem>(),
+                Permanent = new List<DDCGGachaLogImportedItem>(),
+                EventCharacter = new List<DDCGGachaLogImportedItem>(),
+                EventWeapon = new List<DDCGGachaLogImportedItem>()
             };
             foreach(var poolitem in list)
             {
@@ -52,7 +52,7 @@ namespace DodocoTales.Loader.Compatibility.GenWishExport
                     continue;
                 }
                 if (poolitem[0].Type != JTokenType.String) continue;
-                List<DDCCGachaLogItem> ptr = null;
+                List<DDCGGachaLogImportedItem> ptr = null;
                 var pooltype = poolitem[0].ToString();
                 switch(pooltype)
                 {
@@ -78,7 +78,7 @@ namespace DodocoTales.Loader.Compatibility.GenWishExport
 
 
 
-        public void ConvertPool(List<DDCCGachaLogItem> list, JArray items, bool isSimplifiedChinese)
+        public void ConvertPool(List<DDCGGachaLogImportedItem> list, JArray items, bool isSimplifiedChinese)
         {
             foreach(var item in items)
             {
@@ -93,10 +93,10 @@ namespace DodocoTales.Loader.Compatibility.GenWishExport
             }
         }
 
-        public DDCCGachaLogItem ConvertToDDCCItem(JArray item, bool isSimplifiedChinese)
+        public DDCGGachaLogImportedItem ConvertToDDCCItem(JArray item, bool isSimplifiedChinese)
         {
             if (item.Count < 4) return null;
-            DDCCGachaLogItem ddccitem = null;
+            DDCGGachaLogImportedItem ddccitem = null;
             try
             {
                 DateTime time = item[0].ToObject<DateTime>();
@@ -117,7 +117,7 @@ namespace DodocoTales.Loader.Compatibility.GenWishExport
                         unittype = item[2].ToObject<DDCCUnitType>();
                     }
                     int rank = Convert.ToInt32(item[3].ToString());
-                    ddccitem = new DDCCGachaLogItem()
+                    ddccitem = new DDCGGachaLogImportedItem()
                     {
                         id = 0,
                         idLost = true,
@@ -126,12 +126,13 @@ namespace DodocoTales.Loader.Compatibility.GenWishExport
                         time = time,
                         unittype = unittype,
                         unitclass = unitclass.id,
-                        name = unitclass.name
+                        name = unitclass.name,
+                        ItemUnitClassNotFound = true
                     };
                 }
                 else
                 {
-                    ddccitem = new DDCCGachaLogItem()
+                    ddccitem = new DDCGGachaLogImportedItem()
                     {
                         id = 0,
                         idLost = true,

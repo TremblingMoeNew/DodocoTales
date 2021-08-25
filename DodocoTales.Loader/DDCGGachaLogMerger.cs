@@ -357,9 +357,14 @@ namespace DodocoTales.Loader
             };
         }
 
-        public ulong getLastLogId(DDCCPoolType type)
+
+
+        public ulong getLastLogId(DDCCPoolType type, long uid = -1)
         {
-            var curlog = DDCL.Users.getCurrentUser();
+            DDCCUserGachaLogs curlog;
+            if (uid == -1) curlog = DDCL.Users.getCurrentUser();
+            else curlog = DDCL.Users.getUser(uid);
+            if (curlog == null) return 0;
             if (curlog.Uncategorized != null)
             {
                 List<DDCCGachaLogItem> uncategorized=null;
@@ -396,6 +401,26 @@ namespace DodocoTales.Loader
                 }
             }
             return 0;
+        }
+
+        public DDCCGachaLogItem getFirstLog(DDCCPoolType type, long uid = -1)
+        {
+            DDCCUserGachaLogs curlog;
+            if (uid == -1) curlog = DDCL.Users.getCurrentUser();
+            else curlog = DDCL.Users.getUser(uid);
+            if (curlog == null) return null;
+            foreach(var version in curlog.V)
+            {
+                var banners = version.B.FindAll(x => x.poolType == type);
+                foreach(var banner in banners)
+                {
+                    foreach(var rnd in banner.R)
+                    {
+                        if (rnd.L.Any()) return rnd.L.First();
+                    }
+                }
+            }
+            return null;
         }
     }
 }

@@ -146,5 +146,11 @@ namespace DodocoTales.Library
         {
             return U.Keys.ToList();
         }
+
+        public DDCCUserGachaLogs getUser(long uid)
+        {
+            U.TryGetValue(uid, out DDCCUserGachaLogs user);
+            return user;
+        }
     }
 }

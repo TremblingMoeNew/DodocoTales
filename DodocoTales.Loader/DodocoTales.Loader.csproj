@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compatibility\GenWishExport\DDCIGenWishExpLogImporter.cs" />
-    <Compile Include="Compatibility\GenWishExport\Models\DDCIGenWishExpImportResult.cs" />
     <Compile Include="Compatibility\GenWishExport\Models\DDCIGenWishExpLogMain.cs" />
     <Compile Include="DDCG.cs" />
     <Compile Include="DDCGClientUpdateLoader.cs" />
@@ -58,6 +57,8 @@
     <Compile Include="Models\DDCGGachaLogResponseItem.cs" />
     <Compile Include="Models\DDCGGachaLogResponse.cs" />
     <Compile Include="Models\DDCGGachaInitialLogs.cs" />
+    <Compile Include="Models\DDCGGachaLogImportedItem.cs" />
+    <Compile Include="Models\DDCGGachaLogImportResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

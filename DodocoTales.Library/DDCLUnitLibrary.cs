@@ -24,6 +24,7 @@ namespace DodocoTales.Library
             L = new List<DDCLUnitInfo>();
             idMap = new Dictionary<int, DDCLUnitInfo>();
             codeMap = new Dictionary<string, DDCLUnitInfo>();
+            nameMap = new Dictionary<string, DDCLUnitInfo>();
         }
 
         
