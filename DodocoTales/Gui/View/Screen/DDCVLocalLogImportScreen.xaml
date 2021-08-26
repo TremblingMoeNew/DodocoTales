@@ -8,21 +8,108 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Name="Root">
     <Grid>
-        <!-- Temp - Just for test -->
-        <ListView ItemsSource="{Binding ElementName=Root,Path=ImportedData}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding time}" Header="时间"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding name}" Header="名称"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding unittype}" Header="类型"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding rank}" Header="星级"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding unitclass}" Header="单位类型"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding ItemUnitClassNotFound}" Header="类型匹配失败"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding id}" Header="祈愿记录ID"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding idLost}" Header="记录ID丢失"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding IsNewItem}" Header="新记录"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <StackPanel>
+            <Border Style="{StaticResource Style-Card-Border-Base}" >
+                <StackPanel>
+                    <Label Style="{StaticResource Style-Card-Title-H1}">从本地文件导入</Label>
+                    <Grid Margin="20 0 30 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Grid.Column="0" Name="FTBtn_DodocoTales" IsEnabled="False">嘟嘟可故事集</RadioButton>
+                        <RadioButton Grid.Column="1" Name="FTBtn_GenshinWishExport" IsChecked="True">原神祈愿导出工具</RadioButton>
+                        <RadioButton Grid.Column="2" Name="FTBtn_KeqingNiuza">刻记牛杂店</RadioButton>
+                        <RadioButton Grid.Column="3" Name="FTBtn_Excel" IsEnabled="False">Excel表格</RadioButton>
+                        <Button Grid.Column="5" Name="LoadFile_Button" Click="LoadFile_Button_Click">载入文件</Button>
+                    </Grid>
+                    <TextBlock Margin="50 0" Foreground="Gray">
+                        支持嘟嘟可故事集所使用的Json格式祈愿记录。
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=FTBtn_DodocoTales,Path=IsChecked}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Margin="50 0" Foreground="Gray">
+                        支持由原神祈愿导出工具所导出的Excel格式记录。暂无对刻记牛杂店导出记录的额外支持。不保证对个人编辑的支持。
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=FTBtn_Excel,Path=IsChecked}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Margin="50 0" Foreground="Gray">
+                        支持原神祈愿导出工具所使用的Json格式祈愿记录。其位于该软件的userData目录内。
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=FTBtn_GenshinWishExport,Path=IsChecked}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Margin="50 0" Foreground="Gray">
+                        支持刻记牛杂店所使用的Json格式祈愿记录。其位于该软件的UserData目录内。您将有可能以该方式导入未被记录的用户。
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=FTBtn_KeqingNiuza,Path=IsChecked}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+            
+            
+            <!-- Temp - Just for test -->
+            <ListView ItemsSource="{Binding ElementName=Root,Path=DisplayedData}" MaxHeight="800" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding time}" Header="时间"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding name}" Header="名称"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding unittype}" Header="类型"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding rank}" Header="星级"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding unitclass}" Header="单位类型"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding ItemUnitClassNotFound}" Header="类型匹配失败"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding id}" Header="祈愿记录ID"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding idLost}" Header="记录ID丢失"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding IsNewItem}" Header="新记录"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
     </Grid>
 </UserControl>

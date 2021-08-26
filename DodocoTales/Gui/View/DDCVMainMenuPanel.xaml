@@ -49,7 +49,7 @@
 
             </Border>
         </Popup>
-        <Popup PlacementTarget="{Binding ElementName=RefreshButton}" Placement="Top" StaysOpen="False" AllowsTransparency="True" IsOpen="True">
+        <Popup PlacementTarget="{Binding ElementName=RefreshButton}" Placement="Top" StaysOpen="True" AllowsTransparency="True" IsOpen="True">
             <Border Width="80">
                 <StackPanel>
                     <Button Click="ImportButton_Click">从本地导入</Button>
