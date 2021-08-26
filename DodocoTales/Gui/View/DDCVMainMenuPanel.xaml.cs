@@ -1,5 +1,6 @@
 ﻿using DodocoTales.Common;
 using DodocoTales.Gui.View.Dialog;
+using DodocoTales.Gui.View.Screen;
 using DodocoTales.Library;
 using DodocoTales.Loader;
 using System;
@@ -143,6 +144,11 @@ namespace DodocoTales.Gui.View
                     }
                 }
             }
+        }
+
+        private void ImportButton_Click(object sender, RoutedEventArgs e)
+        {
+            DDCV.PushScreen("", new DDCVLocalLogImportScreen());
         }
     }
 }

@@ -195,6 +195,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\View\Screen\DDCVLocalLogImportScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\View\Screen\DDCVPoolTypeViewScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -295,6 +299,9 @@
     </Compile>
     <Compile Include="Gui\View\Screen\DDCVHomeScreen.xaml.cs">
       <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\View\Screen\DDCVLocalLogImportScreen.xaml.cs">
+      <DependentUpon>DDCVLocalLogImportScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\View\Screen\DDCVPoolTypeViewScreen.xaml.cs">
       <DependentUpon>DDCVPoolTypeViewScreen.xaml</DependentUpon>

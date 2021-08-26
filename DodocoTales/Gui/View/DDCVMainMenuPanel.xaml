@@ -23,8 +23,8 @@
                 <Separator Margin="20 0" Background="#80FF9999" Height="1"></Separator>
             </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Bottom">
-            <Button Style="{StaticResource Style-MainMenu-ToolButton-IconText}" Content="{StaticResource String-IconText-Settings}" Margin="10 2 3 2"/>
-            <Button Style="{StaticResource Style-MainMenu-ToolButton-IconText}" Content="{StaticResource String-IconText-Refresh}" Margin="3 2 10 2" Click="Button_Click"/>
+            <Button Style="{StaticResource Style-MainMenu-ToolButton-IconText}" Content="{StaticResource String-IconText-Settings}" Margin="10 2 3 2" Name="SettingButton"/>
+            <Button Style="{StaticResource Style-MainMenu-ToolButton-IconText}" Content="{StaticResource String-IconText-Refresh}" Margin="3 2 10 2" Name="RefreshButton" Click="Button_Click"/>
             <Button Style="{StaticResource Style-MainMenu-ToolButton-Uid}" Content="{Binding ElementName=Root,Path=UidVal,Converter={StaticResource UidDisplayCon}}" Name="UidButton" Click="UidButton_Click"/>
         </StackPanel>
         <Popup Name="UidPanel" PlacementTarget="{Binding ElementName=UidButton}" Placement="Top" StaysOpen="False" AllowsTransparency="True">
@@ -48,6 +48,14 @@
                 </Grid>
 
             </Border>
+        </Popup>
+        <Popup PlacementTarget="{Binding ElementName=RefreshButton}" Placement="Top" StaysOpen="False" AllowsTransparency="True" IsOpen="True">
+            <Border Width="80">
+                <StackPanel>
+                    <Button Click="ImportButton_Click">从本地导入</Button>
+                </StackPanel>
+            </Border>
+            
         </Popup>
     </Grid>
 </UserControl>

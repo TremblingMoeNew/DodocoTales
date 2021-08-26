@@ -49,10 +49,11 @@ namespace DodocoTales.Loader.Compatibility.KeqingNiuza
         }
         public void ConvertPool(List<DDCIKeqingNiuzaWishData> wishdata,List<DDCGGachaLogImportedItem> result)
         {
-            foreach(var item in wishdata)
+            foreach (var item in wishdata)
             {
                 result.Add(ConvertToDDCItem(item));
             }
+            result.Sort((a, b) => { var timecmp = DateTime.Compare(a.time, b.time);if (timecmp == 0) return a.id.CompareTo(b.id); else return timecmp;  });
         }
         public DDCGGachaLogImportedItem ConvertToDDCItem(DDCIKeqingNiuzaWishData item)
         {

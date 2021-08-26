@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="DodocoTales.Gui.View.Screen.DDCVLocalLogImportScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DodocoTales.Gui.View.Screen"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="Root">
+    <Grid>
+        <!-- Temp - Just for test -->
+        <ListView ItemsSource="{Binding ElementName=Root,Path=ImportedData}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding time}" Header="时间"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding name}" Header="名称"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding unittype}" Header="类型"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding rank}" Header="星级"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding unitclass}" Header="单位类型"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ItemUnitClassNotFound}" Header="类型匹配失败"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding id}" Header="祈愿记录ID"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding idLost}" Header="记录ID丢失"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding IsNewItem}" Header="新记录"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

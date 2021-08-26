@@ -27,7 +27,7 @@ namespace DodocoTales.Loader
             if (fAll == null)
             {
                 result.UserLogNotExist = true;
-                var beginWithId = result.Beginner.FindAll(x => x.idLost = false);
+                var beginWithId = result.Beginner.FindAll(x => x.idLost == false);
                 if (beginWithId.Any())
                 {
                     beginWithId.Last().IsNewItem = true;
@@ -42,7 +42,7 @@ namespace DodocoTales.Loader
                     result.BeginnerOriginalEmptyAndLastIdLost = true;
                 }
 
-                var perWithId = result.Permanent.FindAll(x => x.idLost = false);
+                var perWithId = result.Permanent.FindAll(x => x.idLost == false);
                 if (perWithId.Any())
                 {
                     perWithId.Last().IsNewItem = true;
@@ -57,7 +57,7 @@ namespace DodocoTales.Loader
                     result.PermanentOriginalEmptyAndLastIdLost = true;
                 }
 
-                var ecWithId = result.EventCharacter.FindAll(x => x.idLost = false);
+                var ecWithId = result.EventCharacter.FindAll(x => x.idLost == false);
                 if (ecWithId.Any())
                 {
                     ecWithId.Last().IsNewItem = true;
@@ -72,7 +72,7 @@ namespace DodocoTales.Loader
                     result.EvnetCharOriginalEmptyAndLastIdLost = true;
                 }
 
-                var epWithId = result.EventWeapon.FindAll(x => x.idLost = false);
+                var epWithId = result.EventWeapon.FindAll(x => x.idLost == false);
                 if (epWithId.Any())
                 {
                     epWithId.Last().IsNewItem = true;
@@ -103,7 +103,7 @@ namespace DodocoTales.Loader
         {
             if (first == null)
             {
-                var beginWithIdOrEarlyEnough = items.FindAll(x => x.idLost = false || DateTime.Compare(fAll.time, first.time) < 0);
+                var beginWithIdOrEarlyEnough = items.FindAll(x => x.idLost == false || DateTime.Compare(fAll.time, first.time) < 0);
                 if (beginWithIdOrEarlyEnough.Any())
                 {
                     beginWithIdOrEarlyEnough.Last().IsNewItem = true;
