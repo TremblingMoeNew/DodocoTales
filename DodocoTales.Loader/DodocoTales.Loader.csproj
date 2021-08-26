@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Compatibility\GenWishExport\DDCIGenWishExpLogImporter.cs" />
     <Compile Include="Compatibility\GenWishExport\Models\DDCIGenWishExpLogMain.cs" />
+    <Compile Include="Compatibility\KeqingNiuza\DDCIKeqingNiuzaLogImporter.cs" />
+    <Compile Include="Compatibility\KeqingNiuza\Model\DDCIKeqingNiuzaWishData.cs" />
     <Compile Include="DDCG.cs" />
     <Compile Include="DDCGClientUpdateLoader.cs" />
     <Compile Include="DDCGGachaLogMerger.cs" />

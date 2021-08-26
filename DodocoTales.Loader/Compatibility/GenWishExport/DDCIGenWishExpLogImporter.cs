@@ -17,7 +17,7 @@ namespace DodocoTales.Loader.Compatibility.GenWishExport
     public class DDCIGenWishExpLogImporter
     {
 
-        public DDCGGachaLogImportResult ConvertGWELogsToDDCLogs(string logs)
+        public DDCGGachaLogImportResult ConvertToDDCLogs(string logs)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace DodocoTales.Loader.Compatibility.GenWishExport
             {
                 if (item.Type == JTokenType.Array) 
                 {
-                    var res = ConvertToDDCCItem(item as JArray, isSimplifiedChinese);
+                    var res = ConvertToDDCItem(item as JArray, isSimplifiedChinese);
                     if (res != null) 
                     {
                         list.Add(res);
@@ -93,7 +93,7 @@ namespace DodocoTales.Loader.Compatibility.GenWishExport
             }
         }
 
-        public DDCGGachaLogImportedItem ConvertToDDCCItem(JArray item, bool isSimplifiedChinese)
+        public DDCGGachaLogImportedItem ConvertToDDCItem(JArray item, bool isSimplifiedChinese)
         {
             if (item.Count < 4) return null;
             DDCGGachaLogImportedItem ddccitem = null;
