@@ -325,9 +325,9 @@ namespace DodocoTales.Gui.View.Card
                         R4Up = rank4up.ToString()
                     };
                     int lastroundcnt = lastr5updis;
-                    var per = cnt - lastr5perdis;
+                    var per = lastroundcnt - lastr5perdis;
                     if (per < 0) per = 0;
-                    ProgressIndicator.LoadInfo(DDCVIndicatorVolume.EventCharacterNormal, inherit, per, lastroundcnt);
+                    ProgressIndicator.LoadInfo(DDCVIndicatorVolume.EventCharacterNormal, (roundcnt > 1) ? 0 : inherit, per, lastroundcnt);
                 }
                 if (DDCL.CompareLibTimeWithNow(ver.beginTime, true) < 0) break;
             }

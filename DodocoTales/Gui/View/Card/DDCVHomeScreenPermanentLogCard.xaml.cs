@@ -238,7 +238,7 @@ namespace DodocoTales.Gui.View.Card
                     };
 
                     int lastroundcnt = r5dis;
-                    ProgressIndicator.LoadInfo(DDCVIndicatorVolume.Permanent, inherit, 0, lastroundcnt);
+                    ProgressIndicator.LoadInfo(DDCVIndicatorVolume.Permanent, (roundcnt > 1) ? 0 : inherit, 0, lastroundcnt);
                 }
 
             }
