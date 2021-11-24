@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DodocoTales.Loader.Models;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace DodocoTales.Loader
 {
@@ -120,16 +121,22 @@ namespace DodocoTales.Loader
                 apipattern,
                 authkey, (int)type, pageid, lastid, size
             );
-            try
+            Thread.Sleep(200);
+
+            var stringresponse = await client.GetStringAsync(api);
+            var response = JsonConvert.DeserializeObject<DDCGGachaLogResponse>(stringresponse);
+            if (response.retcode != 0)
             {
-                var response = JsonConvert.DeserializeObject<DDCGGachaLogResponse>(await client.GetStringAsync(api));
-                if (response.retcode != 0) return null;
-                return response.data.list;
-            }
-            catch (Exception)
-            {
+                if (response.retcode == -110)
+                {
+                    Console.WriteLine("-110 visit too frequently");
+                    Thread.Sleep(1000);
+                    return await GetGachaLogAsync(authkey, pageid, type, lastid, size);
+                }
                 return null;
             }
+            return response.data.list;
+            
         }
         public async Task GetGachaLogsByTypeAsync(string authkey, List<DDCGGachaLogResponseItem> res,DDCCPoolType type, ulong endid, int size=6)
         {
@@ -164,14 +171,17 @@ namespace DodocoTales.Loader
                 EventCharacter = new List<DDCGGachaLogResponseItem>(),
                 EventWeapon = new List<DDCGGachaLogResponseItem>()
             };
-            List<Task> taskQuery = new List<Task>
-            {
-                GetGachaLogsByTypeAsync(authkey,logs.Beginner,DDCCPoolType.Beginner,DDCG.LogMerger.getLastLogId(DDCCPoolType.Beginner),size),
-                GetGachaLogsByTypeAsync(authkey,logs.Permanent,DDCCPoolType.Permanent,DDCG.LogMerger.getLastLogId(DDCCPoolType.Permanent),size),
-                GetGachaLogsByTypeAsync(authkey,logs.EventCharacter,DDCCPoolType.EventCharacter,DDCG.LogMerger.getLastLogId(DDCCPoolType.EventCharacter),size),
-                GetGachaLogsByTypeAsync(authkey,logs.EventWeapon,DDCCPoolType.EventWeapon,DDCG.LogMerger.getLastLogId(DDCCPoolType.EventWeapon),size)
-            };
-            await Task.WhenAll(taskQuery);
+            Console.WriteLine(logs);
+            //List<Task> taskQuery = new List<Task>
+            //{
+            await GetGachaLogsByTypeAsync(authkey, logs.Beginner, DDCCPoolType.Beginner, DDCG.LogMerger.getLastLogId(DDCCPoolType.Beginner), size);
+            await GetGachaLogsByTypeAsync(authkey, logs.Permanent, DDCCPoolType.Permanent, DDCG.LogMerger.getLastLogId(DDCCPoolType.Permanent), size);
+            await GetGachaLogsByTypeAsync(authkey, logs.EventCharacter, DDCCPoolType.EventCharacter, DDCG.LogMerger.getLastLogId(DDCCPoolType.EventCharacter), size);
+            await GetGachaLogsByTypeAsync(authkey, logs.EventWeapon, DDCCPoolType.EventWeapon, DDCG.LogMerger.getLastLogId(DDCCPoolType.EventWeapon), size);
+            //};
+            //await Task.WhenAll(taskQuery);
+
+            
             return logs;
         }
     }
