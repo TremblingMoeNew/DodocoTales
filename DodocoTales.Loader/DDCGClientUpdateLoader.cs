@@ -14,7 +14,7 @@ namespace DodocoTales.Loader
     public class DDCGClientUpdateLoader
     {
         public static readonly string CDN = "https://cdn.jsdelivr.net/gh/TremblingMoeNew/DodocoTales-meta@main/";
-        public static readonly string UpdateFileWebPath = "Bin/DodocoTales-v{0}.zip";
+        public static readonly string UpdateFileWebPath = "Bin/DodocoTales-v{0}";
         public static readonly string UpdateStoragePath = "update/";
         public static readonly string UpdateFilePath = "update/DodocoTales.zip";
         public static readonly string UpdateExtract = "update/DodocoTales/";
