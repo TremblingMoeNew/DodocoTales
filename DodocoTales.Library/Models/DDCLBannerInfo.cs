@@ -28,5 +28,9 @@ namespace DodocoTales.Library.Models
         [DefaultValue(false)]
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
         public bool endTimeSync { get; set; }
+
+        [DefaultValue(false)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        public bool forceGachaTypeStorage { get; set; }
     }
 }

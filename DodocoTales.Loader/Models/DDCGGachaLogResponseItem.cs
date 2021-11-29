@@ -10,7 +10,7 @@ namespace DodocoTales.Loader.Models
     public class DDCGGachaLogResponseItem
     {
         public long uid { get; set; }
-        public DDCCPoolType gacha_type { get; set; }
+        public int gacha_type { get; set; }
         public DateTime time { get; set; }
         public string name { get; set; }
         public DDCCUnitType item_type { get; set; }

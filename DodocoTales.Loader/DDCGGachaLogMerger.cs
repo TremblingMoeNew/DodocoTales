@@ -357,7 +357,8 @@ namespace DodocoTales.Loader
                 time = DDCGItem.time,
                 unittype = DDCGItem.item_type,
                 unitclass = unitclass.id,
-                name = unitclass.type == DDCCUnitType.Unknown ? DDCGItem.name : unitclass.name
+                name = unitclass.type == DDCCUnitType.Unknown ? DDCGItem.name : unitclass.name,
+                gachatype = DDCGItem.gacha_type
 
             };
         }
@@ -401,7 +402,25 @@ namespace DodocoTales.Loader
                     for (int k = banners[j].R.Count - 1; k >= 0; k--) 
                     {
                         var l = banners[j].R[k].L;
-                        if (l.Count > 0) return l.Last().id;
+                        if (l.Count > 0)
+                        {
+                            var vllist = DDCL.Banners.eventPools.FindAll(x => x.id == curlog.V[i].id);
+                            if (vllist.Count > 0)
+                            {
+                                var bllist = vllist.Last().banners.FindAll(x => x.id == banners[j].id);
+                                if (bllist.Count > 0)
+                                {
+                                    if(bllist.Last().forceGachaTypeStorage==true && l.Last().gachatype == 0)
+                                    {
+                                        banners[j].R = new List<DDCCRoundLogs>() { new DDCCRoundLogs() { epitomizedPathID = 0, L = new List<DDCCGachaLogItem>() } };
+                                        break;
+                                    }
+                                }
+                            }
+                            return l.Last().id;
+                        }
+
+                        
                     }
                 }
             }

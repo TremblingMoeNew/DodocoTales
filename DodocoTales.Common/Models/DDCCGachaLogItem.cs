@@ -24,5 +24,9 @@ namespace DodocoTales.Common.Models
         [DefaultValue(false)]
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public bool idLost { get; set; }
+
+        [DefaultValue(0)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        public int gachatype { get; set; }
     }
 }
