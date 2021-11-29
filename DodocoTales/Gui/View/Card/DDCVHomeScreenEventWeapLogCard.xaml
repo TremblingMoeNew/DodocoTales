@@ -68,11 +68,13 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.RowSpan="2" Style="{StaticResource Style-Card-Title-H2}" Content="{Binding ElementName=Root,Path=Current.Title}"/>
-                        <TextBlock Grid.Row="2" Margin="20 0" Text="{Binding ElementName=Root,Path=Current.Subtitle}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="{Binding ElementName=Root,Path=Current.BannerUpUnits}"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Text="{Binding ElementName=Root,Path=Current.BannerTime}"/>
+                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="20 0" Text="{Binding ElementName=Root,Path=Current.Subtitle}"/>
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="{Binding ElementName=Root,Path=Current.BannerUpUnits}"/>
+                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Right" Text="{Binding ElementName=Root,Path=Current.BannerTime}"/>
                     </Grid>
 
                     <Grid Margin="40 5">
