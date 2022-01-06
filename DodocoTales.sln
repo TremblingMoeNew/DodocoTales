@@ -3,7 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales.Common", "DodocoTales.Common\DodocoTales.Common.csproj", "{D9DF5F2E-BB29-4F68-8E70-2DF2A0148AF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales.Loader", "DodocoTales.Loader\DodocoTales.Loader.csproj", "{58AEE58B-3BD2-4E2A-8702-3F2D53A3AB57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales", "DodocoTales\DodocoTales.csproj", "{3419E9D8-DC9C-4C9C-86BB-D97A1D88E3EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DodocoTales.Library", "DodocoTales.Library\DodocoTales.Library.csproj", "{E24BBF17-583D-4637-8498-A8C35C2661D1}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9DF5F2E-BB29-4F68-8E70-2DF2A0148AF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DF5F2E-BB29-4F68-8E70-2DF2A0148AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DF5F2E-BB29-4F68-8E70-2DF2A0148AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DF5F2E-BB29-4F68-8E70-2DF2A0148AF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58AEE58B-3BD2-4E2A-8702-3F2D53A3AB57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58AEE58B-3BD2-4E2A-8702-3F2D53A3AB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58AEE58B-3BD2-4E2A-8702-3F2D53A3AB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58AEE58B-3BD2-4E2A-8702-3F2D53A3AB57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3419E9D8-DC9C-4C9C-86BB-D97A1D88E3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3419E9D8-DC9C-4C9C-86BB-D97A1D88E3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3419E9D8-DC9C-4C9C-86BB-D97A1D88E3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3419E9D8-DC9C-4C9C-86BB-D97A1D88E3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E24BBF17-583D-4637-8498-A8C35C2661D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E24BBF17-583D-4637-8498-A8C35C2661D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E24BBF17-583D-4637-8498-A8C35C2661D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E24BBF17-583D-4637-8498-A8C35C2661D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
