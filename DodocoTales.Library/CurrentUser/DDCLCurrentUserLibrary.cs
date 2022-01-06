@@ -1,6 +1,7 @@
 ﻿using DodocoTales.Common.Enums;
 using DodocoTales.Library.CurrentUser.Models;
 using DodocoTales.Library.StoragedUser.Models;
+using DodocoTales.Logs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,10 +91,9 @@ namespace DodocoTales.Library.CurrentUser
 
         public bool RebuildBasicLibrary()  // TODO
         {
-            // TODO: Log
             if (OriginalLogs == null)
             {
-                // TODO: Log
+                DDCLog.Warning(DCLN.Lib, String.Format("Failed to rebuild cache: nullptr"));
                 // TODO: Signal
                 return false;
             }
@@ -154,13 +154,12 @@ namespace DodocoTales.Library.CurrentUser
                 }
             }
 
-            // TODO: Log
+            DDCLog.Info(DCLN.Lib, String.Format("Userdata cache rebuilded"));
             return true;
         }
 
-        public bool RebuildGreaterRoundsLibrary() // TODO
+        public bool RebuildGreaterRoundsLibrary()
         {
-            // TODO: Log
             GreaterRounds.Clear();
             var noup = new List<DDCCPoolType> { DDCCPoolType.Beginner, DDCCPoolType.Permanent };
             var haveup = new List<DDCCPoolType> { DDCCPoolType.EventCharacter, DDCCPoolType.EventWeapon };
@@ -278,25 +277,37 @@ namespace DodocoTales.Library.CurrentUser
                     GreaterRounds.Add(greaterround);
                 }
             }
-             // TODO: Log
+
+            // TODO: Signal
+            DDCLog.Info(DCLN.Lib, String.Format("Round cache rebuilded"));
             return true;
         }
 
         public bool SwapUser(DDCLUserGachaLog userlog)
         {
-            // TODO: Log
-            // TODO: Signal
+            if (userlog == null)
+            {
+                DDCLog.Warning(DCLN.Lib, String.Format("Failed to swap user: nullptr"));
+            }
+            if (userlog == OriginalLogs)
+            {
+                return true;
+            }
+            DDCLog.Info(DCLN.Lib, String.Format("Swapping user. UID:{0}", userlog.uid));
+
+            // TODO:Signal
             var old = OriginalLogs;
             OriginalLogs = userlog;
             if (!RebuildBasicLibrary())
             {
                 OriginalLogs = old;
-                // TODO: Log
+                DDCLog.Info(DCLN.Lib, String.Format("Swap cancelled."));
                 // TODO: Signal
                 return false;
             }
             RebuildGreaterRoundsLibrary();
-            // TODO: Log
+            // TODO: Signal
+            DDCLog.Info(DCLN.Lib, String.Format("Swap completed."));
             return true;
         }
     }
