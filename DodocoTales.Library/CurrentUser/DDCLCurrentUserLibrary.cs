@@ -22,15 +22,15 @@ namespace DodocoTales.Library.CurrentUser
 
         // 查找
         // Banners
-        public DDCLBannerLogItem GetBanner(int id)
+        public DDCLBannerLogItem GetBanner(ulong id)
             => Banners.Find(x => x.BannerId == id);
-        public int GetBannerIndex(int id)
+        public int GetBannerIndex(ulong id)
             => Banners.FindIndex(x => x.BannerId == id);
-        public List<DDCLBannerLogItem> GetBannersByVersion(int versionid)
+        public List<DDCLBannerLogItem> GetBannersByVersion(ulong versionid)
             => Banners.FindAll(x => x.VersionId == versionid);
         public List<DDCLBannerLogItem> GetBannersByCategorizedType(DDCCPoolType type)
             => Banners.FindAll(x => x.CategorizedGachaType == type);
-        public List<DDCLBannerLogItem> GetBannersByVersionAndType(int versionid, DDCCPoolType type)
+        public List<DDCLBannerLogItem> GetBannersByVersionAndType(ulong versionid, DDCCPoolType type)
             => Banners.FindAll(x => x.VersionId == versionid && x.CategorizedGachaType == type);
         // GreaterRounds
         // BasicRounds
@@ -81,7 +81,7 @@ namespace DodocoTales.Library.CurrentUser
                     dis++;
                     if (Logs[i].Rank == 4)
                     {
-                        if (DDCL.BannerLib.GetBanner(Logs[i].BannerId)?.rank4Up.Exists(x => x == Logs[i].UnitClass) ?? false) break;
+                        if (DDCL.BannerLib.GetBanner(Logs[i].VersionId, Logs[i].BannerId)?.rank4Up.Exists(x => x == Logs[i].UnitClass) ?? false) break;
                     }
                 }
             }
@@ -210,13 +210,13 @@ namespace DodocoTales.Library.CurrentUser
                 foreach(var bannerlog in banners)
                 {
                     bannerlog.GreaterRounds.Clear();
-                    var bannerlibinfo = DDCL.BannerLib.GetBanner(bannerlog.BannerId);
+                    var bannerlibinfo = DDCL.BannerLib.GetBanner(bannerlog.VersionId,bannerlog.BannerId);
 
                     if (buf.Count > 0)
                     {
                         int removecnt = 1 + buf.FindIndex(
                             x => x.Logs.Count > 0 && x.Logs.Last().Rank == 5
-                            && (DDCL.BannerLib.GetBanner(x.BannerId)?.rank5Up.Contains(x.Logs.Last().UnitClass) ?? false)
+                            && (DDCL.BannerLib.GetBanner(x.VersionId,x.BannerId)?.rank5Up.Contains(x.Logs.Last().UnitClass) ?? false)
                         );
                         buf.RemoveRange(0, removecnt);
                     }
@@ -232,7 +232,7 @@ namespace DodocoTales.Library.CurrentUser
                             {
                                 int removecnt = 1 + buf.FindIndex(
                                     x => x.Logs.Count > 0 && x.Logs.Last().Rank == 5
-                                    && (DDCL.BannerLib.GetBanner(x.BannerId)?.rank5Up.Contains(x.Logs.Last().UnitClass) ?? false)
+                                    && (DDCL.BannerLib.GetBanner(x.VersionId,x.BannerId)?.rank5Up.Contains(x.Logs.Last().UnitClass) ?? false)
                                 );
                                 buf.RemoveRange(0, removecnt);
                             }

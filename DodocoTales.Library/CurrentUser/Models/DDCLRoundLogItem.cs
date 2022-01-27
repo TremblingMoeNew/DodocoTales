@@ -10,11 +10,11 @@ namespace DodocoTales.Library.CurrentUser.Models
 {
     public class DDCLRoundLogItem
     {
-        public int VersionId { get; set; }
-        public int BannerId { get; set; }
+        public ulong VersionId { get; set; }
+        public ulong BannerId { get; set; }
         public DDCCPoolType CategorizedGachaType { get; set; }
 
-        public int EpitomizedPathID { get; set; }
+        public ulong EpitomizedPathID { get; set; }
 
         public List<DDCLGachaLogItem> Logs { get; set; }
 

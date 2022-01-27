@@ -9,9 +9,9 @@ namespace DodocoTales.Library.CurrentUser.Models
 {
     public class DDCLBannerLogItem
     {
-        public int BannerId { get; set; }
+        public ulong BannerId { get; set; }
 
-        public int VersionId { get; set; }
+        public ulong VersionId { get; set; }
         public DDCCPoolType CategorizedGachaType { get; set; }
 
         public List<DDCLRoundLogItem> BasicRounds { get; set; }

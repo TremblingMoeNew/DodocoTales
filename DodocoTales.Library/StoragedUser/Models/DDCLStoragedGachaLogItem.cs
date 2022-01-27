@@ -16,13 +16,13 @@ namespace DodocoTales.Library.StoragedUser.Models
         public ulong storagedid { get; set; }
 
         public ulong id { get; set; }
-        public int unitclass { get; set; }
+        public ulong unitclass { get; set; }
         public string name { get; set; }
         public DateTime time { get; set; }
 
         // as backup
         public string code { get; set; }
-        public int rank { get; set; }
+        public ulong rank { get; set; }
         public DDCCUnitType unittype { get; set; }
 
         [DefaultValue(false)]

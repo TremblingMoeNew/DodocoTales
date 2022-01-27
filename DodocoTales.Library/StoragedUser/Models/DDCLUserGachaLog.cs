@@ -9,10 +9,10 @@ namespace DodocoTales.Library.StoragedUser.Models
 {
     public class DDCLUserGachaLog
     {
-        public long uid { get; set; }
+        public ulong uid { get; set; }
         public List<DDCLStoragedVersionLogs> V { get; set; }
-        public long lastUpdateBannerLibraryVersion { get; set; }
-        public long lastUpdateUnitLibraryVersion { get; set; }
+        public ulong lastUpdateBannerLibraryVersion { get; set; }
+        public ulong lastUpdateUnitLibraryVersion { get; set; }
         public DDCCTimeZone zone { get; set; }
     }
 }

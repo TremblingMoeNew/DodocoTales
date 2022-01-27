@@ -8,7 +8,7 @@ namespace DodocoTales.Library.BannerLibrary.Models
 {
     public class DDCLVersionInfo
     {
-        public int id { get; set; }
+        public ulong id { get; set; }
         public string version { get; set; }
         public string name { get; set; }
         public DateTime beginTime { get; set; }

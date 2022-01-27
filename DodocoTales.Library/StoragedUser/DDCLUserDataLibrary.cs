@@ -18,17 +18,17 @@ namespace DodocoTales.Library.StoragedUser
         public readonly string UserDataFileRegexPattern = @"userlog_(\d+)\.json";
         public readonly string UserDataFileOpenPattern = "userdata/userlog_{0}.json";
 
-        public Dictionary<long, DDCLUserGachaLog> U { get; set; }
+        public Dictionary<ulong, DDCLUserGachaLog> U { get; set; }
 
         public DDCLUserDataLibrary()
         {
-            U = new Dictionary<long, DDCLUserGachaLog>();
+            U = new Dictionary<ulong, DDCLUserGachaLog>();
         }
-        public DDCLUserGachaLog createEmptyLocalGachaLog(long uid)
+        public DDCLUserGachaLog createEmptyLocalGachaLog(ulong uid)
         {
             return new DDCLUserGachaLog { uid = uid, V = new List<DDCLStoragedVersionLogs>() };
         }
-        public void addEmptyUser(long uid)
+        public void addEmptyUser(ulong uid)
         {
             if (U.ContainsKey(uid)) return;
             var log = createEmptyLocalGachaLog(uid);
@@ -36,7 +36,7 @@ namespace DodocoTales.Library.StoragedUser
             // TODO: Signal
             DDCLog.Info(DCLN.Lib, String.Format("New user added. UID:{0}", uid));
         }
-        public async Task loadLocalGachaLogByUidAsync(long uid)
+        public async Task loadLocalGachaLogByUidAsync(ulong uid)
         {
             string logfile = String.Format(UserDataFileOpenPattern, uid);
             DDCLog.Info(DCLN.Lib, String.Format("Loading Userdata file: {0}", logfile));
@@ -56,7 +56,7 @@ namespace DodocoTales.Library.StoragedUser
                     DDCLog.Warning(DCLN.Lib, String.Format("{0}, UID:{1}", logfile, response.uid));
                 }
                 U.Add(response.uid, response);
-                DDCLog.Info(DCLN.Lib, String.Format("Userdata loaded. UID:{0}", response.uid));
+                DDCLog.Info(DCLN.Lib, String.Format("Userdata successfully loaded. UID:{0}", response.uid));
 
             }
             catch (Exception e)
@@ -75,10 +75,10 @@ namespace DodocoTales.Library.StoragedUser
             foreach (var f in files)
             {
                 var result = Regex.Match(f.Name, UserDataFileRegexPattern);
-                long uid = 0;
+                ulong uid = 0;
                 try
                 {
-                    uid = Convert.ToInt64(result.Groups[1].Value);
+                    uid = Convert.ToUInt64(result.Groups[1].Value);
                 }
                 catch (Exception e)
                 {
@@ -87,7 +87,7 @@ namespace DodocoTales.Library.StoragedUser
             }
             await Task.WhenAll(taskQuery);
             // TODO: Signal
-            DDCLog.Info(DCLN.Lib, "Userdata loaded.");
+            DDCLog.Info(DCLN.Lib, "Userdata successfully loaded.");
         }
         public async Task saveUserAsync(DDCLUserGachaLog userlog)
         {
@@ -102,7 +102,7 @@ namespace DodocoTales.Library.StoragedUser
                 await writer.WriteAsync(serialized);
                 await writer.FlushAsync();
                 stream.Close();
-                DDCLog.Info(DCLN.Lib, String.Format("Userdata saved. UID:{0}", userlog.uid));
+                DDCLog.Info(DCLN.Lib, String.Format("Userdata successfully saved. UID:{0}", userlog.uid));
             }
             catch (Exception e)
             {

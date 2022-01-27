@@ -31,7 +31,7 @@ namespace DodocoTales.Logs
 
         public static void Log(DDCLogType Type, DCLN Namespace, string Content)
         {
-            var text = String.Format(LogPattern, Type, Namespace, Content);
+            var text = String.Format(LogPattern, Type, DateTime.Now, Namespace, Content);
             using (StreamWriter writer = new StreamWriter(LogFilePath,true))
             {
                 writer.WriteLine(text);

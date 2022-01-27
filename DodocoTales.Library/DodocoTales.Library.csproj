@@ -60,6 +60,8 @@
     <Compile Include="StoragedUser\Models\DDCLStoragedRoundLogs.cs" />
     <Compile Include="StoragedUser\Models\DDCLStoragedVersionLogs.cs" />
     <Compile Include="StoragedUser\Models\DDCLUserGachaLog.cs" />
+    <Compile Include="UnitLibrary\DDCLUnitLibrary.cs" />
+    <Compile Include="UnitLibrary\Models\DDCLUnitInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

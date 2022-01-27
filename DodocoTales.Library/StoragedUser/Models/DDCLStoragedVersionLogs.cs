@@ -8,7 +8,7 @@ namespace DodocoTales.Library.StoragedUser.Models
 {
     public class DDCLStoragedVersionLogs
     {
-        public int id { get; set; }
+        public ulong id { get; set; }
         public List<DDCLStoragedBannerLogs> B { get; set; }
     }
 }
