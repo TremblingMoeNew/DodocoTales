@@ -1,4 +1,5 @@
-﻿using DodocoTales.Common.Enums;
+﻿using DodocoTales.Common;
+using DodocoTales.Common.Enums;
 using DodocoTales.Library.CurrentUser.Models;
 using DodocoTales.Library.StoragedUser.Models;
 using DodocoTales.Logs;
@@ -14,18 +15,25 @@ namespace DodocoTales.Library.CurrentUser
     {
         public DDCLUserGachaLog OriginalLogs { get; set; }
 
-        public List<DDCLGachaLogItem> Logs { get; set; }
+        public SortedList<ulong,DDCLGachaLogItem> Logs { get; set; }
         public List<DDCLRoundLogItem> BasicRounds { get; set; }
         public List<DDCLRoundLogItem> GreaterRounds { get; set; }
         public List<DDCLBannerLogItem> Banners { get; set; }
 
+        public DDCLCurrentUserLibrary()
+        {
+            Logs = new SortedList<ulong, DDCLGachaLogItem>();
+            BasicRounds = new List<DDCLRoundLogItem>();
+            GreaterRounds = new List<DDCLRoundLogItem>();
+            Banners = new List<DDCLBannerLogItem>();
+        }
 
         // 查找
         // Banners
-        public DDCLBannerLogItem GetBanner(ulong id)
-            => Banners.Find(x => x.BannerId == id);
-        public int GetBannerIndex(ulong id)
-            => Banners.FindIndex(x => x.BannerId == id);
+        public DDCLBannerLogItem GetBanner(ulong versionid, ulong bannerid)
+            => Banners.Find(x => x.VersionId == versionid && x.BannerId == bannerid);
+        public int GetBannerIndex(ulong versionid, ulong bannerid)
+            => Banners.FindIndex(x => x.VersionId == versionid && x.BannerId == bannerid);
         public List<DDCLBannerLogItem> GetBannersByVersion(ulong versionid)
             => Banners.FindAll(x => x.VersionId == versionid);
         public List<DDCLBannerLogItem> GetBannersByCategorizedType(DDCCPoolType type)
@@ -35,18 +43,19 @@ namespace DodocoTales.Library.CurrentUser
         // GreaterRounds
         // BasicRounds
         // Logs
-        public DDCLGachaLogItem GetItem(ulong id)
-            => Logs.Find(x => x.StoragedId == id);
+        public DDCLGachaLogItem GetItem(ulong internalid)
+            => Logs[internalid];
         public int GetItemIndex(ulong id)
-            => Logs.FindIndex(x => x.StoragedId == id);
+            => Logs.IndexOfKey(id);
         public int GetLastRank4Distance(ulong id)
         {
             int idx = GetItemIndex(id);
-            DDCLGachaLogItem startitem = Logs[idx];
+            var logs_values = Logs.Values;
+            DDCLGachaLogItem startitem = logs_values[idx];
             int dis = 0;
             for(int i = idx - 1; i >= 0; i--)
             {
-                if(Logs[i].CategorizedGachaType==startitem.CategorizedGachaType)
+                if(logs_values[i].CategorizedGachaType==startitem.CategorizedGachaType)
                 {
                     dis++;
                     if (startitem.Rank == 4) break;
@@ -57,14 +66,16 @@ namespace DodocoTales.Library.CurrentUser
         public int GetLastRank4Distance(ulong id, DDCCUnitType type)
         {
             int idx = GetItemIndex(id);
-            DDCLGachaLogItem startitem = Logs[idx];
+            var logs_values = Logs.Values;
+            DDCLGachaLogItem startitem = logs_values[idx];
             int dis = 0;
             for (int i = idx - 1; i >= 0; i--)
             {
-                if (Logs[i].CategorizedGachaType == startitem.CategorizedGachaType)
+                var currentitem = logs_values[i];
+                if (currentitem.CategorizedGachaType == startitem.CategorizedGachaType)
                 {
                     dis++;
-                    if (Logs[i].Rank == 4 && Logs[i].UnitType == type) break;
+                    if (currentitem.Rank == 4 && currentitem.UnitType == type) break;
                 }
             }
             return dis;
@@ -72,16 +83,18 @@ namespace DodocoTales.Library.CurrentUser
         public int GetLastRank4UpDistance(ulong id)
         {
             int idx = GetItemIndex(id);
-            DDCLGachaLogItem startitem = Logs[idx];
+            var logs_values = Logs.Values;
+            DDCLGachaLogItem startitem = logs_values[idx];
             int dis = 0;
             for (int i = idx - 1; i >= 0; i--)
             {
-                if (Logs[i].CategorizedGachaType == startitem.CategorizedGachaType)
+                var currentitem = logs_values[i];
+                if (currentitem.CategorizedGachaType == startitem.CategorizedGachaType)
                 {
                     dis++;
-                    if (Logs[i].Rank == 4)
+                    if (currentitem.Rank == 4)
                     {
-                        if (DDCL.BannerLib.GetBanner(Logs[i].VersionId, Logs[i].BannerId)?.rank4Up.Exists(x => x == Logs[i].UnitClass) ?? false) break;
+                        if (DDCL.BannerLib.GetBanner(currentitem.VersionId, currentitem.BannerId)?.rank4Up.Exists(x => x == currentitem.UnitClass) ?? false) break;
                     }
                 }
             }
@@ -106,6 +119,7 @@ namespace DodocoTales.Library.CurrentUser
             {
                 foreach(var blog in vlog.B)
                 {
+                    int t_idx = 0;
                     DDCLBannerLogItem bannerlog = new DDCLBannerLogItem
                     {
                         VersionId = vlog.id,
@@ -113,7 +127,9 @@ namespace DodocoTales.Library.CurrentUser
                         CategorizedGachaType = blog.poolType,
                         BasicRounds = new List<DDCLRoundLogItem>(),
                         GreaterRounds = new List<DDCLRoundLogItem>(),
-                        Logs = new List<DDCLGachaLogItem>()
+                        Logs = new List<DDCLGachaLogItem>(),
+                        OriginalVersion = vlog,
+                        OriginalBanner = blog
                     };
                     Banners.Add(bannerlog);
                     foreach(var rlog in blog.R)
@@ -125,7 +141,7 @@ namespace DodocoTales.Library.CurrentUser
                             CategorizedGachaType = blog.poolType,
                             EpitomizedPathID = rlog.epitomizedPathID,
                             Logs = new List<DDCLGachaLogItem>(),
-                            Original = rlog
+                            OriginalRound = rlog
                         };
                         BasicRounds.Add(basicround);
                         bannerlog.BasicRounds.Add(basicround);
@@ -137,7 +153,7 @@ namespace DodocoTales.Library.CurrentUser
                                 BannerId = blog.id,
                                 CategorizedGachaType = blog.poolType,
                                 Id = ilog.id,
-                                StoragedId = ilog.storagedid,
+                                InternalId = GenerateNextInternalId(ilog.time, ref t_idx),
                                 Time = ilog.time,
                                 GachaType = ilog.gachatype,
                                 Rank = ilog.rank,
@@ -145,7 +161,7 @@ namespace DodocoTales.Library.CurrentUser
                                 UnitType = ilog.unittype,
                                 IdLost = ilog.idLost
                             };
-                            Logs.Add(logitem);
+                            Logs.Add(logitem.InternalId, logitem);
                             basicround.Logs.Add(logitem);
                             bannerlog.Logs.Add(logitem);
                         }
@@ -182,7 +198,7 @@ namespace DodocoTales.Library.CurrentUser
                                 CategorizedGachaType = bannerlog.CategorizedGachaType,
                                 EpitomizedPathID = 0,
                                 Logs = new List<DDCLGachaLogItem>(buf),
-                                Original = null
+                                OriginalRound = null
                             };
                             bannerlog.GreaterRounds.Add(greater);
                             GreaterRounds.Add(greater);
@@ -196,7 +212,7 @@ namespace DodocoTales.Library.CurrentUser
                         CategorizedGachaType = bannerlog.CategorizedGachaType,
                         EpitomizedPathID = 0,
                         Logs = new List<DDCLGachaLogItem>(buf),
-                        Original = null
+                        OriginalRound = null
                     };
                     bannerlog.GreaterRounds.Add(greaterround);
                     GreaterRounds.Add(greaterround);
@@ -288,27 +304,44 @@ namespace DodocoTales.Library.CurrentUser
             if (userlog == null)
             {
                 DDCLog.Warning(DCLN.Lib, String.Format("Failed to swap user: nullptr"));
+                return false;
             }
             if (userlog == OriginalLogs)
             {
                 return true;
             }
             DDCLog.Info(DCLN.Lib, String.Format("Swapping user. UID:{0}", userlog.uid));
-
-            // TODO:Signal
+            DDCS.Emit_CurUserSwapping(userlog.uid);
             var old = OriginalLogs;
             OriginalLogs = userlog;
             if (!RebuildBasicLibrary())
             {
                 OriginalLogs = old;
                 DDCLog.Info(DCLN.Lib, String.Format("Swap cancelled."));
-                // TODO: Signal
+                DDCS.Emit_CurUserSwapReverted();
                 return false;
             }
             RebuildGreaterRoundsLibrary();
-            // TODO: Signal
+            DDCS.Emit_CurUserSwapCompleted(userlog.uid);
             DDCLog.Info(DCLN.Lib, String.Format("Swap completed."));
             return true;
+        }
+
+        public bool SwapUser(ulong uid)
+        {
+            return SwapUser(DDCL.UserDataLib.GetUserLogByUid(uid));
+        }
+
+        DateTime _PreviousGeneratedIIDTime=DateTime.Now;
+        public ulong GenerateNextInternalId(DateTime time,ref int index)
+        {
+            if (DateTime.Compare(_PreviousGeneratedIIDTime, time) != 0)
+            {
+                index = 0;
+                _PreviousGeneratedIIDTime = time;
+            }
+            return DDCL.GenerateInternalId(time, 5, index++);
+
         }
     }
 }

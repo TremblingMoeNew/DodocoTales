@@ -14,10 +14,12 @@ namespace DodocoTales.Logs
     }
     public enum DCLN
     {
+        Log,        // DodocoTales.Logs        (DodocoTales.Common)
         Common,     // DodocoTales.Common      (DodocoTales.Common)
         Lib,        // DodocoTales.Library     (DodocoTales.Library)
-        Log,        // DodocoTales.Logs        (DodocoTales.Common)
-        
+        Loader,
+        Gui,
+        Debug,
 
     }
 }

@@ -50,6 +50,9 @@
     <Compile Include="Enums\DDCCTimeZone.cs" />
     <Compile Include="Enums\DDCCUnitType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Signals\DDCS_Core.cs" />
+    <Compile Include="Signals\DDCS_Lib.cs" />
+    <Compile Include="Signals\DDCS_Loader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

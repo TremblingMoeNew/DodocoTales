@@ -1,4 +1,5 @@
-﻿using DodocoTales.Common.Enums;
+﻿using DodocoTales.Common;
+using DodocoTales.Common.Enums;
 using DodocoTales.Library.BannerLibrary.Models;
 using DodocoTales.Logs;
 using Newtonsoft.Json;
@@ -19,6 +20,12 @@ namespace DodocoTales.Library.BannerLibrary
         public List<DDCLVersionInfo> Versions { get; set; }
         public List<DDCLBannerInfo> Banners { get; set; }
 
+        public DDCLBannerLibrary()
+        {
+            Versions = new List<DDCLVersionInfo>();
+            Banners = new List<DDCLBannerInfo>();
+        }
+
         public DDCLVersionInfo GetVersion(ulong versionid)
             => Versions.Find(x => x.id == versionid);
 
@@ -37,6 +44,7 @@ namespace DodocoTales.Library.BannerLibrary
         public ulong ConvertToInternalBannerId(ulong versionid, ulong bannerid)
             => versionid * 10000000 + bannerid;
 
+
         public async Task<bool> LoadModelAsync()
         {
             try
@@ -50,11 +58,11 @@ namespace DodocoTales.Library.BannerLibrary
             {
                 model = null;
                 DDCLog.Error(DCLN.Lib, "Failed to load bannerlib.");
-                // Signal
+                DDCS.Emit_BannerLibReloadFailed();
                 return false;
             }
             DDCLog.Info(DCLN.Lib, "Bannerlib deserialized.");
-            //  Signal
+            DDCS.Emit_BannerLibDeserialized();
             return true;
         }
 
@@ -125,7 +133,8 @@ namespace DodocoTales.Library.BannerLibrary
                 return false;
             }
             RebuildLibrary();
-            DDCLog.Info(DCLN.Lib, "BannerLib loaded.");
+            DDCLog.Info(DCLN.Lib, "BannerLib successfully loaded.");
+            DDCS.Emit_BannerLibReloadCompleted();
             return true;
         }
     }

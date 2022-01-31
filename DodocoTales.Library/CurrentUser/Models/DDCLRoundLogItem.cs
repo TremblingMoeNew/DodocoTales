@@ -18,6 +18,6 @@ namespace DodocoTales.Library.CurrentUser.Models
 
         public List<DDCLGachaLogItem> Logs { get; set; }
 
-        public DDCLStoragedRoundLogs Original { get; set; }
+        public DDCLStoragedRoundLogs OriginalRound { get; set; }
     }
 }

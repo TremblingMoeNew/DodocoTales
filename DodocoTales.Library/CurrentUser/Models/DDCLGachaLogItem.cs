@@ -13,7 +13,7 @@ namespace DodocoTales.Library.CurrentUser.Models
     public class DDCLGachaLogItem
     {
         public ulong Id { get; set; }
-        public ulong StoragedId { get; set; }
+        public ulong InternalId { get; set; }
         public ulong UnitClass { get; set; }
         public DateTime Time { get; set; }
 
@@ -26,5 +26,6 @@ namespace DodocoTales.Library.CurrentUser.Models
         public ulong VersionId { get; set; }
         public ulong BannerId { get; set; }
         public DDCCPoolType CategorizedGachaType { get; set; }
+
     }
 }

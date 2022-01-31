@@ -54,7 +54,7 @@ namespace DodocoTales.Library.BannerLibrary.Models
                 beginTimeSync = this.beginTimeSync,
                 endTimeSync = this.endTimeSync,
                 forceGachaTypeStorage = this.forceGachaTypeStorage,
-                internalId = this.internalId
+                InternalId = this.InternalId
             };
         }
     }

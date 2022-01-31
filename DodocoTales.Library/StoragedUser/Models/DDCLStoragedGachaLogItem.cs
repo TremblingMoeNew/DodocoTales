@@ -11,9 +11,6 @@ namespace DodocoTales.Library.StoragedUser.Models
 {
     public class DDCLStoragedGachaLogItem
     {
-        [DefaultValue(0)]
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-        public ulong storagedid { get; set; }
 
         public ulong id { get; set; }
         public ulong unitclass { get; set; }

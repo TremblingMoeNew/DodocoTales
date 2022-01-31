@@ -1,4 +1,5 @@
-﻿using DodocoTales.Library.StoragedUser.Models;
+﻿using DodocoTales.Common;
+using DodocoTales.Library.StoragedUser.Models;
 using DodocoTales.Logs;
 using Newtonsoft.Json;
 using System;
@@ -24,22 +25,21 @@ namespace DodocoTales.Library.StoragedUser
         {
             U = new Dictionary<ulong, DDCLUserGachaLog>();
         }
-        public DDCLUserGachaLog createEmptyLocalGachaLog(ulong uid)
+        public DDCLUserGachaLog CreateEmptyLocalGachaLog(ulong uid)
         {
             return new DDCLUserGachaLog { uid = uid, V = new List<DDCLStoragedVersionLogs>() };
         }
-        public void addEmptyUser(ulong uid)
+        public void TryAddEmptyUser(ulong uid)
         {
             if (U.ContainsKey(uid)) return;
-            var log = createEmptyLocalGachaLog(uid);
+            var log = CreateEmptyLocalGachaLog(uid);
             U.Add(uid, log);
-            // TODO: Signal
             DDCLog.Info(DCLN.Lib, String.Format("New user added. UID:{0}", uid));
         }
-        public async Task loadLocalGachaLogByUidAsync(ulong uid)
+        public async Task LoadLocalGachaLogByUidAsync(ulong uid)
         {
             string logfile = String.Format(UserDataFileOpenPattern, uid);
-            DDCLog.Info(DCLN.Lib, String.Format("Loading Userdata file: {0}", logfile));
+            DDCLog.Info(DCLN.Lib, String.Format("Loading userlog file: {0}", logfile));
             try
             {
                 var stream = File.Open(logfile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
@@ -47,8 +47,8 @@ namespace DodocoTales.Library.StoragedUser
                 var response = JsonConvert.DeserializeObject<DDCLUserGachaLog>(await reader.ReadToEndAsync());
                 if (U.ContainsKey(response.uid))
                 {
-                    // TODO: Signal
-                    DDCLog.Warning(DCLN.Lib, String.Format("Userdata conflict. UID:{0}", response.uid));
+                    DDCS.Emit_UserLibUidDeplicated(response.uid);
+                    DDCLog.Warning(DCLN.Lib, String.Format("Userlog deplicated. UID:{0}", response.uid));
                     return;
                 }
                 if (uid != response.uid)
@@ -56,16 +56,15 @@ namespace DodocoTales.Library.StoragedUser
                     DDCLog.Warning(DCLN.Lib, String.Format("{0}, UID:{1}", logfile, response.uid));
                 }
                 U.Add(response.uid, response);
-                DDCLog.Info(DCLN.Lib, String.Format("Userdata successfully loaded. UID:{0}", response.uid));
+                DDCLog.Info(DCLN.Lib, String.Format("Userlog successfully loaded. UID:{0}", response.uid));
 
             }
             catch (Exception e)
             {
-                DDCLog.Error(DCLN.Lib, String.Format("Failed to load userdata. UID:{0}", uid), e);
-                // TODO: Signal
+                DDCLog.Error(DCLN.Lib, String.Format("Failed to load userlog. UID:{0}", uid), e);
             }
         }
-        public async Task loadLocalGachaLogsAsync()
+        public async Task LoadLocalGachaLogsAsync()
         {
             DDCLog.Info(DCLN.Lib, "Loading userdata...");
             DirectoryInfo dir = new DirectoryInfo(UserDataDirPath);
@@ -83,13 +82,13 @@ namespace DodocoTales.Library.StoragedUser
                 catch (Exception e)
                 {
                 }
-                taskQuery.Add(loadLocalGachaLogByUidAsync(uid));
+                taskQuery.Add(LoadLocalGachaLogByUidAsync(uid));
             }
             await Task.WhenAll(taskQuery);
-            // TODO: Signal
+            DDCS.Emit_UserLibReloadCompleted();
             DDCLog.Info(DCLN.Lib, "Userdata successfully loaded.");
         }
-        public async Task saveUserAsync(DDCLUserGachaLog userlog)
+        public async Task SaveUserAsync(DDCLUserGachaLog userlog)
         {
             if (userlog == null) return;
             string logfile = String.Format("userdata/userlog_{0}.json", userlog.uid);
@@ -102,15 +101,21 @@ namespace DodocoTales.Library.StoragedUser
                 await writer.WriteAsync(serialized);
                 await writer.FlushAsync();
                 stream.Close();
-                DDCLog.Info(DCLN.Lib, String.Format("Userdata successfully saved. UID:{0}", userlog.uid));
+                DDCS.Emit_UserlogSaveCompleted();
+                DDCLog.Info(DCLN.Lib, String.Format("Userlog successfully saved. UID:{0}", userlog.uid));
             }
             catch (Exception e)
             {
-                // TODO: Signal
-                DDCLog.Error(DCLN.Lib, String.Format("Failed to save userdata. UID:{0}", userlog.uid), e);
+                DDCS.Emit_UserlogSaveFailed();
+                DDCLog.Error(DCLN.Lib, String.Format("Failed to save userlog. UID:{0}", userlog.uid), e);
             }
 
         }
 
+        public DDCLUserGachaLog GetUserLogByUid(ulong uid)
+        {
+            TryAddEmptyUser(uid);
+            return U[uid];
+        }
     }
 }

@@ -9,13 +9,13 @@ namespace DodocoTales.Logs
 {
     public static partial class DDCLog
     {
-        public static readonly string LogPath = "logs";
-        public static readonly string LogFilePattern = "DodocoTales_Log_{0:G}.txt";
+        public static readonly string LogPath = "Logs";
+        public static readonly string LogFilePattern = "DodocoTales_Log_{0:yyyy-MM-dd hh-mm-ss}.txt";
         public static readonly string LogFilePath;
-        public static readonly string LogPattern = "[0][{1:G}][{2}]{3}";
+        public static readonly string LogPattern = "[{1:G}][{0}/{2}]{3}";
         static DDCLog()
         {
-            LogFilePath = String.Format(LogFilePattern, DateTime.Now);
+            LogFilePath = LogPath + '/' + String.Format(LogFilePattern, DateTime.Now);
             DirectoryInfo dir = new DirectoryInfo(LogPath);
             if (!dir.Exists) dir.Create();
         }
@@ -37,7 +37,7 @@ namespace DodocoTales.Logs
                 writer.WriteLine(text);
             }
         }
-        public static  void Info(DCLN Namespace,string info)
+        public static void Info(DCLN Namespace,string info)
         {
             Log(DDCLogType.Info, Namespace, info);
         }

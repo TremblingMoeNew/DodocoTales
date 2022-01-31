@@ -1,4 +1,5 @@
 ﻿using DodocoTales.Common.Enums;
+using DodocoTales.Library.StoragedUser.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,15 @@ namespace DodocoTales.Library.CurrentUser.Models
         public ulong BannerId { get; set; }
 
         public ulong VersionId { get; set; }
+
         public DDCCPoolType CategorizedGachaType { get; set; }
 
         public List<DDCLRoundLogItem> BasicRounds { get; set; }
         public List<DDCLRoundLogItem> GreaterRounds { get; set; }
         public List<DDCLGachaLogItem> Logs { get; set; }
+
+        public DDCLStoragedVersionLogs OriginalVersion { get; set; }
+        public DDCLStoragedBannerLogs OriginalBanner { get; set; }
+
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DodocoTales.Library;
+using DodocoTales.Logs;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,16 @@ namespace DodocoTales
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DDCLog.InitHint();
+            await DDCL.BannerLib.LoadLibraryAsync();
+            await DDCL.UnitLib.LoadLibraryAsync();
+            await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
+            DDCL.CurrentUser.SwapUser(178450343);
+            //DDCLog.Info(DCLN.Debug, JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds,Formatting.Indented));
         }
     }
 }

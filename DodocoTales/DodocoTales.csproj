@@ -98,5 +98,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DodocoTales.Common\DodocoTales.Common.csproj">
+      <Project>{d9df5f2e-bb29-4f68-8e70-2df2a0148af7}</Project>
+      <Name>DodocoTales.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DodocoTales.Library\DodocoTales.Library.csproj">
+      <Project>{e24bbf17-583d-4637-8498-a8c35c2661d1}</Project>
+      <Name>DodocoTales.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DodocoTales.Loader\DodocoTales.Loader.csproj">
+      <Project>{58aee58b-3bd2-4e2a-8702-3f2d53a3ab57}</Project>
+      <Name>DodocoTales.Loader</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
