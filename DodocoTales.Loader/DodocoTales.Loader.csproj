@@ -44,11 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DDCG.cs" />
+    <Compile Include="DDCGGachaLogMerger.cs" />
+    <Compile Include="DDCGV0LogUpdater.cs" />
+    <Compile Include="DDCGWebGachaLogLoader.cs" />
+    <Compile Include="Models\DDCGGachaLogResponse.cs" />
+    <Compile Include="Models\DDCGGachaLogResponseItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DodocoTales.Common\DodocoTales.Common.csproj">
+      <Project>{d9df5f2e-bb29-4f68-8e70-2df2a0148af7}</Project>
+      <Name>DodocoTales.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DodocoTales.Library\DodocoTales.Library.csproj">
+      <Project>{e24bbf17-583d-4637-8498-a8c35c2661d1}</Project>
+      <Name>DodocoTales.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

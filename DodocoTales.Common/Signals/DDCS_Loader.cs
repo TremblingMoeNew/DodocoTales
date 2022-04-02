@@ -15,11 +15,6 @@ namespace DodocoTales.Common
 {
     public static partial class DDCS
     {
-        public static DDCSImportStatusDelegate ImportStatusFromWebRefreshed;
-        public static void Emit_ImportStatusFromWebRefreshed(DDCCPoolType type, int current_page)
-            => ExecImportStatusDelegate(ImportStatusFromWebRefreshed, type, current_page);
-
-
         public static void ExecImportStatusDelegate(DDCSImportStatusDelegate dele, DDCCPoolType type, int idx)
         {
             if (dele != null)
@@ -30,5 +25,20 @@ namespace DodocoTales.Common
                 }
             }
         }
+
+        public static DDCSImportStatusDelegate ImportStatusFromWebRefreshed;
+        public static void Emit_ImportStatusFromWebRefreshed(DDCCPoolType type, int current_page)
+            => ExecImportStatusDelegate(ImportStatusFromWebRefreshed, type, current_page);
+
+        public static DDCSCommonDelegate ImportConnectionTimeout;
+        public static void Emit_ImportConnectionTimeout()
+            => ExecCommonDelegate(ImportConnectionTimeout);
+        public static DDCSCommonDelegate ImportConnectionRetry;
+        public static void Emit_ImportConnectionRetry()
+            => ExecCommonDelegate(ImportConnectionRetry);
+        public static DDCSCommonDelegate ImportConnectionThrottled;
+        public static void Emit_ImportConnectionThrottled()
+            => ExecCommonDelegate(ImportConnectionThrottled);
+
     }
 }

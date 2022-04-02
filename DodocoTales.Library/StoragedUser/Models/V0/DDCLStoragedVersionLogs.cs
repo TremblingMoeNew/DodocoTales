@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DodocoTales.Library.StoragedUser.Models
+namespace DodocoTales.Library.StoragedUser.Models.V0
 {
     public class DDCLStoragedVersionLogs
     {

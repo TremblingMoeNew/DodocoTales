@@ -19,24 +19,24 @@ namespace DodocoTales.Library.StoragedUser
         public readonly string UserDataFileRegexPattern = @"userlog_(\d+)\.json";
         public readonly string UserDataFileOpenPattern = "userdata/userlog_{0}.json";
 
-        public Dictionary<ulong, DDCLUserGachaLog> U { get; set; }
+        public Dictionary<long, DDCLUserGachaLog> U { get; set; }
 
         public DDCLUserDataLibrary()
         {
-            U = new Dictionary<ulong, DDCLUserGachaLog>();
+            U = new Dictionary<long, DDCLUserGachaLog>();
         }
-        public DDCLUserGachaLog CreateEmptyLocalGachaLog(ulong uid)
+        public DDCLUserGachaLog CreateEmptyLocalGachaLog(long uid)
         {
-            return new DDCLUserGachaLog { uid = uid, V = new List<DDCLStoragedVersionLogs>() };
+            return new DDCLUserGachaLog { uid = uid,Logs=new List<DDCLGachaLogItem>(),EpitomizedPath=new List<DDCLEpitomizedPathItem>() };
         }
-        public void TryAddEmptyUser(ulong uid)
+        public void TryAddEmptyUser(long uid)
         {
             if (U.ContainsKey(uid)) return;
             var log = CreateEmptyLocalGachaLog(uid);
             U.Add(uid, log);
             DDCLog.Info(DCLN.Lib, String.Format("New user added. UID:{0}", uid));
         }
-        public async Task LoadLocalGachaLogByUidAsync(ulong uid)
+        public async Task LoadLocalGachaLogByUidAsync(long uid)
         {
             string logfile = String.Format(UserDataFileOpenPattern, uid);
             DDCLog.Info(DCLN.Lib, String.Format("Loading userlog file: {0}", logfile));
@@ -54,6 +54,12 @@ namespace DodocoTales.Library.StoragedUser
                 if (uid != response.uid)
                 {
                     DDCLog.Warning(DCLN.Lib, String.Format("{0}, UID:{1}", logfile, response.uid));
+                }
+                if (response.Logs == null)
+                {
+                    DDCLog.Info(DCLN.Lib, String.Format("V0-Style Userlog found, UID:{0}",response.uid));
+                    DDCS.Emit_V0StyleLogFileDetacted(response.uid);
+                    return;
                 }
                 U.Add(response.uid, response);
                 DDCLog.Info(DCLN.Lib, String.Format("Userlog successfully loaded. UID:{0}", response.uid));
@@ -74,10 +80,10 @@ namespace DodocoTales.Library.StoragedUser
             foreach (var f in files)
             {
                 var result = Regex.Match(f.Name, UserDataFileRegexPattern);
-                ulong uid = 0;
+                long uid = 0;
                 try
                 {
-                    uid = Convert.ToUInt64(result.Groups[1].Value);
+                    uid = Convert.ToInt64(result.Groups[1].Value);
                 }
                 catch (Exception e)
                 {
@@ -112,7 +118,7 @@ namespace DodocoTales.Library.StoragedUser
 
         }
 
-        public DDCLUserGachaLog GetUserLogByUid(ulong uid)
+        public DDCLUserGachaLog GetUserLogByUid(long uid)
         {
             TryAddEmptyUser(uid);
             return U[uid];

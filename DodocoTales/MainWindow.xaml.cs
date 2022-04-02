@@ -1,9 +1,13 @@
-﻿using DodocoTales.Library;
+﻿using DodocoTales.Common.Enums;
+using DodocoTales.Library;
+using DodocoTales.Loader;
+using DodocoTales.Loader.Models;
 using DodocoTales.Logs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,11 +35,23 @@ namespace DodocoTales
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             DDCLog.InitHint();
+            DDCG.Initialize();
             await DDCL.BannerLib.LoadLibraryAsync();
             await DDCL.UnitLib.LoadLibraryAsync();
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
-            DDCL.CurrentUser.SwapUser(178450343);
+            DDCL.CurrentUser.SwapUser(0);
             //DDCLog.Info(DCLN.Debug, JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds,Formatting.Indented));
+        }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var authkey = DDCG.WebLogLoader.GetAuthKey();
+            DDCL.CurrentUser.SwapUser(1);
+            if (authkey != null)
+            {
+                await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey);
+                await DDCL.CurrentUser.SaveUserAsync();
+            }
         }
     }
 }

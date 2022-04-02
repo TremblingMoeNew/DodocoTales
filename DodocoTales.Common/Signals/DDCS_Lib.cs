@@ -31,7 +31,7 @@ namespace DodocoTales.Common
             => ExecCommonDelegate(UnitLibReloadCompleted);
 
         public static DDCSUidParamDelegate CurUserSwapping;
-        public static void Emit_CurUserSwapping(ulong uid)
+        public static void Emit_CurUserSwapping(long uid)
             => ExecUidParamDelegate(CurUserSwapping, uid);
 
         public static DDCSCommonDelegate CurUserSwapReverted;
@@ -39,11 +39,11 @@ namespace DodocoTales.Common
             => ExecCommonDelegate(CurUserSwapReverted);
 
         public static DDCSUidParamDelegate CurUserSwapCompleted;
-        public static void Emit_CurUserSwapCompleted(ulong uid)
+        public static void Emit_CurUserSwapCompleted(long uid)
             => ExecUidParamDelegate(CurUserSwapCompleted, uid);
 
         public static DDCSUidParamDelegate UserLibUidDeplicated;
-        public static void Emit_UserLibUidDeplicated(ulong uid)
+        public static void Emit_UserLibUidDeplicated(long uid)
             => ExecUidParamDelegate(UserLibUidDeplicated, uid);
 
         public static DDCSCommonDelegate UserLibReloadCompleted;
@@ -57,5 +57,9 @@ namespace DodocoTales.Common
         public static DDCSCommonDelegate UserlogSaveFailed;
         public static void Emit_UserlogSaveFailed()
             => ExecCommonDelegate(UserlogSaveFailed);
+
+        public static DDCSUidParamDelegate V0StyleLogFileDetacted;
+        public static void Emit_V0StyleLogFileDetacted(long uid)
+            => ExecUidParamDelegate(V0StyleLogFileDetacted, uid);
     }
 }

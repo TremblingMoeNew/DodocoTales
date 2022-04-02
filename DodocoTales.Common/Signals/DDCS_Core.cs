@@ -8,7 +8,7 @@ using DodocoTales.Common.Signals;
 namespace DodocoTales.Common.Signals
 {
     public delegate void DDCSCommonDelegate();
-    public delegate void DDCSUidParamDelegate(ulong uid);
+    public delegate void DDCSUidParamDelegate(long uid);
 }
 namespace DodocoTales.Common
 {
@@ -24,7 +24,7 @@ namespace DodocoTales.Common
                 }
             }
         }
-        public static void ExecUidParamDelegate(DDCSUidParamDelegate dele, ulong uid)
+        public static void ExecUidParamDelegate(DDCSUidParamDelegate dele, long uid)
         {
             if (dele != null)
             {

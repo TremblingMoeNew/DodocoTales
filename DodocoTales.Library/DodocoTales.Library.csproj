@@ -48,20 +48,23 @@
     <Compile Include="BannerLibrary\Models\DDCLVersionInfo.cs" />
     <Compile Include="CurrentUser\DDCLCurrentUserLibrary.cs" />
     <Compile Include="CurrentUser\Models\DDCLBannerLogItem.cs" />
-    <Compile Include="CurrentUser\Models\DDCLGachaLogItem.cs" />
     <Compile Include="CurrentUser\Models\DDCLRoundLogItem.cs" />
     <Compile Include="BannerLibrary\Models\DDCLBannerInfo.cs" />
     <Compile Include="BannerLibrary\Models\DDCLBannerLibModel.cs" />
     <Compile Include="DDCL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoragedUser\DDCLUserDataLibrary.cs" />
-    <Compile Include="StoragedUser\Models\DDCLStoragedBannerLogs.cs" />
-    <Compile Include="StoragedUser\Models\DDCLStoragedGachaLogItem.cs" />
-    <Compile Include="StoragedUser\Models\DDCLStoragedRoundLogs.cs" />
-    <Compile Include="StoragedUser\Models\DDCLStoragedVersionLogs.cs" />
+    <Compile Include="StoragedUser\Models\DDCLEpitomizedPathItem.cs" />
+    <Compile Include="StoragedUser\Models\DDCLGachaLogItem.cs" />
     <Compile Include="StoragedUser\Models\DDCLUserGachaLog.cs" />
+    <Compile Include="StoragedUser\Models\V0\DDCLStoragedBannerLogs.cs" />
+    <Compile Include="StoragedUser\Models\V0\DDCLStoragedGachaLogItem.cs" />
+    <Compile Include="StoragedUser\Models\V0\DDCLStoragedRoundLogs.cs" />
+    <Compile Include="StoragedUser\Models\V0\DDCLStoragedVersionLogs.cs" />
+    <Compile Include="StoragedUser\Models\V0\DDCLUserGachaLogV0.cs" />
     <Compile Include="UnitLibrary\DDCLUnitLibrary.cs" />
     <Compile Include="UnitLibrary\Models\DDCLUnitInfo.cs" />
+    <Compile Include="Utils\DDCLInternalIdGenerator.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
