@@ -53,5 +53,10 @@ namespace DodocoTales
                 await DDCL.CurrentUser.SaveUserAsync();
             }
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            DDCG.UFExporter.ExportAsJson(1,"export");
+        }
     }
 }

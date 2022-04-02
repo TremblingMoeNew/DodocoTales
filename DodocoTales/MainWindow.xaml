@@ -9,5 +9,6 @@
     <StackPanel VerticalAlignment="Center">
         <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">Initialize</Button>
         <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_1">Fetch</Button>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_2">UIGF Export</Button>
     </StackPanel>
 </Window>

@@ -51,6 +51,11 @@
     <Compile Include="Models\DDCGGachaLogResponse.cs" />
     <Compile Include="Models\DDCGGachaLogResponseItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UniversalFormat\DDCGUniversalFormatExporter.cs" />
+    <Compile Include="UniversalFormat\DDCGUniversalFormatImporter.cs" />
+    <Compile Include="UniversalFormat\Models\DDCGUFLogItem.cs" />
+    <Compile Include="UniversalFormat\Models\DDCGUFMetaInfo.cs" />
+    <Compile Include="UniversalFormat\Models\DDCGUFUserGachaLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -65,5 +70,6 @@
       <Name>DodocoTales.Library</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
