@@ -18,6 +18,7 @@ namespace DodocoTales.Loader.UniversalFormat
     /// </summary>
     public class DDCGUniversalFormatExporter
     {
+        
         public DDCGUFLogItem ConvertToUFItem(DDCLGachaLogItem item)
         {
             var unitclass = DDCL.UnitLib.GetItemById(item.unitclass);

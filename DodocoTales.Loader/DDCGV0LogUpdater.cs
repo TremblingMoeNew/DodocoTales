@@ -33,7 +33,7 @@ namespace DodocoTales.Loader
         public async Task<DDCLUserGachaLogV0> LoadLocalGachaLogByUidAsync(long uid)
         {
             string logfile = String.Format(UserDataFileOpenPattern, uid);
-            DDCLog.Info(DCLN.Lib, String.Format("Loading userlog file: {0}", logfile));
+            DDCLog.Info(DCLN.Loader, String.Format("Loading userlog file: {0}", logfile));
             try
             {
                 var stream = File.Open(logfile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
@@ -43,12 +43,12 @@ namespace DodocoTales.Loader
                 {
                     DDCLog.Warning(DCLN.Lib, String.Format("{0}, UID:{1}", logfile, response.uid));
                 }
-                DDCLog.Info(DCLN.Lib, String.Format("V0-style userlog successfully loaded. UID:{0}", response.uid));
+                DDCLog.Info(DCLN.Loader, String.Format("V0-style userlog successfully loaded. UID:{0}", response.uid));
                 return response;
             }
             catch (Exception e)
             {
-                DDCLog.Error(DCLN.Lib, String.Format("Failed to load V0-style userlog. UID:{0}", uid), e);
+                DDCLog.Error(DCLN.Loader, String.Format("Failed to load V0-style userlog. UID:{0}", uid), e);
                 return null;
             }
         }

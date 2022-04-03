@@ -58,5 +58,11 @@ namespace DodocoTales
         {
             DDCG.UFExporter.ExportAsJson(1,"export");
         }
+
+        private async void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            var uf = await DDCG.UFImporter.LoadUFJsonAsync("import/uigf.json");
+            DDCG.UFImporter.Import(uf);
+        }
     }
 }
