@@ -40,18 +40,24 @@ namespace DodocoTales
             await DDCL.UnitLib.LoadLibraryAsync();
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
             DDCL.CurrentUser.SwapUser(0);
+
+            Card.Refresh();
+            Card2.Refresh();
+            Card3.Refresh();
             //DDCLog.Info(DCLN.Debug, JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds,Formatting.Indented));
         }
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var authkey = DDCG.WebLogLoader.GetAuthKey();
-            DDCL.CurrentUser.SwapUser(1);
+            DDCL.CurrentUser.SwapUser(7);
             if (authkey != null)
             {
                 await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey);
                 await DDCL.CurrentUser.SaveUserAsync();
             }
+            Card.Refresh();
+            Card2.Refresh();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -61,7 +67,7 @@ namespace DodocoTales
 
         private async void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            var uf = await DDCG.UFImporter.LoadUFJsonAsync("import/uigf.json");
+            var uf = await DDCG.UFImporter.LoadUFJsonAsync("import/xunkong.json");
             DDCG.UFImporter.Import(uf);
         }
     }

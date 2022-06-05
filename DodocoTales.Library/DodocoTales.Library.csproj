@@ -52,6 +52,7 @@
     <Compile Include="BannerLibrary\Models\DDCLBannerInfo.cs" />
     <Compile Include="BannerLibrary\Models\DDCLBannerLibModel.cs" />
     <Compile Include="DDCL.cs" />
+    <Compile Include="Enums\DDCLActivateStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoragedUser\DDCLUserDataLibrary.cs" />
     <Compile Include="StoragedUser\Models\DDCLEpitomizedPathItem.cs" />

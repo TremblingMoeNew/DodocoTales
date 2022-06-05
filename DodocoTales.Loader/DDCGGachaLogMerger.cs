@@ -161,38 +161,20 @@ namespace DodocoTales.Loader
             MergeLogToDict(imported);
             WriteToUserlog();
         }
-
-
-
-        public int CheckTimeIsBetween(DateTimeOffset begin,DateTimeOffset end,DateTimeOffset time)
-        {
-            if (DateTimeOffset.Compare(end, time) < 0) return -1;
-            else if (DateTimeOffset.Compare(begin, time) > 0) return 1;
-            else return 0;
-        }
-
         public int CheckTimeWithVersion(DDCLVersionInfo version,DateTime time)
         {
             var item = DDCL.GetTimeOffset(time, UserLog.zone);
             var version_begin = DDCL.GetSyncTimeOffset(version.beginTime);
             var version_end = DDCL.GetSyncTimeOffset(version.endTime);
-            return CheckTimeIsBetween(version_begin, version_end, item);
+            return DDCL.CheckTimeIsBetween(version_begin, version_end, item);
         }
         public int CheckTimeWithBanner(DDCLBannerInfo banner,DateTime time)
         {
             var item = DDCL.GetTimeOffset(time, UserLog.zone);
-            var banner_begin = GetBannerTimeOffset(banner.beginTime, banner.beginTimeSync);
-            var banner_end = GetBannerTimeOffset(banner.endTime, banner.endTimeSync);
-            return CheckTimeIsBetween(banner_begin, banner_end, item);
+            var banner_begin = DDCL.GetBannerTimeOffset(banner.beginTime, banner.beginTimeSync, UserLog.zone);
+            var banner_end = DDCL.GetBannerTimeOffset(banner.endTime, banner.endTimeSync, UserLog.zone);
+            return DDCL.CheckTimeIsBetween(banner_begin, banner_end, item);
         }
-
-        public DateTimeOffset GetBannerTimeOffset(DateTime time,bool sync)
-        {
-            if (sync) return DDCL.GetSyncTimeOffset(time);
-            else return DDCL.GetTimeOffset(time, UserLog.zone);
-        }
-        
-
 
     }
 }

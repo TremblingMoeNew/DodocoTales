@@ -1,4 +1,5 @@
 ﻿using DodocoTales.Common.Enums;
+using DodocoTales.Library.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,27 @@ namespace DodocoTales.Library.BannerLibrary.Models
                 forceGachaTypeStorage = this.forceGachaTypeStorage,
                 InternalId = this.InternalId
             };
+        }
+
+
+        [JsonIgnore]
+        public DDCLActivateStatus ActivateStatus
+        {
+            get{
+                var now = DDCL.GetNowDateTimeOffset();
+                return BannerStatusAtTime(now);
+            }
+        }
+
+        public DDCLActivateStatus BannerStatusAtTime(DateTimeOffset time)
+        {
+            var tz = DDCL.CurrentUser.GetActivatingTimeZone();
+            var begin = DDCL.GetBannerTimeOffset(beginTime, beginTimeSync, tz);
+            var end = DDCL.GetBannerTimeOffset(endTime, endTimeSync, tz);
+            var res = DDCL.CheckTimeIsBetween(begin, end, time);
+            if (res == 0) return DDCLActivateStatus.Activating;
+            else if (res < 0) return DDCLActivateStatus.Post;
+            else return DDCLActivateStatus.Incoming;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace DodocoTales.Logs
     public static partial class DDCLog
     {
         public static readonly string LogPath = "Logs";
-        public static readonly string LogFilePattern = "DodocoTales_Log_{0:yyyy-MM-dd hh-mm-ss}.txt";
+        public static readonly string LogFilePattern = "DodocoTales_Log_{0:yyyy-MM-dd HH-mm-ss}.txt";
         public static readonly string LogFilePath;
         public static readonly string LogPattern = "[{1:G}][{0}/{2}]{3}";
         static DDCLog()

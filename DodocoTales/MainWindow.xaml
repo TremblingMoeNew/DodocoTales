@@ -3,13 +3,53 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
         xmlns:local="clr-namespace:DodocoTales"
+        xmlns:vm="clr-namespace:DodocoTales.Gui.ViewModels"
+        xmlns:cards="clr-namespace:DodocoTales.Gui.Views.Cards"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <StackPanel VerticalAlignment="Center">
-        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">Initialize</Button>
-        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_1">Fetch</Button>
-        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_2">UIGF Export</Button>
-        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_3">UIGF Import</Button>
-    </StackPanel>
+        Title="嘟嘟可故事集 - 1.0.0" Height="760" Width="1100">
+    <Window.DataContext>
+        <vm:DDCVMainWindowVM x:Name="VM"/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TreeView ItemsSource="{Binding MenuItems}" 
+                  Name="MainPanel"
+                  pu:TreeViewHelper.TreeViewStyle="Modern"
+                  pu:TreeViewHelper.SelectMode="ChildOnly"
+                  pu:TreeViewHelper.SelectedBackground="#22FF0035" 
+                  BorderBrush="#FF0035">
+
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}"
+                           BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                    <Setter Property="IsExpanded"
+                                Value="True" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay}"/>
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding MenuItems}">
+                    <TextBlock Text="{Binding Path=Title}" Padding="{Binding Padding}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <StackPanel VerticalAlignment="Center" Grid.Column="0">
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">Initialize</Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_1">Fetch</Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_2">UIGF Export</Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_3">UIGF Import</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <cards:DDCVHomeSceneEventCharCard  x:Name="Card"/>
+            <cards:DDCVHomeSceneEventWeapCard x:Name="Card2"/>
+            <cards:DDCVHomeScenePermanentCard x:Name="Card3"/>
+        </StackPanel>
+        
+    </Grid>
 </Window>

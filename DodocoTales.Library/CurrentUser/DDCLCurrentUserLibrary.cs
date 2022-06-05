@@ -15,7 +15,7 @@ namespace DodocoTales.Library.CurrentUser
     {
         public DDCLUserGachaLog OriginalLogs { get; set; }
 
-        public SortedList<ulong,DDCLGachaLogItem> Logs { get; set; }
+        public SortedList<ulong, DDCLGachaLogItem> Logs { get; set; }
         public List<DDCLRoundLogItem> BasicRounds { get; set; }
         public List<DDCLRoundLogItem> GreaterRounds { get; set; }
         public List<DDCLBannerLogItem> Banners { get; set; }
@@ -54,9 +54,9 @@ namespace DodocoTales.Library.CurrentUser
             var logs_values = Logs.Values;
             DDCLGachaLogItem startitem = logs_values[idx];
             int dis = 0;
-            for(int i = idx - 1; i >= 0; i--)
+            for (int i = idx - 1; i >= 0; i--)
             {
-                if(logs_values[i].pooltype==startitem.pooltype)
+                if (logs_values[i].pooltype == startitem.pooltype)
                 {
                     dis++;
                     if (startitem.rank == 4) break;
@@ -116,24 +116,31 @@ namespace DodocoTales.Library.CurrentUser
             BasicRounds.Clear();
             Logs.Clear();
 
-            foreach (var vlog in OriginalLogs.Logs.GroupBy(x=>x.version_id))
+            foreach(var b in DDCL.BannerLib.Banners)
             {
-                foreach(var blog in vlog.GroupBy(x=>x.banner_id))
+                DDCLBannerLogItem bannerlog = new DDCLBannerLogItem
+                {
+                    VersionId = b.VersionId,
+                    BannerId = b.id,
+                    CategorizedGachaType = b.type,
+                    GreaterRounds = new List<DDCLRoundLogItem>(),
+                    Logs = new List<DDCLGachaLogItem>(),
+                };
+                Banners.Add(bannerlog);
+            }
+
+
+            foreach (var vlog in OriginalLogs.Logs.GroupBy(x => x.version_id))
+            {
+                foreach (var blog in vlog.GroupBy(x => x.banner_id))
                 {
                     int t_idx = 0;
                     var t_bfst = blog.First();
-                    DDCLBannerLogItem bannerlog = new DDCLBannerLogItem
-                    {
-                        VersionId = t_bfst.version_id,
-                        BannerId = t_bfst.banner_id,
-                        CategorizedGachaType = t_bfst.pooltype,
-                        GreaterRounds = new List<DDCLRoundLogItem>(),
-                        Logs = new List<DDCLGachaLogItem>(),
-                    };
-                    Banners.Add(bannerlog);
+
+                    var bannerlog = GetBanner(t_bfst.version_id, t_bfst.banner_id);
                     foreach (var logitem in blog)
                     {
-                        Logs.Add(logitem.internal_id, logitem);;
+                        Logs.Add(logitem.internal_id, logitem); ;
                         bannerlog.Logs.Add(logitem);
                     }
                 }
@@ -154,7 +161,7 @@ namespace DodocoTales.Library.CurrentUser
                 var buf = new List<DDCLGachaLogItem>();
                 foreach (var bannerlog in banners)
                 {
-                    foreach (var roundlog in bannerlog.Logs.GroupBy(x=>x.round_id))
+                    foreach (var roundlog in bannerlog.Logs.GroupBy(x => x.round_id))
                     {
                         buf.AddRange(roundlog);
                         if (roundlog.Last().rank == 5)
@@ -185,27 +192,27 @@ namespace DodocoTales.Library.CurrentUser
                 }
             }
 
-            foreach(var type in haveup)
+            foreach (var type in haveup)
             {
                 var banners = GetBannersByCategorizedType(type);
                 var buf = new List<DDCLRoundLogItem>();
-                foreach(var bannerlog in banners)
+                foreach (var bannerlog in banners)
                 {
                     bannerlog.GreaterRounds.Clear();
-                    var bannerlibinfo = DDCL.BannerLib.GetBanner(bannerlog.VersionId,bannerlog.BannerId);
+                    var bannerlibinfo = DDCL.BannerLib.GetBanner(bannerlog.VersionId, bannerlog.BannerId);
 
                     if (buf.Count > 0)
                     {
                         int removecnt = 1 + buf.FindIndex(
                             x => x.Logs.Count > 0 && x.Logs.Last().rank == 5
-                            && (DDCL.BannerLib.GetBanner(x.VersionId,x.BannerId)?.rank5Up.Contains(x.Logs.Last().unitclass) ?? false)
+                            && (DDCL.BannerLib.GetBanner(x.VersionId, x.BannerId)?.rank5Up.Contains(x.Logs.Last().unitclass) ?? false)
                         );
                         buf.RemoveRange(0, removecnt);
                     }
                     var epl_ls = OriginalLogs.EpitomizedPath.FindAll(x => x.version_id == bannerlog.VersionId && x.banner_id == bannerlog.BannerId);
                     int epl_ptr = 0, epl_len = epl_ls.Count;
                     var epl = epl_len > 0 ? epl_ls[epl_ptr++] : new DDCLEpitomizedPathItem { enabled = false, unitclass = 0, round_id = ulong.MaxValue };
-                    foreach(var roundlog in bannerlog.Logs.GroupBy(x => x.round_id))
+                    foreach (var roundlog in bannerlog.Logs.GroupBy(x => x.round_id))
                     {
                         var t_rfst = roundlog.First();
                         while (epl_ptr < epl_len && t_rfst.round_id >= epl_ls[epl_ptr].round_id) epl = epl_ls[epl_ptr++];
@@ -214,20 +221,21 @@ namespace DodocoTales.Library.CurrentUser
                             if (buf.Last().BannerId == t_rfst.banner_id
                                 && buf.Last().EpitomizedPathID != 0
                                 && buf.Last().EpitomizedPathID != epl.unitclass
-                                ) 
+                                )
                             {
                                 int removecnt = 1 + buf.FindIndex(
                                     x => x.Logs.Count > 0 && x.Logs.Last().rank == 5
-                                    && (DDCL.BannerLib.GetBanner(x.VersionId,x.BannerId)?.rank5Up.Contains(x.Logs.Last().unitclass) ?? false)
+                                    && (DDCL.BannerLib.GetBanner(x.VersionId, x.BannerId)?.rank5Up.Contains(x.Logs.Last().unitclass) ?? false)
                                 );
                                 buf.RemoveRange(0, removecnt);
                             }
                         }
-                        var tmplogs = new DDCLRoundLogItem { BannerId = t_rfst.banner_id, EpitomizedPathID = epl.unitclass, Logs = new List<DDCLGachaLogItem>() };
+                        var tmplogs = new DDCLRoundLogItem { BannerId = t_rfst.banner_id, EpitomizedPathID = epl.unitclass, Logs = new List<DDCLGachaLogItem>(roundlog.ToList()) };
                         buf.Add(tmplogs);
+                        
                         if (bannerlibinfo.rank5Up.Contains(roundlog.Last().unitclass))
                         {
-                            if (tmplogs.EpitomizedPathID == 0 || tmplogs.EpitomizedPathID == tmplogs.Logs.Last().unitclass) 
+                            if (tmplogs.EpitomizedPathID == 0 || tmplogs.EpitomizedPathID == tmplogs.Logs.Last().unitclass)
                             {
                                 var greater = new DDCLRoundLogItem
                                 {
@@ -237,7 +245,7 @@ namespace DodocoTales.Library.CurrentUser
                                     EpitomizedPathID = tmplogs.EpitomizedPathID,
                                     Logs = new List<DDCLGachaLogItem>()
                                 };
-                                foreach(var r in buf)
+                                foreach (var r in buf)
                                 {
                                     greater.Logs.AddRange(r.Logs);
                                 }
@@ -307,5 +315,10 @@ namespace DodocoTales.Library.CurrentUser
             await DDCL.UserDataLib.SaveUserAsync(OriginalLogs);
         }
 
+        public DDCCTimeZone GetActivatingTimeZone()
+        {
+            if (OriginalLogs == null) return DDCCTimeZone.DefaultUTCP8;
+            return OriginalLogs.zone;
+        }
     }
 }

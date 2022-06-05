@@ -30,6 +30,21 @@ namespace DodocoTales.Library
         {
             return new DateTimeOffset(time, GetZoneOffsetTimeSpan(DDCCTimeZone.DefaultUTCP8));
         }
+        public static DateTimeOffset GetNowDateTimeOffset()
+        {
+            return new DateTimeOffset(DateTime.Now);
+        }
+        public static int CheckTimeIsBetween(DateTimeOffset begin, DateTimeOffset end, DateTimeOffset time)
+        {
+            if (DateTimeOffset.Compare(end, time) < 0) return -1;
+            else if (DateTimeOffset.Compare(begin, time) > 0) return 1;
+            else return 0;
+        }
+        public static DateTimeOffset GetBannerTimeOffset(DateTime time, bool sync, DDCCTimeZone zone)
+        {
+            if (sync) return GetSyncTimeOffset(time);
+            else return GetTimeOffset(time,zone);
+        }
         public static TimeSpan GetZoneOffsetTimeSpan(DDCCTimeZone zone)
         {
             switch (zone)
