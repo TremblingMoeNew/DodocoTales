@@ -55,6 +55,7 @@ namespace DodocoTales.Gui.View
             DDCS.LogReloadCompleted += new DDCSCommonDelegate(OnUserSwapCompleted);
             DDCS.UserLibReloadCompleted += new DDCSCommonDelegate(OnUserLibReloadCompleted);
             DDCS.UserLibNewUserCreated += new DDCSCommonDelegate(OnUserLibReloadCompleted);
+            DDCG.AuthkeyProxy.OnAuthkeyCaptured += OnAuthkeyCaptured;
         }
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -72,13 +73,23 @@ namespace DodocoTales.Gui.View
                     Owner = DDCV.MainWindow
                 }.ShowDialog();
             }
-            while (DDCV.PopScreen()) ;
-            new DDCVWebGachaLogLoadIndicatorDialog
-            {
-                WindowStartupLocation = WindowStartupLocation.CenterOwner,
-                Owner = DDCV.MainWindow
-            }.ShowDialog();
+            DDCV.StartAuthkeyCapture();
            
+        }
+
+        public async void OnAuthkeyCaptured(object sender, string authkey)
+        {
+            DDCV.StopAuthkeyCapture();
+            Action action = () =>
+            {
+                while (DDCV.PopScreen()) ;
+                new DDCVWebGachaLogLoadIndicatorDialog(authkey)
+                {
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    Owner = DDCV.MainWindow
+                }.ShowDialog();
+            };
+            await Dispatcher.BeginInvoke(action);
         }
         private void OnUidSwapping()
         {
@@ -149,6 +160,11 @@ namespace DodocoTales.Gui.View
         private void ImportButton_Click(object sender, RoutedEventArgs e)
         {
             DDCV.PushScreen("", new DDCVLocalLogImportScreen());
+        }
+
+        private void SettingButton_Click(object sender, RoutedEventArgs e)
+        {
+            DDCV.StopAuthkeyCapture();
         }
     }
 }

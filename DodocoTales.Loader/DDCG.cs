@@ -13,5 +13,6 @@ namespace DodocoTales.Loader
         public static DDCGGachaLogMerger LogMerger = new DDCGGachaLogMerger();
         public static DDCGMetaLoader MetaLoader = new DDCGMetaLoader();
         public static DDCGClientUpdateLoader ClientUpdater = new DDCGClientUpdateLoader();
+        public static DDCGAuthkeyCaptureProxyServer AuthkeyProxy = new DDCGAuthkeyCaptureProxyServer();
     }
 }

@@ -1,5 +1,7 @@
-﻿using DodocoTales.Gui.View.Model;
+﻿using DodocoTales.Gui.View;
+using DodocoTales.Gui.View.Model;
 using DodocoTales.Gui.View.Screen;
+using DodocoTales.Loader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace DodocoTales.Gui
         public static readonly Dictionary<string, DDCVScreenPtr> MainScreens = new Dictionary<string, DDCVScreenPtr>();
         public static readonly Stack<DDCVScreenPtr> StackedScreens = new Stack<DDCVScreenPtr>();
         public static MainWindow MainWindow;
+        public static DDCVMainTitleBar MainTitleBar;
         public static Label MainTitle;
         // TODO: MainBreadcrumb
         public static Grid MainNavigater;
@@ -81,6 +84,18 @@ namespace DodocoTales.Gui
             }
             StackedScreens.Push(ns);
 
+        }
+
+        public static void StartAuthkeyCapture()
+        {
+            MainTitleBar.SetIsOnProxy(true);
+            DDCG.AuthkeyProxy.StartProxy();
+        }
+
+        public static void StopAuthkeyCapture()
+        {
+            DDCG.AuthkeyProxy.EndProxy();
+            MainTitleBar.SetIsOnProxy(false);
         }
     }
 

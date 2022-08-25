@@ -42,8 +42,9 @@ namespace DodocoTales.Gui.View.Dialog
 
         string authkey;
 
-        public DDCVWebGachaLogLoadIndicatorDialog()
+        public DDCVWebGachaLogLoadIndicatorDialog(string _authkey)
         {
+            authkey = _authkey;
             InitializeComponent();
         }
 
@@ -55,7 +56,7 @@ namespace DodocoTales.Gui.View.Dialog
         {
             Action initact = () => { OnAskTimezone = false; Hint = "正在加载祈愿记录……"; };
             await Dispatcher.BeginInvoke(initact);
-
+            /*
             var key=DDCG.WebLogLoader.getAuthKey();
             if (key == null)
             {
@@ -72,7 +73,8 @@ namespace DodocoTales.Gui.View.Dialog
                 //this.Close();
                 return;
             }
-            var uid = await DDCG.WebLogLoader.tryConnectAndGetUid(key);
+            */
+            var uid = await DDCG.WebLogLoader.tryConnectAndGetUid(authkey);
             if (uid < 0) 
             {
                 // Temp
@@ -85,6 +87,7 @@ namespace DodocoTales.Gui.View.Dialog
                 //this.Close();
                 return;
             }
+            
             // Temp
             await DDCL.Users.swapUser(uid);
 
@@ -94,7 +97,7 @@ namespace DodocoTales.Gui.View.Dialog
                     method.BeginInvoke(null, null);
                 }
 
-            authkey = key;
+
 
             var usr = DDCL.Users.getCurrentUser();
 

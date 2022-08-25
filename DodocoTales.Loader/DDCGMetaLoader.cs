@@ -16,7 +16,7 @@ namespace DodocoTales.Loader
     {
         HttpClient client;
 
-        public readonly string CDN = "https://fastly.jsdelivr.net/gh/TremblingMoeNew/DodocoTales-meta@main/";
+        public readonly string CDN = "https://gcore.jsdelivr.net/gh/TremblingMoeNew/DodocoTales-meta@main/";
         public readonly string localLibPath = "library/";
         public readonly string VersionLib = "Version.json";
         public readonly string BannerLib = "BannerLibrary.json";

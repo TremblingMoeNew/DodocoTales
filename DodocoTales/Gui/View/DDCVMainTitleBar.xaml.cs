@@ -26,9 +26,18 @@ namespace DodocoTales.Gui.View
             set { SetValue(StateProperty, value); }
             get { return (WindowState)GetValue(StateProperty); }
         }
+
+        public static readonly DependencyProperty IsOnProxyProperty = DependencyProperty.Register("IsOnProxy", typeof(Boolean), typeof(DDCVMainTitleBar));
+        public Boolean IsOnProxy
+        {
+            set { SetValue(IsOnProxyProperty, value); }
+            get { return (Boolean)GetValue(IsOnProxyProperty); }
+        }
+
         public DDCVMainTitleBar()
         {
             InitializeComponent();
+            DDCV.MainTitleBar = this;
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
@@ -50,6 +59,11 @@ namespace DodocoTales.Gui.View
         private void Return_Click(object sender, RoutedEventArgs e)
         {
             DDCV.PopScreen();
+        }
+        public void SetIsOnProxy(bool proxy)
+        {
+            Action action = () => { IsOnProxy = proxy; };
+            Dispatcher.BeginInvoke(action);
         }
     }
 }
