@@ -41,9 +41,10 @@ namespace DodocoTales
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
             DDCL.CurrentUser.SwapUser(0);
 
-            Card.Refresh();
-            Card2.Refresh();
-            Card3.Refresh();
+            VerViewScn.Refresh();
+            //Card.Refresh();
+           // Card2.Refresh();
+            ///Card3.Refresh();
             //DDCLog.Info(DCLN.Debug, JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds,Formatting.Indented));
         }
 
@@ -56,8 +57,9 @@ namespace DodocoTales
                 await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey);
                 await DDCL.CurrentUser.SaveUserAsync();
             }
-            Card.Refresh();
-            Card2.Refresh();
+            //Card.Refresh();
+            //Card2.Refresh();
+            VerViewScn.Refresh();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

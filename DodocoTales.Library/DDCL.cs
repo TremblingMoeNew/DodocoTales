@@ -3,6 +3,7 @@ using DodocoTales.Library.BannerLibrary;
 using DodocoTales.Library.CurrentUser;
 using DodocoTales.Library.StoragedUser;
 using DodocoTales.Library.UnitLibrary;
+using DodocoTales.Logs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,27 @@ namespace DodocoTales.Library
                 case DDCCTimeZone.DefaultUTCP8:
                 default:
                     return new TimeSpan(8, 0, 0);
+            }
+        }
+
+
+        public static string GetPoolTypeName(DDCCPoolType type)
+        {
+            switch (type)
+            {
+                case DDCCPoolType.Beginner:
+                    return "新手祈愿";
+                case DDCCPoolType.Permanent:
+                    return "常驻祈愿";
+                case DDCCPoolType.EventCharacter:
+                    return "角色活动祈愿";
+                case DDCCPoolType.EventWeapon:
+                    return "角色武器祈愿";
+                case DDCCPoolType.EventCharacter2:
+                    return "角色活动祈愿-2";
+                default:
+                    DDCLog.Warning(DCLN.Lib, "Get UNKNOWN type name");
+                    return "(类型错误)";
             }
         }
 

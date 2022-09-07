@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>DodocoTales</RootNamespace>
     <AssemblyName>DodocoTales</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Resources\Styles\DDCVListViewItemStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Views\Cards\DDCVHomeSceneEventCharCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -134,6 +138,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Views\Screens\DDCVVersionViewScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -143,13 +151,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Gui\Converters\DDCVPercentageConverter.cs" />
+    <Compile Include="Gui\Converters\DDCVPoolTypeConverter.cs" />
     <Compile Include="Gui\Converters\DDCVVisibleByBooleanConverter.cs" />
+    <Compile Include="Gui\Models\DDCVBannerItemModel.cs" />
     <Compile Include="Gui\Models\DDCVMainPanelItemModel.cs" />
     <Compile Include="Gui\Models\DDCVUnitIndicatorModel.cs" />
+    <Compile Include="Gui\Models\DDCVVersionItemModel.cs" />
     <Compile Include="Gui\ViewModels\Cards\DDCVHomeSceneEventCharCardVM.cs" />
     <Compile Include="Gui\ViewModels\Cards\DDCVHomeSceneEventWeapCardVM.cs" />
     <Compile Include="Gui\ViewModels\Cards\DDCVHomeScenePermanentCardVM.cs" />
     <Compile Include="Gui\ViewModels\DDCVMainWindowVM.cs" />
+    <Compile Include="Gui\ViewModels\Screens\DDCVVersionViewScreenVM.cs" />
     <Compile Include="Gui\Views\Cards\DDCVHomeSceneEventCharCard.xaml.cs">
       <DependentUpon>DDCVHomeSceneEventCharCard.xaml</DependentUpon>
     </Compile>
@@ -158,6 +170,9 @@
     </Compile>
     <Compile Include="Gui\Views\Cards\DDCVHomeScenePermanentCard.xaml.cs">
       <DependentUpon>DDCVHomeScenePermanentCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Views\Screens\DDCVVersionViewScreen.xaml.cs">
+      <DependentUpon>DDCVVersionViewScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

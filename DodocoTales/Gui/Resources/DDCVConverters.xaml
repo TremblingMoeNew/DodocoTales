@@ -4,4 +4,5 @@
                     xmlns:converter="clr-namespace:DodocoTales.Gui.Converters">
     <converter:DDCVVisibleByBooleanConverter x:Key="VisByBoolCon"/>
     <converter:DDCVPercentageConverter x:Key="PercentageCon"/>
+    <converter:DDCVPoolTypeConverter x:Key="PoolTypeCon"/>
 </ResourceDictionary>

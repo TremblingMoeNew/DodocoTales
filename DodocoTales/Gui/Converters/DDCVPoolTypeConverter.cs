@@ -1,0 +1,27 @@
+﻿using DodocoTales.Common.Enums;
+using DodocoTales.Library;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Data;
+
+namespace DodocoTales.Gui.Converters
+{
+    public class DDCVPoolTypeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            DDCCPoolType type = (DDCCPoolType)value;
+            return DDCL.GetPoolTypeName(type);
+            
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

@@ -18,7 +18,8 @@ namespace DodocoTales.Loader.UniversalFormat
     /// </summary>
     public class DDCGUniversalFormatExporter
     {
-        
+        private readonly ulong UFCustomIdDefault = 1000000000000000000;
+        private ulong UFCustomId;
         public DDCGUFLogItem ConvertToUFItem(DDCLGachaLogItem item)
         {
             var unitclass = DDCL.UnitLib.GetItemById(item.unitclass);
@@ -33,14 +34,15 @@ namespace DodocoTales.Loader.UniversalFormat
                 uid="0",
                 name = item.name
             };
-            if (!item.idlost) res.id = item.id.ToString();
+            if (!item.idlost) res.id = item.id.ToString(); else res.id = UFCustomId++.ToString();
             return res;
         }
 
         public List<DDCGUFLogItem> ConvertToUFLogItemList(List<DDCLGachaLogItem> list)
         {
             List<DDCGUFLogItem> res = new List<DDCGUFLogItem>();
-            foreach(var item in list)
+            UFCustomId = UFCustomIdDefault;
+            foreach (var item in list)
             {
                 var t = ConvertToUFItem(item);
                 if (t != null) res.Add(t);

@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:DodocoTales"
         xmlns:vm="clr-namespace:DodocoTales.Gui.ViewModels"
         xmlns:cards="clr-namespace:DodocoTales.Gui.Views.Cards"
+        xmlns:screens="clr-namespace:DodocoTales.Gui.Views.Screens"
         mc:Ignorable="d"
         Title="嘟嘟可故事集 - 1.0.0" Height="760" Width="1100">
     <Window.DataContext>
@@ -45,11 +46,12 @@
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_2">UIGF Export</Button>
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_3">UIGF Import</Button>
         </StackPanel>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" Visibility="Collapsed">
             <cards:DDCVHomeSceneEventCharCard  x:Name="Card"/>
             <cards:DDCVHomeSceneEventWeapCard x:Name="Card2"/>
             <cards:DDCVHomeScenePermanentCard x:Name="Card3"/>
         </StackPanel>
-        
+        <screens:DDCVVersionViewScreen Grid.Column="1" x:Name="VerViewScn"/>
+
     </Grid>
 </Window>

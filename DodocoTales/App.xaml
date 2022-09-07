@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Control.xaml" />
 
                 <ResourceDictionary Source="Gui/Resources/DDCVConverters.xaml"/>
+                <ResourceDictionary Source="Gui/Resources/Styles/DDCVListViewItemStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -42,5 +42,11 @@ namespace DodocoTales.Gui.Models
             get => banner;
             set => SetProperty(ref banner, value);
         }
+        private ulong internalId;
+        public ulong InternalId
+        {
+            get => internalId;
+            set => SetProperty(ref internalId, value);
+        }
     }
 }

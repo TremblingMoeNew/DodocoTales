@@ -116,6 +116,7 @@ namespace DodocoTales.Library.CurrentUser
             BasicRounds.Clear();
             Logs.Clear();
 
+
             foreach(var b in DDCL.BannerLib.Banners)
             {
                 DDCLBannerLogItem bannerlog = new DDCLBannerLogItem
