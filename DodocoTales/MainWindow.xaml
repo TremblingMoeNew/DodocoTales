@@ -9,7 +9,7 @@
         xmlns:cards="clr-namespace:DodocoTales.Gui.Views.Cards"
         xmlns:screens="clr-namespace:DodocoTales.Gui.Views.Screens"
         mc:Ignorable="d"
-        Title="嘟嘟可故事集 - 1.0.0" Height="760" Width="1100">
+        Title="嘟嘟可故事集 - 1.0.0" Height="760" Width="1160">
     <Window.DataContext>
         <vm:DDCVMainWindowVM x:Name="VM"/>
     </Window.DataContext>
@@ -51,7 +51,8 @@
             <cards:DDCVHomeSceneEventWeapCard x:Name="Card2"/>
             <cards:DDCVHomeScenePermanentCard x:Name="Card3"/>
         </StackPanel>
-        <screens:DDCVVersionViewScreen Grid.Column="1" x:Name="VerViewScn"/>
-
+        
+         <screens:DDCVBannerViewScreen Grid.Column="1" x:Name="BanViewScn"/>
+          
     </Grid>
 </Window>

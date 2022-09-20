@@ -15,6 +15,6 @@ namespace DodocoTales.Library.CurrentUser.Models
         public DDCCPoolType CategorizedGachaType { get; set; }
         public ulong EpitomizedPathID { get; set; }
         public List<DDCLGachaLogItem> Logs { get; set; }
-
+        public bool IsEPExtendedRound { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DodocoTales.Gui.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,31 @@ namespace DodocoTales.Gui.Models
         {
             get => internalId;
             set => SetProperty(ref internalId, value);
+        }
+
+        private int index;
+        public int Index
+        {
+            get => index;
+            set => SetProperty(ref index, value);
+        }
+        private DDCVUnitIndicatorType indicatorType;
+        public DDCVUnitIndicatorType IndicatorType
+        {
+            get => indicatorType;
+            set => SetProperty(ref indicatorType, value);
+        }
+        private bool inherited;
+        public bool Inherited
+        {
+            get => inherited;
+            set => SetProperty(ref inherited, value);
+        }
+        private ulong id;
+        public ulong Id
+        {
+            get => id;
+            set => SetProperty(ref id, value);
         }
     }
 }

@@ -201,6 +201,7 @@ namespace DodocoTales.Library.CurrentUser
                 {
                     bannerlog.GreaterRounds.Clear();
                     var bannerlibinfo = DDCL.BannerLib.GetBanner(bannerlog.VersionId, bannerlog.BannerId);
+                    var EPExtended = false;
 
                     if (buf.Count > 0)
                     {
@@ -209,6 +210,10 @@ namespace DodocoTales.Library.CurrentUser
                             && (DDCL.BannerLib.GetBanner(x.VersionId, x.BannerId)?.rank5Up.Contains(x.Logs.Last().unitclass) ?? false)
                         );
                         buf.RemoveRange(0, removecnt);
+                    }
+                    if (buf.Count > 0)
+                    {
+                        EPExtended = true;
                     }
                     var epl_ls = OriginalLogs.EpitomizedPath.FindAll(x => x.version_id == bannerlog.VersionId && x.banner_id == bannerlog.BannerId);
                     int epl_ptr = 0, epl_len = epl_ls.Count;
@@ -228,7 +233,25 @@ namespace DodocoTales.Library.CurrentUser
                                     x => x.Logs.Count > 0 && x.Logs.Last().rank == 5
                                     && (DDCL.BannerLib.GetBanner(x.VersionId, x.BannerId)?.rank5Up.Contains(x.Logs.Last().unitclass) ?? false)
                                 );
+
+                                var greater = new DDCLRoundLogItem
+                                {
+                                    VersionId = bannerlog.VersionId,
+                                    BannerId = bannerlog.BannerId,
+                                    CategorizedGachaType = bannerlog.CategorizedGachaType,
+                                    EpitomizedPathID = buf[removecnt - 1].EpitomizedPathID,
+                                    Logs = new List<DDCLGachaLogItem>(),
+                                    IsEPExtendedRound = false
+                                };
+                                foreach (var r in buf.GetRange(0, removecnt))
+                                {
+                                    greater.Logs.AddRange(r.Logs);
+                                }
+                                bannerlog.GreaterRounds.Add(greater);
+                                GreaterRounds.Add(greater);
+
                                 buf.RemoveRange(0, removecnt);
+                                EPExtended = true;
                             }
                         }
                         var tmplogs = new DDCLRoundLogItem { BannerId = t_rfst.banner_id, EpitomizedPathID = epl.unitclass, Logs = new List<DDCLGachaLogItem>(roundlog.ToList()) };
@@ -238,13 +261,19 @@ namespace DodocoTales.Library.CurrentUser
                         {
                             if (tmplogs.EpitomizedPathID == 0 || tmplogs.EpitomizedPathID == tmplogs.Logs.Last().unitclass)
                             {
+                                if (tmplogs.EpitomizedPathID == 0)
+                                {
+                                    EPExtended = false;
+                                }
+
                                 var greater = new DDCLRoundLogItem
                                 {
                                     VersionId = bannerlog.VersionId,
                                     BannerId = bannerlog.BannerId,
                                     CategorizedGachaType = bannerlog.CategorizedGachaType,
                                     EpitomizedPathID = tmplogs.EpitomizedPathID,
-                                    Logs = new List<DDCLGachaLogItem>()
+                                    Logs = new List<DDCLGachaLogItem>(),
+                                    IsEPExtendedRound = EPExtended
                                 };
                                 foreach (var r in buf)
                                 {

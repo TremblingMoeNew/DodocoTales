@@ -40,8 +40,9 @@ namespace DodocoTales
             await DDCL.UnitLib.LoadLibraryAsync();
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
             DDCL.CurrentUser.SwapUser(0);
-
-            VerViewScn.Refresh();
+            BanViewScn.SetBanner(300, 300101);
+            //BanViewScn.SetBanner(202, 202102);
+            BanViewScn.Refresh();
             //Card.Refresh();
            // Card2.Refresh();
             ///Card3.Refresh();
@@ -59,7 +60,7 @@ namespace DodocoTales
             }
             //Card.Refresh();
             //Card2.Refresh();
-            VerViewScn.Refresh();
+            BanViewScn.Refresh();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

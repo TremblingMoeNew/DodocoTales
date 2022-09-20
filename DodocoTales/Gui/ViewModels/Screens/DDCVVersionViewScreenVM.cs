@@ -86,7 +86,7 @@ namespace DodocoTales.Gui.ViewModels.Screens
                         r5s.Add(new DDCVUnitIndicatorModel
                         {
                             Name = DDCL.UnitLib.GetItemById(item.unitclass).name,
-                            Time = item.time,
+                            Time = DDCL.GetTimeOffset(item.time, tz),
                             Version = version.version,
                             Banner = baninfo.name,
                             InternalId = item.internal_id,
