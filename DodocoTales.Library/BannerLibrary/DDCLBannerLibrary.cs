@@ -128,7 +128,10 @@ namespace DodocoTales.Library.BannerLibrary
         }
         public async Task<bool> LoadLibraryAsync()
         {
-            if(!await LoadModelAsync())
+            Versions.Clear();
+            Banners.Clear();
+
+            if (!await LoadModelAsync())
             {
                 return false;
             }

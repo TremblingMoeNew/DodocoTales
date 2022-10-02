@@ -339,8 +339,6 @@ namespace DodocoTales.Gui.ViewModels.Cards
 
         public void LoadCurrentBanner()
         {
-            DDCLog.Info(DCLN.Gui, JsonConvert.SerializeObject(DDCL.CurrentUser.Banners.FindAll(x => x.CategorizedGachaType == DDCCPoolType.EventWeapon)));
-
             var banners = DDCL.BannerLib.GetBannersByType(DDCCPoolType.EventWeapon);
             var current = banners.FirstOrDefault(x => x.ActivateStatus == DDCLActivateStatus.Activating);
             if (current == null)

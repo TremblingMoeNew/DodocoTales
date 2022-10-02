@@ -142,6 +142,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\Views\Screens\DDCVHomeScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Views\Screens\DDCVVersionViewScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,6 +161,7 @@
     <Compile Include="Gui\Converters\DDCVPercentageConverter.cs" />
     <Compile Include="Gui\Converters\DDCVPoolTypeConverter.cs" />
     <Compile Include="Gui\Converters\DDCVVisibleByBooleanConverter.cs" />
+    <Compile Include="Gui\DDCV.cs" />
     <Compile Include="Gui\Enums\DDCVGreaterRoundType.cs" />
     <Compile Include="Gui\Enums\DDCVUnitIndicatorType.cs" />
     <Compile Include="Gui\Models\DDCVBannerItemModel.cs" />
@@ -179,8 +184,12 @@
     <Compile Include="Gui\Views\Cards\DDCVHomeScenePermanentCard.xaml.cs">
       <DependentUpon>DDCVHomeScenePermanentCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gui\Views\Screens\DDCVSwapableScreen.cs" />
     <Compile Include="Gui\Views\Screens\DDCVBannerViewScreen.xaml.cs">
       <DependentUpon>DDCVBannerViewScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Views\Screens\DDCVHomeScreen.xaml.cs">
+      <DependentUpon>DDCVHomeScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\Views\Screens\DDCVVersionViewScreen.xaml.cs">
       <DependentUpon>DDCVVersionViewScreen.xaml</DependentUpon>
@@ -207,6 +216,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

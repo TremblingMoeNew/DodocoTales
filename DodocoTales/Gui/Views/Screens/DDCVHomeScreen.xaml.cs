@@ -16,21 +16,20 @@ using System.Windows.Shapes;
 namespace DodocoTales.Gui.Views.Screens
 {
     /// <summary>
-    /// DDCVBannerViewScreen.xaml 的交互逻辑
+    /// DDCVHomeScreen.xaml 的交互逻辑
     /// </summary>
-    public partial class DDCVBannerViewScreen : DDCVSwapableScreen
+    public partial class DDCVHomeScreen : DDCVSwapableScreen
     {
-        public DDCVBannerViewScreen()
+        public DDCVHomeScreen()
         {
             InitializeComponent();
         }
-        public void SetBanner(ulong versionid, ulong bannerid)
-        {
-            VM.SetBanner(versionid, bannerid);
-        }
+
         public override void Refresh()
         {
-            VM.ReloadData();
+            EventChar.Refresh();
+            EventWeap.Refresh();
+            Permanant.Refresh();
         }
     }
 }

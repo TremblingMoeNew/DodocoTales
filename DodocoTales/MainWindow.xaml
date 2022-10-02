@@ -18,13 +18,16 @@
             <ColumnDefinition Width="220"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
 
         <TreeView ItemsSource="{Binding MenuItems}" 
                   Name="MainPanel"
                   pu:TreeViewHelper.TreeViewStyle="Modern"
                   pu:TreeViewHelper.SelectMode="ChildOnly"
                   pu:TreeViewHelper.SelectedBackground="#22FF0035" 
-                  BorderBrush="#FF0035">
+                  BorderBrush="#FF0035"
+                  SelectedItemChanged="MainPanel_SelectedItemChanged"
+                  >
 
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}"
@@ -32,11 +35,14 @@
                     <Setter Property="IsExpanded"
                                 Value="True" />
                     <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay}"/>
+                    <Setter Property="Padding" Value="0"/>
                 </Style>
             </TreeView.ItemContainerStyle>
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding MenuItems}">
-                    <TextBlock Text="{Binding Path=Title}" Padding="{Binding Padding}"/>
+                    <Label  Padding="{Binding Padding}" MouseDown="TreeViewItem_MouseDown" VerticalAlignment="Stretch"  Height="40" VerticalContentAlignment="Center" DataContext="{Binding}">
+                        <TextBlock Text="{Binding Path=Title}" Margin="10 0"/>
+                    </Label>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
@@ -51,8 +57,7 @@
             <cards:DDCVHomeSceneEventWeapCard x:Name="Card2"/>
             <cards:DDCVHomeScenePermanentCard x:Name="Card3"/>
         </StackPanel>
-        
-         <screens:DDCVBannerViewScreen Grid.Column="1" x:Name="BanViewScn"/>
-          
+
+        <Grid Grid.Column="1" x:Name="MainNavigator"/>
     </Grid>
 </Window>

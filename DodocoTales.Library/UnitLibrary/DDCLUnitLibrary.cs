@@ -34,6 +34,7 @@ namespace DodocoTales.Library.UnitLibrary
         {
             idMap.Clear();
             codeMap.Clear();
+            nameMap.Clear();
             try
             {
                 var stream = File.Open(libPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);

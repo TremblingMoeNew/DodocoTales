@@ -123,7 +123,6 @@ namespace DodocoTales.Gui.ViewModels.Screens
                     banls.Reverse();
                     vermodel.Banners = new ObservableCollection<DDCVBannerItemModel>(banls);
                     r5s.Sort((x, y) => y.InternalId.CompareTo(x.InternalId));
-                    Console.WriteLine(JsonConvert.SerializeObject(r5s));
                     vermodel.Rank5s = new ObservableCollection<DDCVUnitIndicatorModel>(r5s);
                     ls.Add(vermodel);
                 }

@@ -9,6 +9,16 @@ namespace DodocoTales.Logs
 {
     public static partial class DDCLog
     {
+        public static string ClientVersion;
+        public static string LibrarydVersion;
+        public static string CommonVersion;
+        public static string LoaderVersion;
+
+        public static string ClientVersionFull;
+        public static string LibrarydVersionFull;
+        public static string CommonVersionFull;
+        public static string LoaderVersionFull;
+
         public static readonly string LogPath = "Logs";
         public static readonly string LogFilePattern = "DodocoTales_Log_{0:yyyy-MM-dd HH-mm-ss}.txt";
         public static readonly string LogFilePath;
@@ -22,10 +32,15 @@ namespace DodocoTales.Logs
 
         public static void InitHint()
         {
+            var Entry = System.Reflection.Assembly.GetEntryAssembly();
             string Content =
                 "DodocoTales.Log initialized." + Environment.NewLine
-                + String.Format("DodocoTales Version {0} ({1})", "1.0.0", "1.0.0.000000") + Environment.NewLine;
-            // TODO
+                + String.Format("DodocoTales Version {0}", Entry.GetName().Version) + Environment.NewLine;
+            
+            foreach(var dllname in Entry.GetReferencedAssemblies().ToList().FindAll(x => x.Name.Contains("DodocoTales")))
+            {
+                Content += String.Format("  {0} Version {1}", dllname.Name, dllname.Version) + Environment.NewLine;
+            }
             Log(DDCLogType.Info, DCLN.Log, Content);
         }
 

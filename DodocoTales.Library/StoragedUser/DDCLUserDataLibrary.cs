@@ -61,7 +61,7 @@ namespace DodocoTales.Library.StoragedUser
                     DDCS.Emit_V0StyleLogFileDetacted(response.uid);
                     return;
                 }
-                U.Add(response.uid, response);
+                U[response.uid] = response;
                 DDCLog.Info(DCLN.Lib, String.Format("Userlog successfully loaded. UID:{0}", response.uid));
 
             }

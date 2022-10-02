@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using DodocoTales.Gui.Models;
+using DodocoTales.Gui.Views.Screens;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,8 +18,6 @@ namespace DodocoTales.Gui.ViewModels
             get => menuItems;
             set => SetProperty(ref menuItems, value);
         }
-
-
 
         public DDCVMainWindowVM()
         {

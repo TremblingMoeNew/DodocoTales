@@ -1,4 +1,6 @@
 ﻿using DodocoTales.Common.Enums;
+using DodocoTales.Gui;
+using DodocoTales.Gui.Models;
 using DodocoTales.Library;
 using DodocoTales.Loader;
 using DodocoTales.Loader.Models;
@@ -30,6 +32,8 @@ namespace DodocoTales
         public MainWindow()
         {
             InitializeComponent();
+            DDCV.MainNavigater = MainNavigator;
+            DDCV.RegisterMainScreens();
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -40,9 +44,11 @@ namespace DodocoTales
             await DDCL.UnitLib.LoadLibraryAsync();
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
             DDCL.CurrentUser.SwapUser(0);
-            BanViewScn.SetBanner(300, 300101);
+            DDCV.RefreshAll();
+            //HomeScn.Refresh();
+            //BanViewScn.SetBanner(201, 201101);
             //BanViewScn.SetBanner(202, 202102);
-            BanViewScn.Refresh();
+            //BanViewScn.Refresh();
             //Card.Refresh();
            // Card2.Refresh();
             ///Card3.Refresh();
@@ -58,9 +64,10 @@ namespace DodocoTales
                 await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey);
                 await DDCL.CurrentUser.SaveUserAsync();
             }
+            DDCV.RefreshAll();
             //Card.Refresh();
             //Card2.Refresh();
-            BanViewScn.Refresh();
+            //BanViewScn.Refresh();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -72,6 +79,20 @@ namespace DodocoTales
         {
             var uf = await DDCG.UFImporter.LoadUFJsonAsync("import/xunkong.json");
             DDCG.UFImporter.Import(uf);
+        }
+
+        private void MainPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            var item = MainPanel.SelectedItem as DDCVMainPanelItemModel;
+            if(item != null)
+                DDCV.SwapMainScreen(item.Tag);
+        }
+
+        private void TreeViewItem_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = (sender as Label).DataContext as DDCVMainPanelItemModel;
+            if (item == MainPanel.SelectedItem)
+                DDCV.SwapMainScreen(item.Tag);
         }
     }
 }

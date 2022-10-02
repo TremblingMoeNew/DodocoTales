@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DodocoTales.Gui.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,16 +19,23 @@ namespace DodocoTales.Gui.Views.Screens
     /// <summary>
     /// DDCVVersionViewScreen.xaml 的交互逻辑
     /// </summary>
-    public partial class DDCVVersionViewScreen : UserControl
+    public partial class DDCVVersionViewScreen : DDCVSwapableScreen
     {
         public DDCVVersionViewScreen()
         {
             InitializeComponent();
         }
-        public void Refresh()
+        public override void Refresh()
         {
             VM.ReloadData();
         }
 
+        private void ListViewItem_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine("Clicked");
+            
+            var model = (sender as Grid).DataContext as DDCVBannerItemModel;
+            DDCV.CreateBannerViewScreen(model.VersionId, model.BannerId);
+        }
     }
 }
