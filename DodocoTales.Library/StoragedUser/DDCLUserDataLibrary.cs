@@ -101,7 +101,7 @@ namespace DodocoTales.Library.StoragedUser
             // TODO: LibVersion Update
             try
             {
-                var stream = File.Open(logfile, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite);
+                var stream = File.Open(logfile, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
                 StreamWriter writer = new StreamWriter(stream);
                 var serialized = JsonConvert.SerializeObject(userlog, Formatting.Indented);
                 await writer.WriteAsync(serialized);

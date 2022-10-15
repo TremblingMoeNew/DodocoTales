@@ -1,6 +1,7 @@
 ﻿using DodocoTales.Common.Enums;
 using DodocoTales.Gui;
 using DodocoTales.Gui.Models;
+using DodocoTales.Gui.Views.Windows;
 using DodocoTales.Library;
 using DodocoTales.Loader;
 using DodocoTales.Loader.Models;
@@ -32,6 +33,7 @@ namespace DodocoTales
         public MainWindow()
         {
             InitializeComponent();
+            DDCV.MainWindow = this;
             DDCV.MainNavigater = MainNavigator;
             DDCV.RegisterMainScreens();
         }
@@ -43,6 +45,7 @@ namespace DodocoTales
             await DDCL.BannerLib.LoadLibraryAsync();
             await DDCL.UnitLib.LoadLibraryAsync();
             await DDCL.UserDataLib.LoadLocalGachaLogsAsync();
+            await DDCL.GameClientLib.LoadLibraryAsync();
             DDCL.CurrentUser.SwapUser(0);
             DDCV.RefreshAll();
             //HomeScn.Refresh();
@@ -57,11 +60,14 @@ namespace DodocoTales
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var authkey = DDCG.WebLogLoader.GetAuthKey();
+            var client = DDCL.GameClientLib.GetSelectedClient();
+            if (client == null) return;
+
+            var authkey = DDCG.GameClientLoader.GetAuthkeyFromWebCache(client);
             DDCL.CurrentUser.SwapUser(7);
             if (authkey != null)
             {
-                await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey);
+                await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey, client.ClientType);
                 await DDCL.CurrentUser.SaveUserAsync();
             }
             DDCV.RefreshAll();
@@ -93,6 +99,23 @@ namespace DodocoTales
             var item = (sender as Label).DataContext as DDCVMainPanelItemModel;
             if (item == MainPanel.SelectedItem)
                 DDCV.SwapMainScreen(item.Tag);
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            DDCV.ShowWindowDialog(new DDCVGameClientManagerWindow());
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            var selected = DDCL.GameClientLib.GetSelectedClient();
+            if (selected == null)
+                if (!DDCV.ShowWindowDialog(new DDCVGameClientManagerWindow()))
+                    return;
+
+            selected = DDCL.GameClientLib.GetSelectedClient();
+            if (selected != null)
+                Console.WriteLine(DDCG.GameClientLoader.GetAuthkeyFromWebCache(selected));
         }
     }
 }

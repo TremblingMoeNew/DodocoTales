@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="DDCG.cs" />
     <Compile Include="DDCGGachaLogMerger.cs" />
+    <Compile Include="DDCGGameClientLoader.cs" />
     <Compile Include="DDCGV0LogUpdater.cs" />
     <Compile Include="DDCGWebGachaLogLoader.cs" />
     <Compile Include="Models\DDCGGachaLogResponse.cs" />

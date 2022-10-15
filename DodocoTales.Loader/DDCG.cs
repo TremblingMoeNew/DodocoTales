@@ -13,6 +13,8 @@ namespace DodocoTales.Loader
         public static DDCGV0LogUpdater V0Updater = new DDCGV0LogUpdater();
         public static DDCGUniversalFormatExporter UFExporter = new DDCGUniversalFormatExporter();
         public static DDCGUniversalFormatImporter UFImporter = new DDCGUniversalFormatImporter();
+        public static DDCGGameClientLoader GameClientLoader = new DDCGGameClientLoader();
+
         public static void Initialize()
         {
             V0Updater.Initialize();

@@ -76,7 +76,7 @@ namespace DodocoTales.Loader.UniversalFormat
             string path = string.Format("{0}/DDCExport_{2}_{1:yyyyMMdd_HHmmss}.json", dir, DateTime.Now, uid);
             try
             {
-                var stream = File.Open(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite);
+                var stream = File.Open(path, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
                 StreamWriter writer = new StreamWriter(stream);
                 var serialized = JsonConvert.SerializeObject(CreateUFLog(uid), Formatting.Indented);
                 await writer.WriteAsync(serialized);

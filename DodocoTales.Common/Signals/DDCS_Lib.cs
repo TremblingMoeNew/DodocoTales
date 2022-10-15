@@ -61,5 +61,11 @@ namespace DodocoTales.Common
         public static DDCSUidParamDelegate V0StyleLogFileDetacted;
         public static void Emit_V0StyleLogFileDetacted(long uid)
             => ExecUidParamDelegate(V0StyleLogFileDetacted, uid);
+
+
+        public static DDCSCommonDelegate GameClientLibReloadCompleted;
+        public static void Emit_GameClientLibReloadCompleted()
+            => ExecCommonDelegate(GameClientLibReloadCompleted);
+
     }
 }

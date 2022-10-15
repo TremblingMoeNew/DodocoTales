@@ -9,7 +9,7 @@ namespace DodocoTales.Library.Utils
     public class DDCLInternalIdGenerator
     {
         public static ulong GenerateInternalId(DateTime time, ulong index)
-            => DDCL.ToUnixTimestamp(time) * 100 + index;
+            => DDCL.ToUnixTimestamp(time) * 100000 + index;
 
         public static ulong MinInternalId(DateTime time)
             => GenerateInternalId(time, 0);

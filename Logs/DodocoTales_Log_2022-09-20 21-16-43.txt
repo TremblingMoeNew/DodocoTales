@@ -1,2 +1,0 @@
-[2022/9/20 21:16:43][Warning/Lib]Get UNKNOWN type name
-[2022/9/20 21:18:11][Warning/Lib]Get UNKNOWN type name

@@ -1,6 +1,7 @@
 ﻿using DodocoTales.Common;
 using DodocoTales.Common.Enums;
 using DodocoTales.Library;
+using DodocoTales.Library.Enums;
 using DodocoTales.Library.StoragedUser.Models;
 using DodocoTales.Library.Utils;
 using DodocoTales.Loader.Models;
@@ -22,8 +23,19 @@ namespace DodocoTales.Loader
     {
         readonly string locallow = Environment.GetEnvironmentVariable("USERPROFILE") + @"/AppData/LocalLow/miHoYo";
 
-        public bool isCnApi = true;
-        string apipattern { get { if (isCnApi) return apipattern_cn; else return apipattern_os; } }
+        public DDCLGameClientType ClientType;
+        public string ApiPattern
+        {
+            get
+            {
+                if (ClientType == DDCLGameClientType.CN)
+                    return apipattern_cn;
+                else if (ClientType == DDCLGameClientType.Global)
+                    return apipattern_os;
+                else
+                    return null;
+            }
+        }
         readonly string apipattern_cn = @"https://hk4e-api.mihoyo.com/event/gacha_info/api/getGachaLog?{0}&gacha_type={1}&page={2}&size={4}&end_id={3}";
         readonly string apipattern_os = @"https://hk4e-api-os.mihoyo.com/event/gacha_info/api/getGachaLog?{0}&gacha_type={1}&page={2}&size={4}&end_id={3}";
 
@@ -34,7 +46,7 @@ namespace DodocoTales.Loader
             client = new HttpClient();
         }
 
-        public string GetAuthKey()
+        private string GetAuthKey()
         {
             SortedList<long,string> output_logs = new SortedList<long,string>();
             string log;
@@ -81,8 +93,12 @@ namespace DodocoTales.Loader
 
         public async Task<List<DDCGGachaLogResponseItem>> GetGachaLogAsync(string authkey, int pageid, DDCCPoolType type, ulong lastid, int size = 6, int retrycnt=0)
         {
+            if (ApiPattern == null)
+            {
+                return null;
+            }
             var api = String.Format(
-                apipattern,
+                ApiPattern,
                 authkey, (int)type, pageid, lastid, size
             );
             Thread.Sleep(200);
@@ -93,7 +109,7 @@ namespace DodocoTales.Loader
             }
             catch
             {
-                DDCLog.Warning(DCLN.Loader, "Mihoyo-API connection timeout.");
+                DDCLog.Warning(DCLN.Loader, "MiHoYo-API connection timeout.");
                 if (retrycnt == 3) return null;
                 DDCS.Emit_ImportConnectionTimeout();
                 Thread.Sleep(1000);
@@ -105,7 +121,7 @@ namespace DodocoTales.Loader
             {
                 if (response.retcode == -110)
                 {
-                    DDCLog.Warning(DCLN.Loader, "Mihoyo-API connection throttled.");
+                    DDCLog.Warning(DCLN.Loader, "MiHoYo-API connection throttled.");
                     if (retrycnt > 10) return null;
                     DDCS.Emit_ImportConnectionThrottled();
                     if (retrycnt > 5)
@@ -153,13 +169,12 @@ namespace DodocoTales.Loader
         }
 
 
-        public async Task<long> TryConnectAndGetUid(string authkey)
+        public async Task<long> TryConnectAndGetUid(string authkey, DDCLGameClientType clientType)
         {
-            isCnApi = true;
+            ClientType = clientType;
             var uid = await GetUidFromWeb(authkey);
             if (uid < 0)
             {
-                isCnApi = false;
                 uid = await GetUidFromWeb(authkey);
             }
             if (uid == -1) uid = GetUidFromLocal();
@@ -186,13 +201,17 @@ namespace DodocoTales.Loader
         {
             string output_file, log;
             long res = -1;
-            if (Directory.Exists(locallow + @"/原神"))
+            if (ClientType == DDCLGameClientType.CN && Directory.Exists(locallow + @"/原神"))
             {
                 output_file = locallow + @"/原神/UidInfo.txt";
             }
-            else
+            else if (ClientType == DDCLGameClientType.Global && Directory.Exists(locallow + @"/Genshin Impact"))
             {
                 output_file = locallow + @"/Genshin Impact/UidInfo.txt";
+            }
+            else
+            {
+                return -1;
             }
             try
             {
@@ -227,8 +246,9 @@ namespace DodocoTales.Loader
         }
 
 
-        public async Task GetGachaLogsAsNormalMode(string authkey)
+        public async Task GetGachaLogsAsNormalMode(string authkey, DDCLGameClientType clientType)
         {
+            ClientType = clientType;
             var merger = new DDCGGachaLogMerger(DDCL.CurrentUser.OriginalLogs);
             var res = new SortedList<ulong, DDCLGachaLogItem>();
             DDCLInternalIdGenerator idgen = new DDCLInternalIdGenerator();

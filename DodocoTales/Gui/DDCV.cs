@@ -15,6 +15,7 @@ namespace DodocoTales.Gui
         public static readonly Dictionary<string, DDCVSwapableScreen> MainScreens = new Dictionary<string, DDCVSwapableScreen>();
         public static readonly Stack<DDCVSwapableScreen> StackedScreens = new Stack<DDCVSwapableScreen>();
 
+        public static MainWindow MainWindow;
         public static Grid MainNavigater;
 
 
@@ -90,6 +91,12 @@ namespace DodocoTales.Gui
             scn.SetBanner(versionid, bannerid);
             PushScreen(scn);
             scn.Refresh();
+        }
+
+        public static bool ShowWindowDialog(Window window)
+        {
+            window.Owner = MainWindow;
+            return window.ShowDialog() ?? false;
         }
     }
 }

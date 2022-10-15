@@ -51,6 +51,8 @@
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_1">Fetch</Button>
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_2">UIGF Export</Button>
             <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_3">UIGF Import</Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_4">Game Client Manager</Button>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_5">Get Authkey From Cache</Button>
         </StackPanel>
         <StackPanel Grid.Column="1" Visibility="Collapsed">
             <cards:DDCVHomeSceneEventCharCard  x:Name="Card"/>

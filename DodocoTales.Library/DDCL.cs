@@ -1,6 +1,8 @@
 ﻿using DodocoTales.Common.Enums;
 using DodocoTales.Library.BannerLibrary;
 using DodocoTales.Library.CurrentUser;
+using DodocoTales.Library.Enums;
+using DodocoTales.Library.GameClient;
 using DodocoTales.Library.StoragedUser;
 using DodocoTales.Library.UnitLibrary;
 using DodocoTales.Logs;
@@ -18,8 +20,11 @@ namespace DodocoTales.Library
         public static DDCLCurrentUserLibrary CurrentUser = new DDCLCurrentUserLibrary();
         public static DDCLUserDataLibrary UserDataLib = new DDCLUserDataLibrary();
         public static DDCLUnitLibrary UnitLib = new DDCLUnitLibrary();
+        public static DDCLGameClientLibrary GameClientLib = new DDCLGameClientLibrary();
+
+
         public static ulong ToUnixTimestamp(DateTime time)
-            => (ulong)((time.ToUniversalTime().Ticks - 621355968000000000) / 10000);
+            => (ulong)((time.ToUniversalTime().Ticks - 621355968000000000) / 10000000);
 
 
 
@@ -76,8 +81,37 @@ namespace DodocoTales.Library
                 case DDCCPoolType.EventCharacter2:
                     return "角色活动祈愿-2";
                 default:
-                    DDCLog.Warning(DCLN.Lib, "Get UNKNOWN type name");
+                    DDCLog.Warning(DCLN.Lib, "Get UNKNOWN PoolType name");
                     return "(类型错误)";
+            }
+        }
+        public static string GetGameClientTypeName(DDCLGameClientType type)
+        {
+            switch (type)
+            {
+                case DDCLGameClientType.CN:
+                    return "国服客户端";
+                case DDCLGameClientType.Global:
+                    return "国际服客户端";
+                default:
+                    DDCLog.Warning(DCLN.Lib, "Get UNKNOWN GameClientType name");
+                    return "(未知客户端)";
+            }
+        }
+
+        public static string GetTimeZoneName(DDCCTimeZone type)
+        {
+            switch (type)
+            {
+                case DDCCTimeZone.DefaultUTCP8:
+                    return "亚太 (UTC+8)";
+                case DDCCTimeZone.EuropeUTCP1:
+                    return "欧洲 (UTC+1)";
+                case DDCCTimeZone.AmericaUTCM5:
+                    return "北美 (UTC-5)";
+                default:
+                    DDCLog.Warning(DCLN.Lib, "Get UNKNOWN GameClientType name");
+                    return "(未知客户端)";
             }
         }
 

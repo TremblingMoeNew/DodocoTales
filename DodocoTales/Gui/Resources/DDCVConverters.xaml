@@ -5,4 +5,6 @@
     <converter:DDCVVisibleByBooleanConverter x:Key="VisByBoolCon"/>
     <converter:DDCVPercentageConverter x:Key="PercentageCon"/>
     <converter:DDCVPoolTypeConverter x:Key="PoolTypeCon"/>
+    <converter:DDCVClientTypeConverter x:Key="ClientTypeCon"/>
+    <converter:DDCVTimeZoneTypeConverter x:Key="TimeZoneCon"/>
 </ResourceDictionary>
