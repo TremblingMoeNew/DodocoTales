@@ -14,6 +14,7 @@ namespace DodocoTales.Loader
         public static DDCGUniversalFormatExporter UFExporter = new DDCGUniversalFormatExporter();
         public static DDCGUniversalFormatImporter UFImporter = new DDCGUniversalFormatImporter();
         public static DDCGGameClientLoader GameClientLoader = new DDCGGameClientLoader();
+        public static DDCGProxyLoader ProxyLoader = new DDCGProxyLoader();
 
         public static void Initialize()
         {

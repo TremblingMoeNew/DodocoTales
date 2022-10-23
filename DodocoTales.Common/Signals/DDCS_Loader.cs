@@ -40,5 +40,9 @@ namespace DodocoTales.Common
         public static void Emit_ImportConnectionThrottled()
             => ExecCommonDelegate(ImportConnectionThrottled);
 
+        public static DDCSCommonDelegate ProxyCaptured;
+        public static void Emit_ProxyCaptured()
+            => ExecCommonDelegate(ProxyCaptured);
+
     }
 }

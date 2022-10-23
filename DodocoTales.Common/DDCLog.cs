@@ -47,10 +47,14 @@ namespace DodocoTales.Logs
         public static void Log(DDCLogType Type, DCLN Namespace, string Content)
         {
             var text = String.Format(LogPattern, Type, DateTime.Now, Namespace, Content);
-            using (StreamWriter writer = new StreamWriter(LogFilePath,true))
+            using (FileStream fs = new FileStream(LogFilePath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
             {
-                writer.WriteLine(text);
+                using (StreamWriter writer = new StreamWriter(fs))
+                {
+                    writer.WriteLineAsync(text);
+                }
             }
+
         }
         public static void Info(DCLN Namespace,string info)
         {

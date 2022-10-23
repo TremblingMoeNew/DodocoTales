@@ -129,9 +129,15 @@ namespace DodocoTales.Loader
         {
             string authkey = null;
             string path = client.Path + WebCachePath;
+            if (!File.Exists(path))
+            {
+                return null;
+            }
+            string target = Path.GetTempFileName();
+            File.Copy(path,target,true);
             try
             {
-                using (var stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                using (var stream = File.Open(target, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     StreamReader reader = new StreamReader(stream);
                     var log = reader.ReadToEnd();
@@ -143,10 +149,12 @@ namespace DodocoTales.Loader
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 authkey =  null;
+                Console.WriteLine(ex.Message);
             }
+            File.Delete(target);
             return authkey;
         }
 

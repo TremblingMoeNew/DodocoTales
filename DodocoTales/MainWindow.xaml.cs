@@ -38,6 +38,7 @@ namespace DodocoTales
             DDCV.MainNavigater = MainNavigator;
             DDCV.RegisterMainScreens();
             DDCS.CurUserSwapCompleted += OnUIDSwapCompleted;
+            DDCS.ProxyCaptured += OnProxyCaptured;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -96,6 +97,25 @@ namespace DodocoTales
         {
             VM.RefreshCurrentUID();
             if(!VM.IsInUpdate) DDCV.RefreshAll();
+        }
+
+        private async void OnProxyCaptured()
+        {
+            Action action = async () =>{
+                if (VM.IsInProxyUpdateAppended)
+                {
+                    await VM.WishLogUpdateAppendedFromProxy();
+                }
+                else if (VM.IsInProxyUpdateFull)
+                {
+                    await VM.WishLogUpdateFullFromProxy();
+                }
+                else
+                {
+                    VM.IsProxyModeOn = false;
+                }
+            };
+            await Dispatcher.BeginInvoke(action);
         }
 
         private async void UpdateWishButton_Click(object sender, RoutedEventArgs e)
