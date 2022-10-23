@@ -1,4 +1,5 @@
 ﻿using DodocoTales.Common.Enums;
+using DodocoTales.Library.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,10 @@ namespace DodocoTales.Library.StoragedUser.Models
         public ulong lastUpdateBannerLibraryVersion { get; set; }
         public ulong lastUpdateUnitLibraryVersion { get; set; }
         public DDCCTimeZone zone { get; set; }
+
+        [DefaultValue(DDCLGameClientType.Unknown)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        public DDCLGameClientType ClientType { get; set; }
 
         [DefaultValue(null)]
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]

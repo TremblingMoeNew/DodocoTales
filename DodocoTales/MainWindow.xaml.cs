@@ -1,4 +1,5 @@
-﻿using DodocoTales.Common.Enums;
+﻿using DodocoTales.Common;
+using DodocoTales.Common.Enums;
 using DodocoTales.Gui;
 using DodocoTales.Gui.Models;
 using DodocoTales.Gui.Views.Windows;
@@ -36,6 +37,7 @@ namespace DodocoTales
             DDCV.MainWindow = this;
             DDCV.MainNavigater = MainNavigator;
             DDCV.RegisterMainScreens();
+            DDCS.CurUserSwapCompleted += OnUIDSwapCompleted;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -58,34 +60,6 @@ namespace DodocoTales
             //DDCLog.Info(DCLN.Debug, JsonConvert.SerializeObject(DDCL.CurrentUser.GreaterRounds,Formatting.Indented));
         }
 
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var client = DDCL.GameClientLib.GetSelectedClient();
-            if (client == null) return;
-
-            var authkey = DDCG.GameClientLoader.GetAuthkeyFromWebCache(client);
-            DDCL.CurrentUser.SwapUser(7);
-            if (authkey != null)
-            {
-                await DDCG.WebLogLoader.GetGachaLogsAsNormalMode(authkey, client.ClientType);
-                await DDCL.CurrentUser.SaveUserAsync();
-            }
-            DDCV.RefreshAll();
-            //Card.Refresh();
-            //Card2.Refresh();
-            //BanViewScn.Refresh();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            DDCG.UFExporter.ExportAsJson(1,"export");
-        }
-
-        private async void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            var uf = await DDCG.UFImporter.LoadUFJsonAsync("import/xunkong.json");
-            DDCG.UFImporter.Import(uf);
-        }
 
         private void MainPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
@@ -101,11 +75,6 @@ namespace DodocoTales
                 DDCV.SwapMainScreen(item.Tag);
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            DDCV.ShowWindowDialog(new DDCVGameClientManagerWindow());
-        }
-
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             var selected = DDCL.GameClientLib.GetSelectedClient();
@@ -116,6 +85,38 @@ namespace DodocoTales
             selected = DDCL.GameClientLib.GetSelectedClient();
             if (selected != null)
                 Console.WriteLine(DDCG.GameClientLoader.GetAuthkeyFromWebCache(selected));
+        }
+
+        private void UpdatePanelButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdatePanel.IsOpen = true;
+        }
+
+        private void OnUIDSwapCompleted(long uid)
+        {
+            VM.RefreshCurrentUID();
+            if(!VM.IsInUpdate) DDCV.RefreshAll();
+        }
+
+        private async void UpdateWishButton_Click(object sender, RoutedEventArgs e)
+        {
+            await VM.WishLogUpdateAppended();
+        }
+        private async void UpdateWishFullModeButton_Click(object sender, RoutedEventArgs e)
+        {
+            await VM.WishLogUpdateFull();
+        }
+
+        private void OpenGameClientManagerWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            DDCV.ShowWindowDialog(new DDCVGameClientManagerWindow());
+        }
+
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+            // Proxy Ensure Stopped
+
+            Application.Current.Shutdown();
         }
     }
 }

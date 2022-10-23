@@ -111,7 +111,7 @@ namespace DodocoTales.Library
                     return "北美 (UTC-5)";
                 default:
                     DDCLog.Warning(DCLN.Lib, "Get UNKNOWN GameClientType name");
-                    return "(未知客户端)";
+                    return "(未知时区)";
             }
         }
 

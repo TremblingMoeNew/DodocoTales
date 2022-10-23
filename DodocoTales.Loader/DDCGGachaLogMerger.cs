@@ -74,6 +74,7 @@ namespace DodocoTales.Loader
         public void RebuildClassifiers()
         {
             int versionidx = 0, versioncnt = DDCL.BannerLib.Versions.Count;
+            if (versioncnt == 0) return;
             var version = DDCL.BannerLib.Versions[versionidx];
             Dictionary<DDCCPoolType, int> banneridx = new Dictionary<DDCCPoolType, int>
             {

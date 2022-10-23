@@ -173,11 +173,6 @@ namespace DodocoTales.Loader
         {
             ClientType = clientType;
             var uid = await GetUidFromWeb(authkey);
-            if (uid < 0)
-            {
-                uid = await GetUidFromWeb(authkey);
-            }
-            if (uid == -1) uid = GetUidFromLocal();
             return uid;
         }
 
@@ -265,6 +260,32 @@ namespace DodocoTales.Loader
                 res.Add(idgen.GenerateNextInternalId(item.time), ConvertToDDCLLogItem(item, DDCCPoolType.EventCharacter));
             }
             foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.EventWeapon, merger.GetLastItemMihoyoIdByType(DDCCPoolType.EventWeapon)))
+            {
+                res.Add(idgen.GenerateNextInternalId(item.time), ConvertToDDCLLogItem(item, DDCCPoolType.EventWeapon));
+            }
+            merger.Merge(res.Values.ToList());
+        }
+
+
+        public async Task GetGachaLogsAsFullMode(string authkey, DDCLGameClientType clientType)
+        {
+            ClientType = clientType;
+            var merger = new DDCGGachaLogMerger(DDCL.CurrentUser.OriginalLogs);
+            var res = new SortedList<ulong, DDCLGachaLogItem>();
+            DDCLInternalIdGenerator idgen = new DDCLInternalIdGenerator();
+            foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.Beginner, 0))
+            {
+                res.Add(idgen.GenerateNextInternalId(item.time), ConvertToDDCLLogItem(item, DDCCPoolType.Beginner));
+            }
+            foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.Permanent, 0))
+            {
+                res.Add(idgen.GenerateNextInternalId(item.time), ConvertToDDCLLogItem(item, DDCCPoolType.Permanent));
+            }
+            foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.EventCharacter, 0))
+            {
+                res.Add(idgen.GenerateNextInternalId(item.time), ConvertToDDCLLogItem(item, DDCCPoolType.EventCharacter));
+            }
+            foreach (var item in await GetGachaLogsByTypeAsync(authkey, DDCCPoolType.EventWeapon, 0))
             {
                 res.Add(idgen.GenerateNextInternalId(item.time), ConvertToDDCLLogItem(item, DDCCPoolType.EventWeapon));
             }

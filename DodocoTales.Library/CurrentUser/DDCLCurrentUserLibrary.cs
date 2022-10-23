@@ -142,7 +142,7 @@ namespace DodocoTales.Library.CurrentUser
                     foreach (var logitem in blog)
                     {
                         Logs.Add(logitem.internal_id, logitem); ;
-                        bannerlog.Logs.Add(logitem);
+                        bannerlog?.Logs.Add(logitem);
                     }
                 }
             }

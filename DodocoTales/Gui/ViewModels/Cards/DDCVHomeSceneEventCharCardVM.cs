@@ -464,8 +464,8 @@ namespace DodocoTales.Gui.ViewModels.Cards
                     {
                         Name = DDCL.UnitLib.GetItemById(last.unitclass).name,
                         Time = DDCL.GetTimeOffset(last.time, tz).ToLocalTime(),
-                        Version=DDCL.BannerLib.GetVersion(last.version_id).version,
-                        Banner=DDCL.BannerLib.GetBanner(last.version_id,last.banner_id).name,
+                        Version = DDCL.BannerLib.GetVersion(last.version_id).version,
+                        Banner = DDCL.BannerLib.GetBanner(last.version_id,last.banner_id).name,
                         Count = rndl.Count
                     });
                 }

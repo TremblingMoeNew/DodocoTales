@@ -166,6 +166,9 @@
     <Compile Include="Gui\Converters\DDCVPercentageConverter.cs" />
     <Compile Include="Gui\Converters\DDCVPoolTypeConverter.cs" />
     <Compile Include="Gui\Converters\DDCVTimeZoneTypeConverter.cs" />
+    <Compile Include="Gui\Converters\DDCVUidAnonymousConverter.cs" />
+    <Compile Include="Gui\Converters\DDCVUidNormalConverter.cs" />
+    <Compile Include="Gui\Converters\DDCVVisibleByAvailableUIDConverter.cs" />
     <Compile Include="Gui\Converters\DDCVVisibleByBooleanConverter.cs" />
     <Compile Include="Gui\DDCV.cs" />
     <Compile Include="Gui\Enums\DDCVGreaterRoundType.cs" />

@@ -7,4 +7,7 @@
     <converter:DDCVPoolTypeConverter x:Key="PoolTypeCon"/>
     <converter:DDCVClientTypeConverter x:Key="ClientTypeCon"/>
     <converter:DDCVTimeZoneTypeConverter x:Key="TimeZoneCon"/>
+    <converter:DDCVUidAnonymousConverter x:Key="UIDAnonyCon"/>
+    <converter:DDCVUidNormalConverter x:Key="UIDNormalCon"/>
+    <converter:DDCVVisibleByAvailableUIDConverter x:Key="VisByAvaliableUIDCon"/>
 </ResourceDictionary>
