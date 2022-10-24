@@ -88,7 +88,8 @@ namespace DodocoTales.Loader
             FileInfo exec = new FileInfo(execpath);
             if(exec.Name == ClientExecutable_CN)
             {
-                var genshin_data_dir = exec.DirectoryName + "/" + GenshinData_CN;
+                var genshin_data_dir = exec.DirectoryName + "/" + GenshinData_CN + "/";
+                genshin_data_dir = genshin_data_dir.Replace('\\', '/');
                 if (Directory.Exists(genshin_data_dir))
                 {
                     DDCLog.Info(DCLN.Loader, String.Format("CN client confirmed: {0}", genshin_data_dir));
@@ -104,7 +105,8 @@ namespace DodocoTales.Loader
             }
             else if (exec.Name == ClientExecutable_OS)
             {
-                var genshin_data_dir = exec.DirectoryName + "/" + GenshinData_OS;
+                var genshin_data_dir = exec.DirectoryName + "/" + GenshinData_OS + "/";
+                genshin_data_dir = genshin_data_dir.Replace('\\', '/');
                 if (Directory.Exists(genshin_data_dir))
                 {
                     DDCLog.Info(DCLN.Loader, String.Format("Global client confirmed: {0}", genshin_data_dir));

@@ -39,13 +39,25 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="Auto" MinWidth="100"/>
                                 <ColumnDefinition Width="Auto" MinWidth="100"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto" MinWidth="50"/>
                                 <ColumnDefinition Width="Auto"/>
+                                
                             </Grid.ColumnDefinitions>
                             <Label FontSize="16" Content="{Binding Name}"/>
                             <Label Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding ClientType, Converter={StaticResource ClientTypeCon}}"/>
                             <Label Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding TimeZone, Converter={StaticResource TimeZoneCon}}"/>
                             <Button Grid.Column="3"
+                            FontSize="13"
+                            Padding="10 0"
+                            Margin="5 0 0 0"
+                            Content="编辑"
+                            pu:ButtonHelper.ClickStyle="Sink"
+                            pu:ButtonHelper.ButtonStyle="Link"
+                            DataContext="{Binding}"
+                            Click="EditButton_Click"/>
+                            
+                            <Button Grid.Column="4"
                             FontSize="13"
                             Padding="10 0"
                             Margin="5 0 0 0"
@@ -58,7 +70,7 @@
                             pu:ButtonHelper.CornerRadius="5"
                             Click="SetButton_Click"
                             DataContext="{Binding}"/>
-                            <Button Grid.Column="4"
+                            <Button Grid.Column="5"
                             FontSize="13"
                             Padding="10 0"
                             Margin="5 0 0 0"
@@ -71,6 +83,7 @@
                             pu:ButtonHelper.CornerRadius="5"
                             Click="CleanButton_Click"
                             DataContext="{Binding}"/>
+                            
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -78,7 +91,7 @@
         </ItemsControl>
       
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
-            
+
             <Button 
                 x:Name="LoadFromLog"
                 Height="30"
@@ -92,17 +105,17 @@
                 pu:ButtonHelper.HoverBrush="#88FF8282"
                 pu:ButtonHelper.CornerRadius="5" Click="LoadFromLog_Click"/>
             <Button 
-                x:Name="Add"
+                x:Name="AddNewButton"
                 Height="30"
                 Width="120"
-                Content="手动编辑"
+                Content="手动添加"
                 Margin="10 0 10 0"
                 pu:ButtonHelper.ClickStyle="Sink"
                 pu:ButtonHelper.ButtonStyle="Hollow"
                 BorderBrush="#FF7C3232"
                 Foreground="#FF890B0B"
                 pu:ButtonHelper.HoverBrush="#88FF8282"
-                pu:ButtonHelper.CornerRadius="5"/>
+                pu:ButtonHelper.CornerRadius="5" Click="AddNewButton_Click"/>
             <Button  Height="30"
                 x:Name="CloseButton"
                 Width="90"

@@ -23,5 +23,6 @@ namespace DodocoTales.Gui.ViewModels.Windows
             Clients = new ObservableCollection<DDCLGameClientItem>(DDCL.GameClientLib.GetClients());
         }
 
+
     }
 }

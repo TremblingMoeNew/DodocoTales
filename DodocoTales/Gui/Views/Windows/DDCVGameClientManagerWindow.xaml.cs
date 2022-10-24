@@ -1,4 +1,5 @@
-﻿using DodocoTales.Library;
+﻿using DodocoTales.Gui.Views.Dialogs;
+using DodocoTales.Library;
 using DodocoTales.Library.GameClient.Models;
 using DodocoTales.Loader;
 using Panuon.UI.Silver;
@@ -54,6 +55,30 @@ namespace DodocoTales.Gui.Views.Windows
         {
             DDCLGameClientItem item = (sender as Button).DataContext as DDCLGameClientItem;
             DDCG.GameClientLoader.RemoveCacheFile(item);
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            DDCLGameClientItem item = (sender as Button).DataContext as DDCLGameClientItem;
+            DDCVGameClientManagerWindowEditDialog dialog = new DDCVGameClientManagerWindowEditDialog
+            {
+                Owner = this
+            };
+            dialog.LoadGameClientItem(item);
+            dialog.ShowDialog();
+            VM.ReloadData();
+        }
+
+        private void AddNewButton_Click(object sender, RoutedEventArgs e)
+        {
+            DDCLGameClientItem item = (sender as Button).DataContext as DDCLGameClientItem;
+            DDCVGameClientManagerWindowEditDialog dialog = new DDCVGameClientManagerWindowEditDialog
+            {
+                Owner = this
+            };
+            dialog.NewGameClientItem();
+            dialog.ShowDialog();
+            VM.ReloadData();
         }
     }
 }
